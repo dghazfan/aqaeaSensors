@@ -1,0 +1,3476 @@
+[
+    {
+        "id": "a963ce203011149c",
+        "type": "tab",
+        "label": "aqaraSensors",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "61417293a8d68a3f",
+        "type": "mqtt-broker",
+        "name": "dfg-mosquitto",
+        "broker": "192.168.1.20",
+        "port": "1883",
+        "clientid": "aqara",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "sessionExpiry": ""
+    },
+    {
+        "id": "1359d533e6c4ecd3",
+        "type": "http request",
+        "z": "a963ce203011149c",
+        "name": "getAllDevices",
+        "method": "use",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "senderr": false,
+        "x": 720,
+        "y": 2200,
+        "wires": [
+            [
+                "ce20655a23bee024"
+            ]
+        ]
+    },
+    {
+        "id": "381a1bee857b7577",
+        "type": "file in",
+        "z": "a963ce203011149c",
+        "name": "read deviceConfig",
+        "filename": "",
+        "format": "",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "allProps": false,
+        "x": 550,
+        "y": 1920,
+        "wires": [
+            [
+                "efc31daef5ccfc37"
+            ]
+        ]
+    },
+    {
+        "id": "efc31daef5ccfc37",
+        "type": "json",
+        "z": "a963ce203011149c",
+        "name": "deviceConfig",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 770,
+        "y": 1920,
+        "wires": [
+            [
+                "ec8382c8a3854771"
+            ]
+        ]
+    },
+    {
+        "id": "3528d93db5872f2c",
+        "type": "function",
+        "z": "a963ce203011149c",
+        "name": "refreshToken.postData",
+        "func": "var payload = global.get(\"aqaraUserData\");\n\n\nmsg.payload = {\n\t\t'intent':\t'config.auth.refreshToken',\n\t\t'data' : {\n\t\t    'refreshToken': payload.refreshToken\n\t\t}\n\t};\n\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 260,
+        "y": 2560,
+        "wires": [
+            [
+                "00e8ac42ab6184c0"
+            ]
+        ]
+    },
+    {
+        "id": "7954320f983a58ac",
+        "type": "function",
+        "z": "a963ce203011149c",
+        "name": "httpRequestAllDevices",
+        "func": "var httpRequestData = {\n  \"intent\": \"query.device.info\",\n  \"data\": {\n    \"dids\": [ \n    ],\n    \"positionId\": \"\",\n    \"pageNum\": 1,\n    \"pageSize\": 50\n  }\n};\n\n\nmsg.payload = httpRequestData;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 260,
+        "y": 2200,
+        "wires": [
+            [
+                "b636822231a3143f"
+            ]
+        ]
+    },
+    {
+        "id": "ec8382c8a3854771",
+        "type": "split",
+        "z": "a963ce203011149c",
+        "name": "",
+        "splt": "\\n",
+        "spltType": "str",
+        "arraySplt": 1,
+        "arraySpltType": "len",
+        "stream": false,
+        "addname": "",
+        "x": 939,
+        "y": 1920,
+        "wires": [
+            [
+                "ba57fa64bee9f6a1"
+            ]
+        ]
+    },
+    {
+        "id": "c8f0da30b19b8373",
+        "type": "split",
+        "z": "a963ce203011149c",
+        "name": "",
+        "splt": "\\n",
+        "spltType": "str",
+        "arraySplt": 1,
+        "arraySpltType": "len",
+        "stream": false,
+        "addname": "",
+        "x": 210,
+        "y": 560,
+        "wires": [
+            [
+                "1373626fb8437478"
+            ]
+        ]
+    },
+    {
+        "id": "b636822231a3143f",
+        "type": "function",
+        "z": "a963ce203011149c",
+        "name": "api.headerData",
+        "func": "var preSign = '';\nvar Time = Math.round(new Date().getTime()+1).toString();\nvar Nonce = Math.round(new Date().getTime()+1).toString();\nvar payload = global.get(\"aqaraUserData\");\n\n\nif (payload.accessToken != null && payload.accessToken != '' && payload.accessToken != undefined) {\n    \t\tpreSign = 'Accesstoken=' + payload.accessToken + '&';\n}\n\npreSign = preSign + 'Appid=' + payload.appId + '&Keyid=' + payload.keyId + '&Nonce=' + Nonce + '&Time=' + Time + payload.appKey;\n\nvar signHeader = MD5(preSign.toLowerCase()).toString();\n\nvar headerData = {\n\t\tAccesstoken: \tpayload.accessToken,\n\t\tAppid:\t        payload.appId,\n\t\tKeyid: \t        payload.keyId,\n\t\tNonce: \t        Nonce,\n\t\tTime:\t\t    Time,\n\t\tSign:\t\t    signHeader,\n\t\tLang:\t\t    'en'\n\t};\nmsg.headers = headerData;\nmsg.url = payload.baseURL +'/api';\nmsg.method = 'POST';\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [
+            {
+                "var": "MD5",
+                "module": "MD5"
+            }
+        ],
+        "x": 500,
+        "y": 2200,
+        "wires": [
+            [
+                "1359d533e6c4ecd3"
+            ]
+        ]
+    },
+    {
+        "id": "ce20655a23bee024",
+        "type": "change",
+        "z": "a963ce203011149c",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.result.data",
+                "tot": "msg",
+                "dc": true
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 940,
+        "y": 2200,
+        "wires": [
+            [
+                "e9a3a4c0c7c29246"
+            ]
+        ]
+    },
+    {
+        "id": "ba57fa64bee9f6a1",
+        "type": "switch",
+        "z": "a963ce203011149c",
+        "name": "configByDeviceType",
+        "property": "payload.model",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "lumi.weather.v1",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "lumi.sensor_motion.aq2",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "lumi.switch.b2lacn02",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "lumi.ctrl_neutral1.v1",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": true,
+        "outputs": 4,
+        "x": 1146,
+        "y": 1920,
+        "wires": [
+            [
+                "f2615fe458097616"
+            ],
+            [
+                "a80e6240ff39ef8f"
+            ],
+            [
+                "22f50e776b3b8894"
+            ],
+            [
+                "89405451aa1c0667"
+            ]
+        ]
+    },
+    {
+        "id": "1373626fb8437478",
+        "type": "switch",
+        "z": "a963ce203011149c",
+        "name": "deviceByType",
+        "property": "payload.model",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "lumi.weather.v1",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "lumi.sensor_motion.aq2",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "lumi.switch.b2lacn02",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "lumi.ctrl_neutral1.v1",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 4,
+        "x": 400,
+        "y": 560,
+        "wires": [
+            [
+                "cebcc482760e2d57"
+            ],
+            [
+                "c296208370c8deba"
+            ],
+            [
+                "d4665ed0fd7044f7"
+            ],
+            [
+                "1a2d6556aba70565"
+            ]
+        ]
+    },
+    {
+        "id": "31b7a4f65bcddf96",
+        "type": "function",
+        "z": "a963ce203011149c",
+        "name": "httpRequestTemperature",
+        "func": "var allDevices = msg.payload;\nvar resources = {};\nvar mqttTopicPayload = {};\nvar mqttPublish = [];\nvar payload = [];\nvar resourceIds = global.get(\"temperatureResourceIds\");\n\nfor (var j = 0; j < allDevices.length; j++){\n    resources.subjectId = msg.payload[j].did;\n    resources.resourceIds = resourceIds;\n    payload.push({...resources});\n    \n    mqttTopicPayload.topic = 'aqara/' + msg.payload[j].did + '/positionId';\n    mqttTopicPayload.payload = msg.payload[j].positionId;\n    mqttPublish.push({...mqttTopicPayload});\n    \n    mqttTopicPayload.topic = 'aqara/' + msg.payload[j].did + '/deviceName';\n    mqttTopicPayload.payload = msg.payload[j].deviceName;\n    mqttPublish.push({...mqttTopicPayload});\n}\n\nglobal.set(\"mqttPublish\",mqttPublish);\n\nmsg.payload = {\n\t\t'intent':\t'query.resource.value',\n\t\t'data': {\n\t\t\t\t'resources': payload\n\t\t}\n\t};\n\t\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 250,
+        "y": 1100,
+        "wires": [
+            [
+                "afd225f1ecdb79ec"
+            ]
+        ]
+    },
+    {
+        "id": "f693cabd42e0bb2b",
+        "type": "function",
+        "z": "a963ce203011149c",
+        "name": "buildTemperatureSensorsConfig",
+        "func": "var deviceSensors = msg.payload;\nvar resourceIds = [];\n\nfor (var i = 0; i < deviceSensors.length; i++){\n    resourceIds[i] = deviceSensors[i].id;\n}\n\nglobal.set(\"temperatureResourceIds\", resourceIds);\nmsg.payload = '';\nmsg.topic = 'temperatureSensors';\nmsg.parts = {\n    \"id\": \"142df7beb7990f77\",\n    \"type\": \"JSON\",\n    \"count\": 1,\n    \"len\": 1,\n    \"index\": 0\n};\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1650,
+        "y": 1820,
+        "wires": [
+            [
+                "dc0632d156dd8e28"
+            ]
+        ]
+    },
+    {
+        "id": "f2615fe458097616",
+        "type": "change",
+        "z": "a963ce203011149c",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.sensors",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1398,
+        "y": 1820,
+        "wires": [
+            [
+                "f693cabd42e0bb2b"
+            ]
+        ]
+    },
+    {
+        "id": "afd225f1ecdb79ec",
+        "type": "function",
+        "z": "a963ce203011149c",
+        "name": "api.HeaderData",
+        "func": "var preSign = '';\nvar Time = Math.round(new Date().getTime()).toString();\nvar Nonce = Math.round(new Date().getTime()).toString();\nvar payload = global.get(\"aqaraUserData\");\n\n\nif (payload.accessToken != null && payload.accessToken != '' && payload.accessToken != undefined) {\n    \t\tpreSign = 'Accesstoken=' + payload.accessToken + '&';\n}\n\npreSign = preSign + 'Appid=' + payload.appId + '&Keyid=' + payload.keyId + '&Nonce=' + Nonce + '&Time=' + Time + payload.appKey;\n\nvar signHeader = MD5(preSign.toLowerCase()).toString();\n\nvar headerData = {\n\t\tAccesstoken: \tpayload.accessToken,\n\t\tAppid:\t        payload.appId,\n\t\tKeyid: \t        payload.keyId,\n\t\tNonce: \t        Nonce,\n\t\tTime:\t\t    Time,\n\t\tSign:\t\t    signHeader,\n\t\tLang:\t\t    'en'\n\t};\nmsg.headers = headerData;\nmsg.url = payload.baseURL +'/api';\nmsg.method = 'POST';\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [
+            {
+                "var": "MD5",
+                "module": "MD5"
+            }
+        ],
+        "x": 480,
+        "y": 1100,
+        "wires": [
+            [
+                "91b1f1898942bce5"
+            ]
+        ]
+    },
+    {
+        "id": "91b1f1898942bce5",
+        "type": "http request",
+        "z": "a963ce203011149c",
+        "name": "getDeviceAttribute",
+        "method": "use",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "senderr": false,
+        "x": 710,
+        "y": 1100,
+        "wires": [
+            [
+                "126191c015874ca3"
+            ]
+        ]
+    },
+    {
+        "id": "e9a3a4c0c7c29246",
+        "type": "change",
+        "z": "a963ce203011149c",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "allDevices",
+                "pt": "global",
+                "to": "payload",
+                "tot": "msg",
+                "dc": true
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1180,
+        "y": 2200,
+        "wires": [
+            [
+                "4418a8bd38b77e69"
+            ]
+        ]
+    },
+    {
+        "id": "01c697a9a53ec089",
+        "type": "inject",
+        "z": "a963ce203011149c",
+        "name": "Start",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "aqaraUserData",
+        "payloadType": "global",
+        "x": 110,
+        "y": 60,
+        "wires": [
+            [
+                "e83c28e56df06dbd"
+            ]
+        ]
+    },
+    {
+        "id": "5deae51143c58648",
+        "type": "mqtt out",
+        "z": "a963ce203011149c",
+        "name": "send mqtt",
+        "topic": "",
+        "qos": "0",
+        "retain": "true",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "61417293a8d68a3f",
+        "x": 2190,
+        "y": 600,
+        "wires": []
+    },
+    {
+        "id": "e0b193fd35795650",
+        "type": "function",
+        "z": "a963ce203011149c",
+        "name": "httpRequestAllRooms",
+        "func": "var allDevices = msg.payload;\nvar payload = [];\n\nfor (var j = 0; j < allDevices.length; j++){\n    var positionId = msg.payload[j].positionId.toString();\n//    payload.push(...positionId);\n    payload[j] = positionId;\n}\n\nmsg.payload = {\n\t\t'intent':\t'query.position.detail',\n\t\t'data' : {\n\t\t    'positionIds': payload\n\t\t}\n\t};\n\t\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 240,
+        "y": 1680,
+        "wires": [
+            [
+                "45d9d8d7d2a9ba61"
+            ]
+        ]
+    },
+    {
+        "id": "45d9d8d7d2a9ba61",
+        "type": "function",
+        "z": "a963ce203011149c",
+        "name": "api.headerData",
+        "func": "var preSign = '';\nvar Time = Math.round(new Date().getTime() + Math.floor(Math.random() * 100)).toString();\nvar Nonce = Math.round(new Date().getTime()+100).toString();\nvar payload = global.get(\"aqaraUserData\");\n\n\nif (payload.accessToken != null && payload.accessToken != '' && payload.accessToken != undefined) {\n    \t\tpreSign = 'Accesstoken=' + payload.accessToken + '&';\n}\n\npreSign = preSign + 'Appid=' + payload.appId + '&Keyid=' + payload.keyId + '&Nonce=' + Nonce + '&Time=' + Time + payload.appKey;\n\nvar signHeader = MD5(preSign.toLowerCase()).toString();\n\nvar headerData = {\n\t\tAccesstoken: \tpayload.accessToken,\n\t\tAppid:\t        payload.appId,\n\t\tKeyid: \t        payload.keyId,\n\t\tNonce: \t        Nonce,\n\t\tTime:\t\t    Time,\n\t\tSign:\t\t    signHeader,\n\t\tLang:\t\t    'en'\n\t};\nmsg.headers = headerData;\nmsg.url = payload.baseURL +'/api';\nmsg.method = 'POST';\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [
+            {
+                "var": "MD5",
+                "module": "MD5"
+            }
+        ],
+        "x": 500,
+        "y": 1680,
+        "wires": [
+            [
+                "9fde342a27e50d45"
+            ]
+        ]
+    },
+    {
+        "id": "9fde342a27e50d45",
+        "type": "http request",
+        "z": "a963ce203011149c",
+        "name": "getAllRooms",
+        "method": "use",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "senderr": false,
+        "x": 710,
+        "y": 1680,
+        "wires": [
+            [
+                "cbe3519e9277a436"
+            ]
+        ]
+    },
+    {
+        "id": "cbe3519e9277a436",
+        "type": "change",
+        "z": "a963ce203011149c",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.result",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 920,
+        "y": 1680,
+        "wires": [
+            [
+                "9b6bd6f9a771ea52"
+            ]
+        ]
+    },
+    {
+        "id": "126191c015874ca3",
+        "type": "change",
+        "z": "a963ce203011149c",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.result",
+                "tot": "msg",
+                "dc": true
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 940,
+        "y": 1100,
+        "wires": [
+            [
+                "1ac3fd326fd744ad"
+            ]
+        ]
+    },
+    {
+        "id": "1ac3fd326fd744ad",
+        "type": "function",
+        "z": "a963ce203011149c",
+        "name": "buildMQTTAttributes",
+        "func": "var allDevicesAttributes = msg.payload;\nvar mqttTopicPayload = {};\nvar mqttPublish = global.get(\"mqttPublish\");\nvar allSensors = global.get(\"allSensors\")\n\nfor (var j = 0; j < allDevicesAttributes.length; j++){\n    var sensorEntry = lodash.filter(allSensors, { 'id': allDevicesAttributes[j].resourceId } );\n    var sensorName = sensorEntry[0].name;\n    \n    mqttTopicPayload.topic = 'aqara/' + allDevicesAttributes[j].subjectId + '/' + sensorName;\n    \n    switch(sensorEntry[0].id) {\n        case '0.2.85':\n            mqttTopicPayload.payload = allDevicesAttributes[j].value.substring(0,2);\n            break;\n        case '0.3.85':\n            mqttTopicPayload.payload = allDevicesAttributes[j].value.substring(0,4) + '.' + allDevicesAttributes[j].value.substring(4);\n            mqttTopicPayload.payload = allDevicesAttributes[j].value.substring(0,4);\n            break;\n          default:\n            mqttTopicPayload.payload = allDevicesAttributes[j].value.substring(0,2) + '.' + allDevicesAttributes[j].value.substring(2);\n    }\n\n    mqttPublish.push({...mqttTopicPayload});\n}\n\nglobal.set(\"mqttPublish\",mqttPublish);\nmsg.payload = mqttPublish;\nmsg.topic = 'temperatureSensorsMQTT';\nmsg.parts = {\n    \"id\": \"142df7beb7990f88\",\n    \"type\": \"JSON\",\n    \"count\": 1,\n    \"len\": 1,\n    \"index\": 0\n};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [
+            {
+                "var": "lodash",
+                "module": "lodash"
+            }
+        ],
+        "x": 1160,
+        "y": 1100,
+        "wires": [
+            [
+                "8cd98adadd1a1fc9"
+            ]
+        ]
+    },
+    {
+        "id": "a80e6240ff39ef8f",
+        "type": "change",
+        "z": "a963ce203011149c",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.sensors",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1397,
+        "y": 1880,
+        "wires": [
+            [
+                "972553e3226234db"
+            ]
+        ]
+    },
+    {
+        "id": "972553e3226234db",
+        "type": "function",
+        "z": "a963ce203011149c",
+        "name": "buildMotionSensorsConfig",
+        "func": "var deviceSensors = msg.payload;\nvar resourceIds = [];\n\nfor (var i = 0; i < deviceSensors.length; i++){\n    resourceIds[i] = deviceSensors[i].id;\n}\n\nglobal.set(\"motionResourceIds\", resourceIds);\n\nmsg.payload = '';\nmsg.topic = 'motionSensors';\nmsg.parts =  {\n    \"id\": \"142df7beb7990f78\",\n    \"type\": \"JSON\",\n    \"count\": 1,\n    \"len\": 1,\n    \"index\": 0\n};\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1640,
+        "y": 1880,
+        "wires": [
+            [
+                "dc0632d156dd8e28"
+            ]
+        ]
+    },
+    {
+        "id": "9b6bd6f9a771ea52",
+        "type": "function",
+        "z": "a963ce203011149c",
+        "name": "buildMQTTLocation",
+        "func": "var allDevicesLocations = msg.payload;\nvar mqttTopicPayload = {};\nvar mqttPublish = global.get(\"mqttPublish\");\n\n\nfor (var j = 0; j < allDevicesLocations.length; j++){\n    var mqttEntry = lodash.filter(mqttPublish, { 'payload': allDevicesLocations[j].positionId } );\n\n    if(mqttEntry != null && mqttEntry != ''){\n        mqttTopicPayload.topic = mqttEntry[0].topic.slice(0,-10) +'positionName';\n        mqttTopicPayload.payload = msg.payload[j].positionName;\n        mqttPublish.push({...mqttTopicPayload});\n        \n        var deviceNameTopic = mqttTopicPayload.topic = mqttEntry[0].topic.slice(0,-10) +'deviceName';\n        var mqttEntryDeviceName = lodash.filter(mqttPublish, { 'topic': deviceNameTopic } );\n    \n        mqttTopicPayload.topic = mqttEntry[0].topic.slice(0,-10) +'deviceNameLocation';\n        mqttTopicPayload.payload = mqttEntryDeviceName[0].payload + ' - ' + msg.payload[j].positionName;\n        mqttPublish.push({...mqttTopicPayload});\n    }\n}\n\nglobal.set(\"mqttPublish\",mqttPublish);\nmsg.payload = mqttPublish;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [
+            {
+                "var": "lodash",
+                "module": "lodash"
+            }
+        ],
+        "x": 1160,
+        "y": 1680,
+        "wires": [
+            [
+                "315ee1e12999e1ff"
+            ]
+        ]
+    },
+    {
+        "id": "f1a4d6c35636b023",
+        "type": "change",
+        "z": "a963ce203011149c",
+        "name": "load mqttPublish",
+        "rules": [
+            {
+                "t": "move",
+                "p": "payload",
+                "pt": "msg",
+                "to": "_linkSource",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "mqttPublish",
+                "tot": "global"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1590,
+        "y": 560,
+        "wires": [
+            [
+                "8f596cc8d7ca917e"
+            ]
+        ]
+    },
+    {
+        "id": "8f596cc8d7ca917e",
+        "type": "split",
+        "z": "a963ce203011149c",
+        "name": "",
+        "splt": "\\n",
+        "spltType": "str",
+        "arraySplt": 1,
+        "arraySpltType": "len",
+        "stream": false,
+        "addname": "",
+        "x": 1790,
+        "y": 560,
+        "wires": [
+            [
+                "af41b2ca945fc5ac",
+                "24c642828d0d0a2a"
+            ]
+        ]
+    },
+    {
+        "id": "af41b2ca945fc5ac",
+        "type": "change",
+        "z": "a963ce203011149c",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "payload.topic",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1980,
+        "y": 600,
+        "wires": [
+            [
+                "5deae51143c58648"
+            ]
+        ]
+    },
+    {
+        "id": "a7faeda4dc90ccf9",
+        "type": "link in",
+        "z": "a963ce203011149c",
+        "name": "updateToken",
+        "links": [],
+        "x": 75,
+        "y": 2560,
+        "wires": [
+            [
+                "3528d93db5872f2c"
+            ]
+        ]
+    },
+    {
+        "id": "00e8ac42ab6184c0",
+        "type": "function",
+        "z": "a963ce203011149c",
+        "name": "api.headerData",
+        "func": "var preSign = '';\nvar Time = Math.round(new Date().getTime()+1).toString();\nvar Nonce = Math.round(new Date().getTime()+1).toString();\nvar payload = global.get(\"aqaraUserData\");\n\n\nif (payload.accessToken != null && payload.accessToken != '' && payload.accessToken != undefined) {\n    \t\tpreSign = 'Accesstoken=' + payload.accessToken + '&';\n}\n\npreSign = preSign + 'Appid=' + payload.appId + '&Keyid=' + payload.keyId + '&Nonce=' + Nonce + '&Time=' + Time + payload.appKey;\n\nvar signHeader = MD5(preSign.toLowerCase()).toString();\n\nvar headerData = {\n\t\tAccesstoken: \tpayload.accessToken,\n\t\tAppid:\t        payload.appId,\n\t\tKeyid: \t        payload.keyId,\n\t\tNonce: \t        Nonce,\n\t\tTime:\t\t    Time,\n\t\tSign:\t\t    signHeader,\n\t\tLang:\t\t    'en'\n\t};\nmsg.headers = headerData;\nmsg.url = payload.baseURL +'/api';\nmsg.method = 'POST';\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [
+            {
+                "var": "MD5",
+                "module": "MD5"
+            }
+        ],
+        "x": 500,
+        "y": 2560,
+        "wires": [
+            [
+                "731c2c9759e34bc3"
+            ]
+        ]
+    },
+    {
+        "id": "731c2c9759e34bc3",
+        "type": "http request",
+        "z": "a963ce203011149c",
+        "name": "refreshToken",
+        "method": "use",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "senderr": false,
+        "x": 710,
+        "y": 2560,
+        "wires": [
+            [
+                "ebca084b0c5cdab9"
+            ]
+        ]
+    },
+    {
+        "id": "772e553ee27c7d08",
+        "type": "link in",
+        "z": "a963ce203011149c",
+        "name": "getConfigData",
+        "links": [],
+        "x": 75,
+        "y": 2380,
+        "wires": [
+            [
+                "ad0ee9c9d210a77f",
+                "4104a077dc0fca30"
+            ]
+        ]
+    },
+    {
+        "id": "ebca084b0c5cdab9",
+        "type": "change",
+        "z": "a963ce203011149c",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.result",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 920,
+        "y": 2560,
+        "wires": [
+            [
+                "fc678200c0f2d91f"
+            ]
+        ]
+    },
+    {
+        "id": "8c19887206e23d52",
+        "type": "link in",
+        "z": "a963ce203011149c",
+        "name": "getAllDevices",
+        "links": [],
+        "x": 75,
+        "y": 2200,
+        "wires": [
+            [
+                "7954320f983a58ac"
+            ]
+        ]
+    },
+    {
+        "id": "2d0383295e4ebcb8",
+        "type": "link call",
+        "z": "a963ce203011149c",
+        "name": "getToken",
+        "links": [
+            "772e553ee27c7d08"
+        ],
+        "timeout": "30",
+        "x": 580,
+        "y": 60,
+        "wires": [
+            [
+                "9af69413274b7092"
+            ]
+        ]
+    },
+    {
+        "id": "8b2442c8ad561978",
+        "type": "link out",
+        "z": "a963ce203011149c",
+        "name": "endUpdatingToken",
+        "mode": "return",
+        "links": [],
+        "x": 1955,
+        "y": 2560,
+        "wires": []
+    },
+    {
+        "id": "ada1ce53544f2787",
+        "type": "link out",
+        "z": "a963ce203011149c",
+        "name": "endBuildingConfigData",
+        "mode": "return",
+        "links": [],
+        "x": 1375,
+        "y": 2380,
+        "wires": []
+    },
+    {
+        "id": "4418a8bd38b77e69",
+        "type": "link out",
+        "z": "a963ce203011149c",
+        "name": "endPopulatingDevices",
+        "mode": "return",
+        "links": [],
+        "x": 1355,
+        "y": 2200,
+        "wires": []
+    },
+    {
+        "id": "9af69413274b7092",
+        "type": "link call",
+        "z": "a963ce203011149c",
+        "name": "getAllDevices",
+        "links": [
+            "8c19887206e23d52"
+        ],
+        "timeout": "30",
+        "x": 780,
+        "y": 60,
+        "wires": [
+            [
+                "2dd29a3e05d5abed"
+            ]
+        ]
+    },
+    {
+        "id": "082f553a208c9ae7",
+        "type": "switch",
+        "z": "a963ce203011149c",
+        "name": "isTokenAboutToExpire?",
+        "property": "payload.expiresIn",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "jsonata_exp",
+                "v": "$number(msg.payload.expiresIn) - $millis() > 3600000\t",
+                "vt": "jsonata"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 490,
+        "y": 260,
+        "wires": [
+            [
+                "1796fb995a11e13c"
+            ],
+            [
+                "45950f02c328f909"
+            ]
+        ]
+    },
+    {
+        "id": "45950f02c328f909",
+        "type": "link call",
+        "z": "a963ce203011149c",
+        "name": "",
+        "links": [
+            "a7faeda4dc90ccf9"
+        ],
+        "timeout": "30",
+        "x": 730,
+        "y": 320,
+        "wires": [
+            [
+                "7aa219aa342122cb"
+            ]
+        ]
+    },
+    {
+        "id": "7aa219aa342122cb",
+        "type": "link call",
+        "z": "a963ce203011149c",
+        "name": "getToken",
+        "links": [
+            "772e553ee27c7d08"
+        ],
+        "timeout": "30",
+        "x": 920,
+        "y": 320,
+        "wires": [
+            [
+                "533dc6f628d6615f"
+            ]
+        ]
+    },
+    {
+        "id": "e7499d84a7f061c7",
+        "type": "link in",
+        "z": "a963ce203011149c",
+        "name": "getLocations",
+        "links": [],
+        "x": 75,
+        "y": 1680,
+        "wires": [
+            [
+                "e0b193fd35795650"
+            ]
+        ]
+    },
+    {
+        "id": "05f7600f97b5b43f",
+        "type": "link in",
+        "z": "a963ce203011149c",
+        "name": "buildTemperatureMQTT",
+        "links": [],
+        "x": 75,
+        "y": 1060,
+        "wires": [
+            [
+                "dc5d0ab8d7954483",
+                "31b7a4f65bcddf96"
+            ]
+        ]
+    },
+    {
+        "id": "23f40ac443d8d625",
+        "type": "link in",
+        "z": "a963ce203011149c",
+        "name": "buildMotionMQTT",
+        "links": [
+            "475b0c210c5485e0"
+        ],
+        "x": 75,
+        "y": 840,
+        "wires": [
+            [
+                "0aa852d3d2c5065b",
+                "adff85c2f40e995c"
+            ]
+        ]
+    },
+    {
+        "id": "adff85c2f40e995c",
+        "type": "function",
+        "z": "a963ce203011149c",
+        "name": "httpRequestMotion",
+        "func": "var allDevices = msg.payload;\nvar resources = {};\nvar mqttTopicPayload = {};\nvar mqttPublish = [];\nvar payload = [];\nvar resourceIds = global.get(\"motionResourceIds\");\n\nfor (var j = 0; j < allDevices.length; j++){\n    resources.subjectId = msg.payload[j].did;\n    resources.resourceIds = resourceIds;\n    payload.push({...resources});\n    \n    mqttTopicPayload.topic = 'aqara/' + msg.payload[j].did + '/positionId';\n    mqttTopicPayload.payload = msg.payload[j].positionId;\n    mqttPublish.push({...mqttTopicPayload});\n    \n    mqttTopicPayload.topic = 'aqara/' + msg.payload[j].did + '/deviceName';\n    mqttTopicPayload.payload = msg.payload[j].deviceName;\n    mqttPublish.push({...mqttTopicPayload});\n}\n\nglobal.set(\"mqttPublish\",mqttPublish);\n\nmsg.payload = {\n\t\t'intent':\t'query.resource.value',\n\t\t'data': {\n\t\t\t\t'resources': payload\n\t\t}\n\t};\n\t\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 230,
+        "y": 880,
+        "wires": [
+            [
+                "177333f927c9668a"
+            ]
+        ]
+    },
+    {
+        "id": "177333f927c9668a",
+        "type": "function",
+        "z": "a963ce203011149c",
+        "name": "api.HeaderData",
+        "func": "var preSign = '';\nvar Time = Math.round(new Date().getTime()+10).toString();\nvar Nonce = Math.round(new Date().getTime()+10).toString();\nvar payload = global.get(\"aqaraUserData\");\n\n\nif (payload.accessToken != null && payload.accessToken != '' && payload.accessToken != undefined) {\n    \t\tpreSign = 'Accesstoken=' + payload.accessToken + '&';\n}\n\npreSign = preSign + 'Appid=' + payload.appId + '&Keyid=' + payload.keyId + '&Nonce=' + Nonce + '&Time=' + Time + payload.appKey;\n\nvar signHeader = MD5(preSign.toLowerCase()).toString();\n\nvar headerData = {\n\t\tAccesstoken: \tpayload.accessToken,\n\t\tAppid:\t        payload.appId,\n\t\tKeyid: \t        payload.keyId,\n\t\tNonce: \t        Nonce,\n\t\tTime:\t\t    Time,\n\t\tSign:\t\t    signHeader,\n\t\tLang:\t\t    'en'\n\t};\nmsg.headers = headerData;\nmsg.url = payload.baseURL +'/api';\nmsg.method = 'POST';\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [
+            {
+                "var": "MD5",
+                "module": "MD5"
+            }
+        ],
+        "x": 480,
+        "y": 880,
+        "wires": [
+            [
+                "fb4206f2e65ecca6"
+            ]
+        ]
+    },
+    {
+        "id": "fb4206f2e65ecca6",
+        "type": "http request",
+        "z": "a963ce203011149c",
+        "name": "getDeviceAttribute",
+        "method": "use",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "senderr": false,
+        "x": 710,
+        "y": 880,
+        "wires": [
+            [
+                "b8452340ecfda676"
+            ]
+        ]
+    },
+    {
+        "id": "b8452340ecfda676",
+        "type": "change",
+        "z": "a963ce203011149c",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.result",
+                "tot": "msg",
+                "dc": true
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 940,
+        "y": 880,
+        "wires": [
+            [
+                "e334f1c32b35cb2e"
+            ]
+        ]
+    },
+    {
+        "id": "e334f1c32b35cb2e",
+        "type": "function",
+        "z": "a963ce203011149c",
+        "name": "buildMQTTAttributes",
+        "func": "var allDevicesAttributes = msg.payload;\nvar mqttTopicPayload = {};\nvar mqttPublish = global.get(\"mqttPublish\");\nvar allSensors = global.get(\"allSensors\")\n\nfor (var j = 0; j < allDevicesAttributes.length; j++){\n    var sensorEntry = lodash.filter(allSensors, { 'id': allDevicesAttributes[j].resourceId } );\n    var sensorName = sensorEntry[0].name;\n    \n    switch(sensorEntry[0].id) {\n        case '0.3.85':\n            mqttTopicPayload.topic = 'aqara/' + allDevicesAttributes[j].subjectId + '/' + sensorEntry[1].name;\n            mqttTopicPayload.payload = allDevicesAttributes[j].value;\n            break;\n        case '8.0.2008':\n            mqttTopicPayload.topic = 'aqara/' + allDevicesAttributes[j].subjectId + '/' + sensorEntry[0].name;\n            mqttTopicPayload.payload = allDevicesAttributes[j].value.substring(0,1) + '.' + allDevicesAttributes[j].value.substring(1);\n            mqttPublish.push({...mqttTopicPayload});\n     \n            var batteryPercent = Number(mqttTopicPayload.payload)/3.075 * 100;\n\n            mqttTopicPayload.topic = 'aqara/' + allDevicesAttributes[j].subjectId + '/battery_percent';\n            mqttTopicPayload.payload = batteryPercent.toString();\n     \n            break;\n        default:\n            mqttTopicPayload.topic = 'aqara/' + allDevicesAttributes[j].subjectId + '/' + sensorEntry[0].name;\n            mqttTopicPayload.payload = allDevicesAttributes[j].value;\n    }\n\n\n    mqttPublish.push({...mqttTopicPayload});\n}\n\nglobal.set(\"mqttPublish\",mqttPublish);\nmsg.payload = mqttPublish;\nmsg.topic = 'motionSensorsMQTT';\nmsg.parts = {\n    \"id\": \"142df7beb7990f87\",\n    \"type\": \"JSON\",\n    \"count\": 1,\n    \"len\": 1,\n    \"index\": 0\n};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [
+            {
+                "var": "lodash",
+                "module": "lodash"
+            }
+        ],
+        "x": 1160,
+        "y": 880,
+        "wires": [
+            [
+                "49b467a89db06e8a"
+            ]
+        ]
+    },
+    {
+        "id": "949575f0bfb422cf",
+        "type": "link in",
+        "z": "a963ce203011149c",
+        "name": "buildSensorsConfig",
+        "links": [],
+        "x": 75,
+        "y": 2000,
+        "wires": [
+            [
+                "4a8edc7543e68fec",
+                "8587d48e4d77cae3"
+            ]
+        ]
+    },
+    {
+        "id": "f52793c5e05f8284",
+        "type": "change",
+        "z": "a963ce203011149c",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "aqaraUserData",
+                "tot": "global",
+                "dc": true
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 240,
+        "y": 260,
+        "wires": [
+            [
+                "082f553a208c9ae7"
+            ]
+        ]
+    },
+    {
+        "id": "4df082215a8fd46e",
+        "type": "file",
+        "z": "a963ce203011149c",
+        "name": "updateAccessToken",
+        "filename": "",
+        "appendNewline": false,
+        "createDir": false,
+        "overwriteFile": "true",
+        "encoding": "utf8",
+        "x": 1780,
+        "y": 2560,
+        "wires": [
+            [
+                "8b2442c8ad561978"
+            ]
+        ]
+    },
+    {
+        "id": "fc678200c0f2d91f",
+        "type": "change",
+        "z": "a963ce203011149c",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload.expiresIn",
+                "pt": "msg",
+                "to": "$millis()+($number(msg.payload.expiresIn)*1000)\t",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1180,
+        "y": 2560,
+        "wires": [
+            [
+                "6f3a0aab4fc20474"
+            ]
+        ]
+    },
+    {
+        "id": "533dc6f628d6615f",
+        "type": "change",
+        "z": "a963ce203011149c",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "allDevices",
+                "tot": "global"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1120,
+        "y": 320,
+        "wires": [
+            [
+                "1796fb995a11e13c"
+            ]
+        ]
+    },
+    {
+        "id": "ec83fb08795c7a20",
+        "type": "link in",
+        "z": "a963ce203011149c",
+        "name": "checkTokenExpiration",
+        "links": [
+            "926f91c78b3509f0"
+        ],
+        "x": 75,
+        "y": 260,
+        "wires": [
+            [
+                "f52793c5e05f8284"
+            ]
+        ]
+    },
+    {
+        "id": "1796fb995a11e13c",
+        "type": "link out",
+        "z": "a963ce203011149c",
+        "name": "",
+        "mode": "return",
+        "links": [],
+        "x": 1275,
+        "y": 254,
+        "wires": []
+    },
+    {
+        "id": "315ee1e12999e1ff",
+        "type": "link out",
+        "z": "a963ce203011149c",
+        "name": "endBuildLocationMQTT",
+        "mode": "return",
+        "links": [],
+        "x": 1325,
+        "y": 1680,
+        "wires": []
+    },
+    {
+        "id": "dc5d0ab8d7954483",
+        "type": "link call",
+        "z": "a963ce203011149c",
+        "name": "getLocations",
+        "links": [
+            "e7499d84a7f061c7"
+        ],
+        "timeout": "30",
+        "x": 210,
+        "y": 1020,
+        "wires": [
+            [
+                "5fc9de3a068e8cf5"
+            ]
+        ]
+    },
+    {
+        "id": "0aa852d3d2c5065b",
+        "type": "link call",
+        "z": "a963ce203011149c",
+        "name": "getLocations",
+        "links": [
+            "e7499d84a7f061c7"
+        ],
+        "timeout": "30",
+        "x": 210,
+        "y": 800,
+        "wires": [
+            [
+                "ba321c45107ee0c6"
+            ]
+        ]
+    },
+    {
+        "id": "b3fd628d327f005f",
+        "type": "link in",
+        "z": "a963ce203011149c",
+        "name": "publishSensors",
+        "links": [
+            "4b2a1b2778c7a6b2"
+        ],
+        "x": 75,
+        "y": 560,
+        "wires": [
+            [
+                "c8f0da30b19b8373"
+            ]
+        ]
+    },
+    {
+        "id": "2dd29a3e05d5abed",
+        "type": "json",
+        "z": "a963ce203011149c",
+        "name": "allDevice",
+        "property": "result",
+        "action": "str",
+        "pretty": false,
+        "x": 980,
+        "y": 60,
+        "wires": [
+            [
+                "8402bc03f4251e09",
+                "9c8537fb9972f5f9"
+            ]
+        ]
+    },
+    {
+        "id": "8402bc03f4251e09",
+        "type": "link call",
+        "z": "a963ce203011149c",
+        "name": "buildSensorsConfig",
+        "links": [
+            "949575f0bfb422cf"
+        ],
+        "timeout": "30",
+        "x": 1210,
+        "y": 120,
+        "wires": [
+            [
+                "0ba8246fea5006cd"
+            ]
+        ]
+    },
+    {
+        "id": "9c8537fb9972f5f9",
+        "type": "change",
+        "z": "a963ce203011149c",
+        "name": "allDevices",
+        "rules": [
+            {
+                "t": "set",
+                "p": "allDevices",
+                "pt": "global",
+                "to": "payload",
+                "tot": "msg",
+                "dc": true
+            },
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "allDevices",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "parts",
+                "pt": "msg",
+                "to": "{     \"id\": \"142df7beb7990f49\",     \"type\": \"JSON\",     \"count\": 1,     \"len\": 1,     \"index\": 0 }",
+                "tot": "json"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1200,
+        "y": 60,
+        "wires": [
+            [
+                "0453a2202440092a"
+            ]
+        ]
+    },
+    {
+        "id": "dd1a54a2e1620149",
+        "type": "link call",
+        "z": "a963ce203011149c",
+        "name": "checkTokenExpiration",
+        "links": [
+            "ec83fb08795c7a20"
+        ],
+        "timeout": "30",
+        "x": 2720,
+        "y": 60,
+        "wires": [
+            [
+                "23be316878e6f16a"
+            ]
+        ]
+    },
+    {
+        "id": "23be316878e6f16a",
+        "type": "link out",
+        "z": "a963ce203011149c",
+        "name": "publishSensorsLoop",
+        "mode": "link",
+        "links": [
+            "b37d628ee35a6a6d"
+        ],
+        "x": 2895,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "2c2fbc244b34b186",
+        "type": "delay",
+        "z": "a963ce203011149c",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "5",
+        "timeoutUnits": "minutes",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 2500,
+        "y": 60,
+        "wires": [
+            [
+                "dd1a54a2e1620149"
+            ]
+        ]
+    },
+    {
+        "id": "b37d628ee35a6a6d",
+        "type": "link in",
+        "z": "a963ce203011149c",
+        "name": "publishSensorsLoop",
+        "links": [
+            "23be316878e6f16a"
+        ],
+        "x": 1935,
+        "y": 20,
+        "wires": [
+            [
+                "d4e5f006ed6b7ad5"
+            ]
+        ]
+    },
+    {
+        "id": "9278ec3ff1db977a",
+        "type": "file in",
+        "z": "a963ce203011149c",
+        "name": "read sensorsName",
+        "filename": "",
+        "format": "",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "allProps": false,
+        "x": 550,
+        "y": 2060,
+        "wires": [
+            [
+                "9bc1aa64b4f52e81"
+            ]
+        ]
+    },
+    {
+        "id": "9bc1aa64b4f52e81",
+        "type": "json",
+        "z": "a963ce203011149c",
+        "name": "allSensors",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 770,
+        "y": 2060,
+        "wires": [
+            [
+                "5c8c42fec8b80761"
+            ]
+        ]
+    },
+    {
+        "id": "5c8c42fec8b80761",
+        "type": "change",
+        "z": "a963ce203011149c",
+        "name": "write allSensors",
+        "rules": [
+            {
+                "t": "move",
+                "p": "payload.sensors",
+                "pt": "msg",
+                "to": "allSensors",
+                "tot": "global"
+            },
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "allSensors",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "parts",
+                "pt": "msg",
+                "to": "{\"id\":\"142df7beb7990f76\",\"type\":\"JSON\",\"count\":1,\"len\":1,\"index\":0}",
+                "tot": "json"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1720,
+        "y": 2060,
+        "wires": [
+            [
+                "dc0632d156dd8e28"
+            ]
+        ]
+    },
+    {
+        "id": "d0ab93169d2cac8a",
+        "type": "link out",
+        "z": "a963ce203011149c",
+        "name": "endLoadingSensors",
+        "mode": "return",
+        "links": [],
+        "x": 2105,
+        "y": 1940,
+        "wires": []
+    },
+    {
+        "id": "dc0632d156dd8e28",
+        "type": "batch",
+        "z": "a963ce203011149c",
+        "name": "wait until complete",
+        "mode": "concat",
+        "count": 10,
+        "overlap": 0,
+        "interval": 10,
+        "allowEmptySequence": false,
+        "topics": [
+            {
+                "topic": "allSensors"
+            },
+            {
+                "topic": "temperatureSensors"
+            },
+            {
+                "topic": "motionSensors"
+            },
+            {
+                "topic": "light1Sensors"
+            },
+            {
+                "topic": "light2Sensors"
+            }
+        ],
+        "x": 1950,
+        "y": 1940,
+        "wires": [
+            [
+                "d0ab93169d2cac8a"
+            ]
+        ]
+    },
+    {
+        "id": "5fc9de3a068e8cf5",
+        "type": "change",
+        "z": "a963ce203011149c",
+        "name": "write location",
+        "rules": [
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "temperatureSensorLocationMQTT",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "parts",
+                "pt": "msg",
+                "to": "{\"id\":\"142df7beb7990f85\",\"type\":\"JSON\",\"count\":1,\"len\":1,\"index\":0}",
+                "tot": "json"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1160,
+        "y": 1020,
+        "wires": [
+            [
+                "8cd98adadd1a1fc9"
+            ]
+        ]
+    },
+    {
+        "id": "ba321c45107ee0c6",
+        "type": "change",
+        "z": "a963ce203011149c",
+        "name": "write location",
+        "rules": [
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "motionSensorLocationMQTT",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "parts",
+                "pt": "msg",
+                "to": "{\"id\":\"142df7beb7990f86\",\"type\":\"JSON\",\"count\":1,\"len\":1,\"index\":0}",
+                "tot": "json"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1160,
+        "y": 800,
+        "wires": [
+            [
+                "49b467a89db06e8a"
+            ]
+        ]
+    },
+    {
+        "id": "199b9169d8bf0b95",
+        "type": "link out",
+        "z": "a963ce203011149c",
+        "name": "endBuildMotionMQTT",
+        "mode": "return",
+        "links": [],
+        "x": 2215,
+        "y": 840,
+        "wires": []
+    },
+    {
+        "id": "4426f875feeb0e74",
+        "type": "link out",
+        "z": "a963ce203011149c",
+        "name": "endBuildTemperatureMQTT",
+        "mode": "return",
+        "links": [],
+        "x": 2215,
+        "y": 1060,
+        "wires": []
+    },
+    {
+        "id": "436d87ef589bb0b2",
+        "type": "link call",
+        "z": "a963ce203011149c",
+        "name": "buildTemperatureMQTT",
+        "links": [
+            "05f7600f97b5b43f"
+        ],
+        "timeout": "30",
+        "x": 850,
+        "y": 460,
+        "wires": [
+            [
+                "98a9fa372c7d6df9"
+            ]
+        ]
+    },
+    {
+        "id": "7c97c1f470bfc113",
+        "type": "link call",
+        "z": "a963ce203011149c",
+        "name": "buildMotionMQTT",
+        "links": [
+            "23f40ac443d8d625"
+        ],
+        "timeout": "30",
+        "x": 850,
+        "y": 520,
+        "wires": [
+            [
+                "98a9fa372c7d6df9"
+            ]
+        ]
+    },
+    {
+        "id": "3b998255c31ebc71",
+        "type": "link call",
+        "z": "a963ce203011149c",
+        "name": "publishSensors",
+        "links": [
+            "b3fd628d327f005f"
+        ],
+        "timeout": "30",
+        "x": 2300,
+        "y": 60,
+        "wires": [
+            [
+                "2c2fbc244b34b186"
+            ]
+        ]
+    },
+    {
+        "id": "8b42d2e24975093d",
+        "type": "link out",
+        "z": "a963ce203011149c",
+        "name": "endPublishSensors",
+        "mode": "return",
+        "links": [],
+        "x": 2135,
+        "y": 520,
+        "wires": []
+    },
+    {
+        "id": "cebcc482760e2d57",
+        "type": "join",
+        "z": "a963ce203011149c",
+        "name": "buildDeviceList",
+        "mode": "custom",
+        "build": "array",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "accumulate": false,
+        "timeout": "5",
+        "count": "100",
+        "reduceRight": false,
+        "reduceExp": "",
+        "reduceInit": "",
+        "reduceInitType": "",
+        "reduceFixup": "",
+        "x": 620,
+        "y": 460,
+        "wires": [
+            [
+                "436d87ef589bb0b2"
+            ]
+        ]
+    },
+    {
+        "id": "c296208370c8deba",
+        "type": "join",
+        "z": "a963ce203011149c",
+        "name": "buildDeviceList",
+        "mode": "custom",
+        "build": "array",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "accumulate": false,
+        "timeout": "5",
+        "count": "100",
+        "reduceRight": false,
+        "reduceExp": "",
+        "reduceInit": "",
+        "reduceInitType": "",
+        "reduceFixup": "",
+        "x": 620,
+        "y": 520,
+        "wires": [
+            [
+                "7c97c1f470bfc113"
+            ]
+        ]
+    },
+    {
+        "id": "fdd6848adb90cbf5",
+        "type": "join",
+        "z": "a963ce203011149c",
+        "name": "allDevices with Config",
+        "mode": "reduce",
+        "build": "object",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "accumulate": true,
+        "timeout": "",
+        "count": "",
+        "reduceRight": false,
+        "reduceExp": "payload",
+        "reduceInit": "",
+        "reduceInitType": "str",
+        "reduceFixup": "",
+        "x": 1880,
+        "y": 60,
+        "wires": [
+            [
+                "d4e5f006ed6b7ad5"
+            ]
+        ]
+    },
+    {
+        "id": "0453a2202440092a",
+        "type": "batch",
+        "z": "a963ce203011149c",
+        "name": "wait until complete",
+        "mode": "concat",
+        "count": 10,
+        "overlap": 0,
+        "interval": 10,
+        "allowEmptySequence": false,
+        "topics": [
+            {
+                "topic": "allDevices"
+            },
+            {
+                "topic": "allConfig"
+            }
+        ],
+        "x": 1630,
+        "y": 60,
+        "wires": [
+            [
+                "fdd6848adb90cbf5"
+            ]
+        ]
+    },
+    {
+        "id": "0ba8246fea5006cd",
+        "type": "change",
+        "z": "a963ce203011149c",
+        "name": "allConfig",
+        "rules": [
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "allConfig",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "parts",
+                "pt": "msg",
+                "to": "{     \"id\": \"142df7beb7990f48\",     \"type\": \"JSON\",     \"count\": 1,     \"len\": 1,     \"index\": 0 }",
+                "tot": "json"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1420,
+        "y": 120,
+        "wires": [
+            [
+                "0453a2202440092a"
+            ]
+        ]
+    },
+    {
+        "id": "24c642828d0d0a2a",
+        "type": "join",
+        "z": "a963ce203011149c",
+        "name": "",
+        "mode": "auto",
+        "build": "object",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "accumulate": "false",
+        "timeout": "",
+        "count": "",
+        "reduceRight": false,
+        "x": 1970,
+        "y": 520,
+        "wires": [
+            [
+                "8b42d2e24975093d"
+            ]
+        ]
+    },
+    {
+        "id": "49b467a89db06e8a",
+        "type": "batch",
+        "z": "a963ce203011149c",
+        "name": "wait until complete",
+        "mode": "concat",
+        "count": 10,
+        "overlap": 0,
+        "interval": 10,
+        "allowEmptySequence": false,
+        "topics": [
+            {
+                "topic": "motionSensorLocationMQTT"
+            },
+            {
+                "topic": "motionSensorsMQTT"
+            }
+        ],
+        "x": 1410,
+        "y": 840,
+        "wires": [
+            [
+                "ac1fec829b87365e"
+            ]
+        ]
+    },
+    {
+        "id": "ac1fec829b87365e",
+        "type": "join",
+        "z": "a963ce203011149c",
+        "name": "allMotionSensorsMQTT",
+        "mode": "reduce",
+        "build": "object",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "accumulate": true,
+        "timeout": "",
+        "count": "",
+        "reduceRight": false,
+        "reduceExp": "_linkSource",
+        "reduceInit": "",
+        "reduceInitType": "str",
+        "reduceFixup": "",
+        "x": 1670,
+        "y": 840,
+        "wires": [
+            [
+                "e658abc20e1349e0"
+            ]
+        ]
+    },
+    {
+        "id": "e658abc20e1349e0",
+        "type": "change",
+        "z": "a963ce203011149c",
+        "name": "write allMotionSensorsMQTT",
+        "rules": [
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "allMotionSensorsMQTT",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "parts",
+                "pt": "msg",
+                "to": "{\"id\":\"142df7beb7990f51\",\"type\":\"JSON\",\"count\":1,\"len\":1,\"index\":0}",
+                "tot": "json"
+            },
+            {
+                "t": "move",
+                "p": "payload",
+                "pt": "msg",
+                "to": "_linkSource",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1980,
+        "y": 840,
+        "wires": [
+            [
+                "199b9169d8bf0b95"
+            ]
+        ]
+    },
+    {
+        "id": "8cd98adadd1a1fc9",
+        "type": "batch",
+        "z": "a963ce203011149c",
+        "name": "wait until complete",
+        "mode": "concat",
+        "count": 10,
+        "overlap": 0,
+        "interval": 10,
+        "allowEmptySequence": false,
+        "topics": [
+            {
+                "topic": "temperatureSensorLocationMQTT"
+            },
+            {
+                "topic": "temperatureSensorsMQTT"
+            }
+        ],
+        "x": 1410,
+        "y": 1060,
+        "wires": [
+            [
+                "256ce7cf606f3d4f"
+            ]
+        ]
+    },
+    {
+        "id": "256ce7cf606f3d4f",
+        "type": "join",
+        "z": "a963ce203011149c",
+        "name": "allTemperatureSensorsMQTT",
+        "mode": "reduce",
+        "build": "object",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "accumulate": true,
+        "timeout": "",
+        "count": "",
+        "reduceRight": false,
+        "reduceExp": "_linkSource\t",
+        "reduceInit": "",
+        "reduceInitType": "str",
+        "reduceFixup": "",
+        "x": 1680,
+        "y": 1060,
+        "wires": [
+            [
+                "2e1723379b4a80df"
+            ]
+        ]
+    },
+    {
+        "id": "2e1723379b4a80df",
+        "type": "change",
+        "z": "a963ce203011149c",
+        "name": "write allTemperatureSensorsMQTT",
+        "rules": [
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "allTemperatureSensorsMQTT",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "parts",
+                "pt": "msg",
+                "to": "{\"id\":\"142df7beb7990f52\",\"type\":\"JSON\",\"count\":1,\"len\":1,\"index\":0}",
+                "tot": "json"
+            },
+            {
+                "t": "move",
+                "p": "payload",
+                "pt": "msg",
+                "to": "_linkSource",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 2000,
+        "y": 1060,
+        "wires": [
+            [
+                "4426f875feeb0e74"
+            ]
+        ]
+    },
+    {
+        "id": "98a9fa372c7d6df9",
+        "type": "batch",
+        "z": "a963ce203011149c",
+        "name": "wait until complete",
+        "mode": "concat",
+        "count": 10,
+        "overlap": 0,
+        "interval": 10,
+        "allowEmptySequence": false,
+        "topics": [
+            {
+                "topic": "allMotionSensorsMQTT"
+            },
+            {
+                "topic": "allTemperatureSensorsMQTT"
+            },
+            {
+                "topic": "allLight2SensorsMQTT"
+            },
+            {
+                "topic": "allLight1SensorsMQTT"
+            }
+        ],
+        "x": 1110,
+        "y": 560,
+        "wires": [
+            [
+                "eb8f3ea540929479"
+            ]
+        ]
+    },
+    {
+        "id": "eb8f3ea540929479",
+        "type": "join",
+        "z": "a963ce203011149c",
+        "name": "allSensorsMQTT",
+        "mode": "reduce",
+        "build": "object",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "accumulate": true,
+        "timeout": "",
+        "count": "",
+        "reduceRight": false,
+        "reduceExp": "_linkSource",
+        "reduceInit": "",
+        "reduceInitType": "str",
+        "reduceFixup": "",
+        "x": 1350,
+        "y": 560,
+        "wires": [
+            [
+                "f1a4d6c35636b023"
+            ]
+        ]
+    },
+    {
+        "id": "31cb610a0c4be4b9",
+        "type": "file in",
+        "z": "a963ce203011149c",
+        "name": "read appInfo",
+        "filename": "",
+        "format": "",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "allProps": false,
+        "x": 570,
+        "y": 2420,
+        "wires": [
+            [
+                "52671c31255392df"
+            ]
+        ]
+    },
+    {
+        "id": "52671c31255392df",
+        "type": "json",
+        "z": "a963ce203011149c",
+        "name": "appInfo",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 780,
+        "y": 2420,
+        "wires": [
+            [
+                "7e1995f1478ef221"
+            ]
+        ]
+    },
+    {
+        "id": "dfe37c8491f348b6",
+        "type": "file in",
+        "z": "a963ce203011149c",
+        "name": "read accessToken",
+        "filename": "",
+        "format": "",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "utf8",
+        "allProps": false,
+        "x": 570,
+        "y": 2340,
+        "wires": [
+            [
+                "0176a4ef3f3de592"
+            ]
+        ]
+    },
+    {
+        "id": "7e1995f1478ef221",
+        "type": "join",
+        "z": "a963ce203011149c",
+        "name": "",
+        "mode": "custom",
+        "build": "merged",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "accumulate": false,
+        "timeout": "",
+        "count": "8",
+        "reduceRight": false,
+        "reduceExp": "",
+        "reduceInit": "",
+        "reduceInitType": "",
+        "reduceFixup": "",
+        "x": 970,
+        "y": 2380,
+        "wires": [
+            [
+                "7e6c2382068bc0a7"
+            ]
+        ]
+    },
+    {
+        "id": "0176a4ef3f3de592",
+        "type": "json",
+        "z": "a963ce203011149c",
+        "name": "accessToken",
+        "property": "payload",
+        "action": "",
+        "pretty": true,
+        "x": 790,
+        "y": 2340,
+        "wires": [
+            [
+                "7e1995f1478ef221"
+            ]
+        ]
+    },
+    {
+        "id": "7e6c2382068bc0a7",
+        "type": "change",
+        "z": "a963ce203011149c",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "aqaraUserData",
+                "pt": "global",
+                "to": "payload",
+                "tot": "msg",
+                "dc": true
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1190,
+        "y": 2380,
+        "wires": [
+            [
+                "ada1ce53544f2787"
+            ]
+        ]
+    },
+    {
+        "id": "d4e5f006ed6b7ad5",
+        "type": "change",
+        "z": "a963ce203011149c",
+        "name": "allDevices",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "allDevices",
+                "tot": "global",
+                "dc": true
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 2100,
+        "y": 60,
+        "wires": [
+            [
+                "3b998255c31ebc71"
+            ]
+        ]
+    },
+    {
+        "id": "5a36496368562afe",
+        "type": "comment",
+        "z": "a963ce203011149c",
+        "name": "Main Program",
+        "info": "# \n\nThis flow will automatically start the process by injecting seed message and enquire aqara senso's attribute every 5 minutes.",
+        "x": 130,
+        "y": 20,
+        "wires": []
+    },
+    {
+        "id": "e3260d39177680dc",
+        "type": "comment",
+        "z": "a963ce203011149c",
+        "name": "Check Token Expiration",
+        "info": "# Check Token Expiration\n# \nThis module will ceck if access token will expire within 4 hours and then request the updated tokens from Aqara website.",
+        "x": 160,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "f3c8b8bfab7780bc",
+        "type": "comment",
+        "z": "a963ce203011149c",
+        "name": "Publish Sensors",
+        "info": "# Publish Sensors\n# \nThis is the main flow that  handle publishing the sensor to MQTT broker",
+        "x": 140,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "ff9c1bb27b3ed38b",
+        "type": "comment",
+        "z": "a963ce203011149c",
+        "name": "Build Motion MQTT Message",
+        "info": "# Build Motion MQTT Message\n# \nThis flow retrieve device attributes from each Motion Sensors and prepare it into MQTT format",
+        "x": 180,
+        "y": 760,
+        "wires": []
+    },
+    {
+        "id": "bef99077eec13d4c",
+        "type": "comment",
+        "z": "a963ce203011149c",
+        "name": "Build Temperature MQTT Message",
+        "info": "# Build Temperature MQTT Message\n# \nThis flow retrieve device attributes from each Temperature Sensors and prepare it into MQTT format",
+        "x": 200,
+        "y": 980,
+        "wires": []
+    },
+    {
+        "id": "f227a8b763982f93",
+        "type": "comment",
+        "z": "a963ce203011149c",
+        "name": "Enquire Location of Sensors",
+        "info": "# Enquire Location of Sensors\n# \nThis flow retrieve location attribute from each  Sensors and prepare it into MQTT format",
+        "x": 180,
+        "y": 1640,
+        "wires": []
+    },
+    {
+        "id": "f906fa294f1c7ab1",
+        "type": "comment",
+        "z": "a963ce203011149c",
+        "name": "Read Sensors Configuration",
+        "info": "# Build Devices Configuration\n# \n\n## aqaraDevices.json\nThis flow read device configuration from aqaraDevices.json file. This file should contain configuration of all Aqara Devices.\nThe flow will then extract the sensor portion of each device and load it into global variables that will be used later to retrive device attributes.\n\n## aqaraSensors.json\nThe file aqaraSensors.json containg list of sensors is alo read and loaded to global variables.\nThe file only contains pair of 'id' and 'name' which will be used later by the flow to interpret data retrieved from Aqara server to build the correct MQTT topics for the data.",
+        "x": 180,
+        "y": 1780,
+        "wires": []
+    },
+    {
+        "id": "dacbd70bd3d4dc77",
+        "type": "comment",
+        "z": "a963ce203011149c",
+        "name": "Get All Devices",
+        "info": "# Get All Devices\n# \nThis flow retrieve list of all devices belonging to the user from Aqara Website",
+        "x": 140,
+        "y": 2160,
+        "wires": []
+    },
+    {
+        "id": "da2196d7eeaa51d7",
+        "type": "comment",
+        "z": "a963ce203011149c",
+        "name": "Read User Configuration Files",
+        "info": "# Read User Configuration Files\n \nThis flow retrieve configuration data relating to user's Aqara account.\n\n## aqaraAppInfo.json\nThis file contains basic data from user's Aqara Development subscription like: \n * appId\n * keyId\n * appKey\n\n## aqaraAccessToken.json\nThis file contains access token and refresh token retrieved from user's Aqara Development subscription.\nUser needs to create the initial tokens manually at the Aqara Development website and populate this file.\nLater, the file will be maintain and updated by this program/flow as the token nearing its  expiration time.",
+        "x": 180,
+        "y": 2300,
+        "wires": []
+    },
+    {
+        "id": "069a0b9bda9eb6fd",
+        "type": "comment",
+        "z": "a963ce203011149c",
+        "name": "Refresh Access Token",
+        "info": "# Refresh Access Token\n# \nThis flow retrieve new access token from Awqara website.",
+        "x": 160,
+        "y": 2520,
+        "wires": []
+    },
+    {
+        "id": "22f50e776b3b8894",
+        "type": "change",
+        "z": "a963ce203011149c",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.sensors",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1400,
+        "y": 1940,
+        "wires": [
+            [
+                "86465ebf30798a78"
+            ]
+        ]
+    },
+    {
+        "id": "86465ebf30798a78",
+        "type": "function",
+        "z": "a963ce203011149c",
+        "name": "buildLight2SensorsConfig",
+        "func": "var deviceSensors = msg.payload;\nvar resourceIds = [];\n\nfor (var i = 0; i < deviceSensors.length; i++){\n    resourceIds[i] = deviceSensors[i].id;\n}\n\nglobal.set(\"light2ResourceIds\", resourceIds);\n\nmsg.payload = '';\nmsg.topic = 'light2Sensors';\nmsg.parts =  {\n    \"id\": \"142df7beb7990f72\",\n    \"type\": \"JSON\",\n    \"count\": 1,\n    \"len\": 1,\n    \"index\": 0\n};\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1650,
+        "y": 1940,
+        "wires": [
+            [
+                "dc0632d156dd8e28"
+            ]
+        ]
+    },
+    {
+        "id": "89405451aa1c0667",
+        "type": "change",
+        "z": "a963ce203011149c",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.sensors",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1400,
+        "y": 2000,
+        "wires": [
+            [
+                "11f8b38b48d3cf39"
+            ]
+        ]
+    },
+    {
+        "id": "11f8b38b48d3cf39",
+        "type": "function",
+        "z": "a963ce203011149c",
+        "name": "buildLight1SensorsConfig",
+        "func": "var deviceSensors = msg.payload;\nvar resourceIds = [];\n\nfor (var i = 0; i < deviceSensors.length; i++){\n    resourceIds[i] = deviceSensors[i].id;\n}\n\nglobal.set(\"light1ResourceIds\", resourceIds);\n\nmsg.payload = '';\nmsg.topic = 'light1Sensors';\nmsg.parts =  {\n    \"id\": \"142df7beb7990f71\",\n    \"type\": \"JSON\",\n    \"count\": 1,\n    \"len\": 1,\n    \"index\": 0\n};\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1650,
+        "y": 2000,
+        "wires": [
+            [
+                "dc0632d156dd8e28"
+            ]
+        ]
+    },
+    {
+        "id": "d4665ed0fd7044f7",
+        "type": "join",
+        "z": "a963ce203011149c",
+        "name": "buildDeviceList",
+        "mode": "custom",
+        "build": "array",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "accumulate": false,
+        "timeout": "5",
+        "count": "100",
+        "reduceRight": false,
+        "reduceExp": "",
+        "reduceInit": "",
+        "reduceInitType": "",
+        "reduceFixup": "",
+        "x": 620,
+        "y": 600,
+        "wires": [
+            [
+                "40f2202ee521fe4b"
+            ]
+        ]
+    },
+    {
+        "id": "40f2202ee521fe4b",
+        "type": "link call",
+        "z": "a963ce203011149c",
+        "name": "buildLigh2MQTT",
+        "links": [
+            "69f284e6bf3bacdf"
+        ],
+        "timeout": "30",
+        "x": 850,
+        "y": 600,
+        "wires": [
+            [
+                "98a9fa372c7d6df9"
+            ]
+        ]
+    },
+    {
+        "id": "1a2d6556aba70565",
+        "type": "join",
+        "z": "a963ce203011149c",
+        "name": "buildDeviceList",
+        "mode": "custom",
+        "build": "array",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "accumulate": false,
+        "timeout": "5",
+        "count": "100",
+        "reduceRight": false,
+        "reduceExp": "",
+        "reduceInit": "",
+        "reduceInitType": "",
+        "reduceFixup": "",
+        "x": 620,
+        "y": 660,
+        "wires": [
+            [
+                "cca19bfe14bc3580"
+            ]
+        ]
+    },
+    {
+        "id": "cca19bfe14bc3580",
+        "type": "link call",
+        "z": "a963ce203011149c",
+        "name": "buildLigh1MQTT",
+        "links": [
+            "2edef5cf26812896"
+        ],
+        "timeout": "30",
+        "x": 850,
+        "y": 660,
+        "wires": [
+            [
+                "98a9fa372c7d6df9"
+            ]
+        ]
+    },
+    {
+        "id": "2edef5cf26812896",
+        "type": "link in",
+        "z": "a963ce203011149c",
+        "name": "buildLight1MQTT",
+        "links": [],
+        "x": 75,
+        "y": 1500,
+        "wires": [
+            [
+                "08a172164a42e68e",
+                "a8b42caff493bbea"
+            ]
+        ]
+    },
+    {
+        "id": "08a172164a42e68e",
+        "type": "link call",
+        "z": "a963ce203011149c",
+        "name": "getLocations",
+        "links": [
+            "e7499d84a7f061c7"
+        ],
+        "timeout": "30",
+        "x": 210,
+        "y": 1460,
+        "wires": [
+            [
+                "08addc59708c5a53"
+            ]
+        ]
+    },
+    {
+        "id": "a8b42caff493bbea",
+        "type": "function",
+        "z": "a963ce203011149c",
+        "name": "httpRequestLight1",
+        "func": "var allDevices = msg.payload;\nvar resources = {};\nvar mqttTopicPayload = {};\nvar mqttPublish = [];\nvar payload = [];\nvar resourceIds = global.get(\"light1ResourceIds\");\n\nfor (var j = 0; j < allDevices.length; j++){\n    resources.subjectId = msg.payload[j].did;\n    resources.resourceIds = resourceIds;\n    payload.push({...resources});\n    \n    mqttTopicPayload.topic = 'aqara/' + msg.payload[j].did + '/positionId';\n    mqttTopicPayload.payload = msg.payload[j].positionId;\n    mqttPublish.push({...mqttTopicPayload});\n    \n    mqttTopicPayload.topic = 'aqara/' + msg.payload[j].did + '/deviceName';\n    mqttTopicPayload.payload = msg.payload[j].deviceName;\n    mqttPublish.push({...mqttTopicPayload});\n}\n\nglobal.set(\"mqttPublish\",mqttPublish);\n\nmsg.payload = {\n\t\t'intent':\t'query.resource.value',\n\t\t'data': {\n\t\t\t\t'resources': payload\n\t\t}\n\t};\n\t\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 230,
+        "y": 1540,
+        "wires": [
+            [
+                "f5a3b2c31b771f60"
+            ]
+        ]
+    },
+    {
+        "id": "08addc59708c5a53",
+        "type": "change",
+        "z": "a963ce203011149c",
+        "name": "write location",
+        "rules": [
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "light1SensorLocationMQTT",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "parts",
+                "pt": "msg",
+                "to": "{\"id\":\"142df7beb7990f85\",\"type\":\"JSON\",\"count\":1,\"len\":1,\"index\":0}",
+                "tot": "json"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1160,
+        "y": 1460,
+        "wires": [
+            [
+                "1d9739420ede7de4"
+            ]
+        ]
+    },
+    {
+        "id": "f5a3b2c31b771f60",
+        "type": "function",
+        "z": "a963ce203011149c",
+        "name": "api.HeaderData",
+        "func": "var preSign = '';\nvar Time = Math.round(new Date().getTime()+30).toString();\nvar Nonce = Math.round(new Date().getTime()+30).toString();\nvar payload = global.get(\"aqaraUserData\");\n\n\nif (payload.accessToken != null && payload.accessToken != '' && payload.accessToken != undefined) {\n    \t\tpreSign = 'Accesstoken=' + payload.accessToken + '&';\n}\n\npreSign = preSign + 'Appid=' + payload.appId + '&Keyid=' + payload.keyId + '&Nonce=' + Nonce + '&Time=' + Time + payload.appKey;\n\nvar signHeader = MD5(preSign.toLowerCase()).toString();\n\nvar headerData = {\n\t\tAccesstoken: \tpayload.accessToken,\n\t\tAppid:\t        payload.appId,\n\t\tKeyid: \t        payload.keyId,\n\t\tNonce: \t        Nonce,\n\t\tTime:\t\t    Time,\n\t\tSign:\t\t    signHeader,\n\t\tLang:\t\t    'en'\n\t};\nmsg.headers = headerData;\nmsg.url = payload.baseURL +'/api';\nmsg.method = 'POST';\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [
+            {
+                "var": "MD5",
+                "module": "MD5"
+            }
+        ],
+        "x": 480,
+        "y": 1540,
+        "wires": [
+            [
+                "26eba7d0cbabf22e"
+            ]
+        ]
+    },
+    {
+        "id": "1d9739420ede7de4",
+        "type": "batch",
+        "z": "a963ce203011149c",
+        "name": "wait until complete",
+        "mode": "concat",
+        "count": 10,
+        "overlap": 0,
+        "interval": 10,
+        "allowEmptySequence": false,
+        "topics": [
+            {
+                "topic": "light1SensorLocationMQTT"
+            },
+            {
+                "topic": "light1SensorsMQTT"
+            }
+        ],
+        "x": 1410,
+        "y": 1500,
+        "wires": [
+            [
+                "45b176a662f19cfe"
+            ]
+        ]
+    },
+    {
+        "id": "26eba7d0cbabf22e",
+        "type": "http request",
+        "z": "a963ce203011149c",
+        "name": "getDeviceAttribute",
+        "method": "use",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "senderr": false,
+        "x": 710,
+        "y": 1540,
+        "wires": [
+            [
+                "ae5e34fc1fe9df43"
+            ]
+        ]
+    },
+    {
+        "id": "1d827e2cdbcc1538",
+        "type": "function",
+        "z": "a963ce203011149c",
+        "name": "buildMQTTAttributes",
+        "func": "var allDevicesAttributes = msg.payload;\nvar mqttTopicPayload = {};\nvar mqttPublish = global.get(\"mqttPublish\");\nvar allSensors = global.get(\"allSensors\")\n\nfor (var j = 0; j < allDevicesAttributes.length; j++){\n    var sensorEntry = lodash.filter(allSensors, { 'id': allDevicesAttributes[j].resourceId } );\n\n    switch(sensorEntry[0].id) {\n        case '4.1.85':\n            mqttTopicPayload.payload = allDevicesAttributes[j].value;\n            mqttTopicPayload.topic = 'aqara/' + allDevicesAttributes[j].subjectId + '/button_switch_status';\n            break;\n        case '4.10.85':\n            mqttTopicPayload.payload = allDevicesAttributes[j].value;\n            mqttTopicPayload.topic = 'aqara/' + allDevicesAttributes[j].subjectId + '/button_physical_control';\n            break;\n        default:\n            mqttTopicPayload.payload = allDevicesAttributes[j].value;\n            mqttTopicPayload.topic = 'aqara/' + allDevicesAttributes[j].subjectId + '/' + sensorEntry[0].name;\n    }\n\n    mqttPublish.push({...mqttTopicPayload});\n}\n\nglobal.set(\"mqttPublish\",mqttPublish);\nmsg.payload = mqttPublish;\nmsg.topic = 'light1SensorsMQTT';\nmsg.parts = {\n    \"id\": \"142df7beb7990f81\",\n    \"type\": \"JSON\",\n    \"count\": 1,\n    \"len\": 1,\n    \"index\": 0\n};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [
+            {
+                "var": "lodash",
+                "module": "lodash"
+            }
+        ],
+        "x": 1160,
+        "y": 1540,
+        "wires": [
+            [
+                "1d9739420ede7de4"
+            ]
+        ]
+    },
+    {
+        "id": "45b176a662f19cfe",
+        "type": "join",
+        "z": "a963ce203011149c",
+        "name": "allTemperatureSensorsMQTT",
+        "mode": "reduce",
+        "build": "object",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "accumulate": true,
+        "timeout": "",
+        "count": "",
+        "reduceRight": false,
+        "reduceExp": "_linkSource\t",
+        "reduceInit": "",
+        "reduceInitType": "str",
+        "reduceFixup": "",
+        "x": 1680,
+        "y": 1500,
+        "wires": [
+            [
+                "29354fa083934404"
+            ]
+        ]
+    },
+    {
+        "id": "ae5e34fc1fe9df43",
+        "type": "change",
+        "z": "a963ce203011149c",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.result",
+                "tot": "msg",
+                "dc": true
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 940,
+        "y": 1540,
+        "wires": [
+            [
+                "1d827e2cdbcc1538"
+            ]
+        ]
+    },
+    {
+        "id": "29354fa083934404",
+        "type": "change",
+        "z": "a963ce203011149c",
+        "name": "write allLight1SensorsMQTT",
+        "rules": [
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "allLight1SensorsMQTT",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "parts",
+                "pt": "msg",
+                "to": "{\"id\":\"142df7beb7990f54\",\"type\":\"JSON\",\"count\":1,\"len\":1,\"index\":0}",
+                "tot": "json"
+            },
+            {
+                "t": "move",
+                "p": "payload",
+                "pt": "msg",
+                "to": "_linkSource",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 2000,
+        "y": 1500,
+        "wires": [
+            [
+                "56a8e19800fed3a4"
+            ]
+        ]
+    },
+    {
+        "id": "56a8e19800fed3a4",
+        "type": "link out",
+        "z": "a963ce203011149c",
+        "name": "endBuildTemperatureMQTT",
+        "mode": "return",
+        "links": [],
+        "x": 2215,
+        "y": 1500,
+        "wires": []
+    },
+    {
+        "id": "69f284e6bf3bacdf",
+        "type": "link in",
+        "z": "a963ce203011149c",
+        "name": "buildLight2MQTT",
+        "links": [],
+        "x": 75,
+        "y": 1280,
+        "wires": [
+            [
+                "af64c564e5f0f2c9",
+                "4e9491e58a3319d3"
+            ]
+        ]
+    },
+    {
+        "id": "af64c564e5f0f2c9",
+        "type": "link call",
+        "z": "a963ce203011149c",
+        "name": "getLocations",
+        "links": [
+            "e7499d84a7f061c7"
+        ],
+        "timeout": "30",
+        "x": 210,
+        "y": 1240,
+        "wires": [
+            [
+                "81c6718995bf1179"
+            ]
+        ]
+    },
+    {
+        "id": "4e9491e58a3319d3",
+        "type": "function",
+        "z": "a963ce203011149c",
+        "name": "httpRequestLight2",
+        "func": "var allDevices = msg.payload;\nvar resources = {};\nvar mqttTopicPayload = {};\nvar mqttPublish = [];\nvar payload = [];\nvar resourceIds = global.get(\"light2ResourceIds\");\n\nfor (var j = 0; j < allDevices.length; j++){\n    resources.subjectId = msg.payload[j].did;\n    resources.resourceIds = resourceIds;\n    payload.push({...resources});\n    \n    mqttTopicPayload.topic = 'aqara/' + msg.payload[j].did + '/positionId';\n    mqttTopicPayload.payload = msg.payload[j].positionId;\n    mqttPublish.push({...mqttTopicPayload});\n    \n    mqttTopicPayload.topic = 'aqara/' + msg.payload[j].did + '/deviceName';\n    mqttTopicPayload.payload = msg.payload[j].deviceName;\n    mqttPublish.push({...mqttTopicPayload});\n}\n\nglobal.set(\"mqttPublish\",mqttPublish);\n\nmsg.payload = {\n\t\t'intent':\t'query.resource.value',\n\t\t'data': {\n\t\t\t\t'resources': payload\n\t\t}\n\t};\n\t\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 230,
+        "y": 1320,
+        "wires": [
+            [
+                "c1186151f171a41d"
+            ]
+        ]
+    },
+    {
+        "id": "81c6718995bf1179",
+        "type": "change",
+        "z": "a963ce203011149c",
+        "name": "write location",
+        "rules": [
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "light2SensorLocationMQTT",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "parts",
+                "pt": "msg",
+                "to": "{\"id\":\"142df7beb7990f85\",\"type\":\"JSON\",\"count\":1,\"len\":1,\"index\":0}",
+                "tot": "json"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1160,
+        "y": 1240,
+        "wires": [
+            [
+                "aa446b5fae2e2bf2"
+            ]
+        ]
+    },
+    {
+        "id": "c1186151f171a41d",
+        "type": "function",
+        "z": "a963ce203011149c",
+        "name": "api.HeaderData",
+        "func": "var preSign = '';\nvar Time = Math.round(new Date().getTime()+20).toString();\nvar Nonce = Math.round(new Date().getTime()+20).toString();\nvar payload = global.get(\"aqaraUserData\");\n\n\nif (payload.accessToken != null && payload.accessToken != '' && payload.accessToken != undefined) {\n    \t\tpreSign = 'Accesstoken=' + payload.accessToken + '&';\n}\n\npreSign = preSign + 'Appid=' + payload.appId + '&Keyid=' + payload.keyId + '&Nonce=' + Nonce + '&Time=' + Time + payload.appKey;\n\nvar signHeader = MD5(preSign.toLowerCase()).toString();\n\nvar headerData = {\n\t\tAccesstoken: \tpayload.accessToken,\n\t\tAppid:\t        payload.appId,\n\t\tKeyid: \t        payload.keyId,\n\t\tNonce: \t        Nonce,\n\t\tTime:\t\t    Time,\n\t\tSign:\t\t    signHeader,\n\t\tLang:\t\t    'en'\n\t};\nmsg.headers = headerData;\nmsg.url = payload.baseURL +'/api';\nmsg.method = 'POST';\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [
+            {
+                "var": "MD5",
+                "module": "MD5"
+            }
+        ],
+        "x": 480,
+        "y": 1320,
+        "wires": [
+            [
+                "554a1a2bec5f91b7"
+            ]
+        ]
+    },
+    {
+        "id": "aa446b5fae2e2bf2",
+        "type": "batch",
+        "z": "a963ce203011149c",
+        "name": "wait until complete",
+        "mode": "concat",
+        "count": 10,
+        "overlap": 0,
+        "interval": 10,
+        "allowEmptySequence": false,
+        "topics": [
+            {
+                "topic": "light2SensorLocationMQTT"
+            },
+            {
+                "topic": "light2SensorsMQTT"
+            }
+        ],
+        "x": 1410,
+        "y": 1280,
+        "wires": [
+            [
+                "d1da4cec096f9e13"
+            ]
+        ]
+    },
+    {
+        "id": "554a1a2bec5f91b7",
+        "type": "http request",
+        "z": "a963ce203011149c",
+        "name": "getDeviceAttribute",
+        "method": "use",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "senderr": false,
+        "x": 710,
+        "y": 1320,
+        "wires": [
+            [
+                "df62dfce35b66738"
+            ]
+        ]
+    },
+    {
+        "id": "e6cffa89ddf34e5d",
+        "type": "function",
+        "z": "a963ce203011149c",
+        "name": "buildMQTTAttributes",
+        "func": "var allDevicesAttributes = msg.payload;\nvar mqttTopicPayload = {};\nvar mqttPublish = global.get(\"mqttPublish\");\nvar allSensors = global.get(\"allSensors\")\n\nfor (var j = 0; j < allDevicesAttributes.length; j++){\n    var sensorEntry = lodash.filter(allSensors, { 'id': allDevicesAttributes[j].resourceId } );\n    var sensorName = sensorEntry[0].name;\n    \n    \n    switch(sensorEntry[0].id) {\n        case '4.1.85':\n            mqttTopicPayload.payload = allDevicesAttributes[j].value;\n            mqttTopicPayload.topic = 'aqara/' + allDevicesAttributes[j].subjectId + '/' + sensorEntry[1].name;\n            break;\n        default:\n            mqttTopicPayload.payload = allDevicesAttributes[j].value;\n            mqttTopicPayload.topic = 'aqara/' + allDevicesAttributes[j].subjectId + '/' + sensorEntry[0].name;\n    }\n\n    mqttPublish.push({...mqttTopicPayload});\n}\n\nglobal.set(\"mqttPublish\",mqttPublish);\nmsg.payload = mqttPublish;\nmsg.topic = 'light2SensorsMQTT';\nmsg.parts = {\n    \"id\": \"142df7beb7990f82\",\n    \"type\": \"JSON\",\n    \"count\": 1,\n    \"len\": 1,\n    \"index\": 0\n};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [
+            {
+                "var": "lodash",
+                "module": "lodash"
+            }
+        ],
+        "x": 1160,
+        "y": 1320,
+        "wires": [
+            [
+                "aa446b5fae2e2bf2"
+            ]
+        ]
+    },
+    {
+        "id": "d1da4cec096f9e13",
+        "type": "join",
+        "z": "a963ce203011149c",
+        "name": "allTemperatureSensorsMQTT",
+        "mode": "reduce",
+        "build": "object",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "accumulate": true,
+        "timeout": "",
+        "count": "",
+        "reduceRight": false,
+        "reduceExp": "_linkSource\t",
+        "reduceInit": "",
+        "reduceInitType": "str",
+        "reduceFixup": "",
+        "x": 1680,
+        "y": 1280,
+        "wires": [
+            [
+                "5e05b8e4dfda2cc2"
+            ]
+        ]
+    },
+    {
+        "id": "df62dfce35b66738",
+        "type": "change",
+        "z": "a963ce203011149c",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.result",
+                "tot": "msg",
+                "dc": true
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 940,
+        "y": 1320,
+        "wires": [
+            [
+                "e6cffa89ddf34e5d"
+            ]
+        ]
+    },
+    {
+        "id": "5e05b8e4dfda2cc2",
+        "type": "change",
+        "z": "a963ce203011149c",
+        "name": "write allLight2SensorsMQTT",
+        "rules": [
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "allLight2SensorsMQTT",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "parts",
+                "pt": "msg",
+                "to": "{\"id\":\"142df7beb7990f53\",\"type\":\"JSON\",\"count\":1,\"len\":1,\"index\":0}",
+                "tot": "json"
+            },
+            {
+                "t": "move",
+                "p": "payload",
+                "pt": "msg",
+                "to": "_linkSource",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 2000,
+        "y": 1280,
+        "wires": [
+            [
+                "27352acc8a1eeac3"
+            ]
+        ]
+    },
+    {
+        "id": "27352acc8a1eeac3",
+        "type": "link out",
+        "z": "a963ce203011149c",
+        "name": "endBuildTemperatureMQTT",
+        "mode": "return",
+        "links": [],
+        "x": 2215,
+        "y": 1280,
+        "wires": []
+    },
+    {
+        "id": "d80a2feb2ab21f50",
+        "type": "comment",
+        "z": "a963ce203011149c",
+        "name": "Build Light1 MQTT Message",
+        "info": "# Build Temperature MQTT Message\n# \nThis flow retrieve device attributes from each Temperature Sensors and prepare it into MQTT format",
+        "x": 180,
+        "y": 1420,
+        "wires": []
+    },
+    {
+        "id": "d05dbc5fd21c8b17",
+        "type": "comment",
+        "z": "a963ce203011149c",
+        "name": "Build Light2 MQTT Message",
+        "info": "# Build Temperature MQTT Message\n# \nThis flow retrieve device attributes from each Temperature Sensors and prepare it into MQTT format",
+        "x": 180,
+        "y": 1200,
+        "wires": []
+    },
+    {
+        "id": "ad0ee9c9d210a77f",
+        "type": "change",
+        "z": "a963ce203011149c",
+        "name": "get aqaraAccessToken filename",
+        "rules": [
+            {
+                "t": "set",
+                "p": "filename",
+                "pt": "msg",
+                "to": "aqaraAccessToken",
+                "tot": "global"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 290,
+        "y": 2340,
+        "wires": [
+            [
+                "dfe37c8491f348b6"
+            ]
+        ]
+    },
+    {
+        "id": "4104a077dc0fca30",
+        "type": "change",
+        "z": "a963ce203011149c",
+        "name": "get aqaraAppInfo filename",
+        "rules": [
+            {
+                "t": "set",
+                "p": "filename",
+                "pt": "msg",
+                "to": "aqaraAppInfo",
+                "tot": "global"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 280,
+        "y": 2420,
+        "wires": [
+            [
+                "31cb610a0c4be4b9"
+            ]
+        ]
+    },
+    {
+        "id": "4a8edc7543e68fec",
+        "type": "change",
+        "z": "a963ce203011149c",
+        "name": "get aqaraDevices filename",
+        "rules": [
+            {
+                "t": "set",
+                "p": "filename",
+                "pt": "msg",
+                "to": "aqaraDevices",
+                "tot": "global"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 280,
+        "y": 1920,
+        "wires": [
+            [
+                "381a1bee857b7577"
+            ]
+        ]
+    },
+    {
+        "id": "8587d48e4d77cae3",
+        "type": "change",
+        "z": "a963ce203011149c",
+        "name": "get aqaraSensors filename",
+        "rules": [
+            {
+                "t": "set",
+                "p": "filename",
+                "pt": "msg",
+                "to": "aqaraSensors",
+                "tot": "global"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 280,
+        "y": 2060,
+        "wires": [
+            [
+                "9278ec3ff1db977a"
+            ]
+        ]
+    },
+    {
+        "id": "6f3a0aab4fc20474",
+        "type": "change",
+        "z": "a963ce203011149c",
+        "name": "get aqaraAccessToken filename",
+        "rules": [
+            {
+                "t": "set",
+                "p": "filename",
+                "pt": "msg",
+                "to": "aqaraAccessToken",
+                "tot": "global"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1490,
+        "y": 2560,
+        "wires": [
+            [
+                "4df082215a8fd46e"
+            ]
+        ]
+    },
+    {
+        "id": "e83c28e56df06dbd",
+        "type": "change",
+        "z": "a963ce203011149c",
+        "name": "set configuration filenames",
+        "rules": [
+            {
+                "t": "set",
+                "p": "aqaraAccessToken",
+                "pt": "global",
+                "to": "/home/pi/aqaraAccessToken.json",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "aqaraAppInfo",
+                "pt": "global",
+                "to": "/home/pi/aqaraAppInfo.json",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "aqaraDevices",
+                "pt": "global",
+                "to": "/home/pi/aqaraDevices.json",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "aqaraSensors",
+                "pt": "global",
+                "to": "/home/pi/aqaraSensors.json",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 340,
+        "y": 60,
+        "wires": [
+            [
+                "2d0383295e4ebcb8"
+            ]
+        ]
+    }
+]

@@ -1,0 +1,12 @@
+{
+    "name": "aqaraSensors",
+    "description": "MQTT Client for Aqara Sensors",
+    "version": "0.0.1",
+    "dependencies": {},
+    "node-red": {
+        "settings": {
+            "flowFile": "aqaraSensors.json",
+            "credentialsFile": "aqaraSensors_cred.json"
+        }
+    }
+}
