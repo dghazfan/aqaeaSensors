@@ -3490,8 +3490,8 @@
         "method": "get",
         "upload": false,
         "swaggerDoc": "",
-        "x": 160,
-        "y": 60,
+        "x": 280,
+        "y": 140,
         "wires": [
             [
                 "55a237eb1d13ed94"
@@ -3507,11 +3507,64 @@
         "tosidebar": true,
         "console": false,
         "tostatus": false,
-        "complete": "false",
+        "complete": "true",
+        "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 360,
-        "y": 60,
+        "x": 480,
+        "y": 140,
         "wires": []
+    },
+    {
+        "id": "55d924fdac8bc7c6",
+        "type": "inject",
+        "z": "110dbf60ce43222a",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 80,
+        "y": 140,
+        "wires": [
+            [
+                "c4336e8add83a148"
+            ]
+        ]
+    },
+    {
+        "id": "c4336e8add83a148",
+        "type": "http request",
+        "z": "110dbf60ce43222a",
+        "name": "getPublicIP",
+        "method": "GET",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "https://whatsmyip.com/api?key=8a0349b40951e6cd687c238744888d2ca2379aa8",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 270,
+        "y": 200,
+        "wires": [
+            [
+                "55a237eb1d13ed94"
+            ]
+        ]
     }
 ]
