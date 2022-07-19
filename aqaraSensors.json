@@ -3577,7 +3577,8 @@
         "wires": [
             [
                 "28ae3f8fc3b05033",
-                "23110f4713275302"
+                "23110f4713275302",
+                "3286bf512c1d7625"
             ]
         ]
     },
@@ -3803,7 +3804,8 @@
         "wires": [
             [
                 "658b3c649313eceb",
-                "497d7524607679e1"
+                "497d7524607679e1",
+                "f0c1894aa07cb9ce"
             ]
         ]
     },
@@ -3917,5 +3919,75 @@
         "wires": [
             []
         ]
+    },
+    {
+        "id": "3286bf512c1d7625",
+        "type": "function",
+        "z": "110dbf60ce43222a",
+        "name": "publish weather Station MQTT",
+        "func": "var mqttTopicPayload = {};\nvar mqttPublish = [];\n\nmqttTopicPayload.topic = 'weather/CountryID';  \nmqttTopicPayload.payload = global.get(\"AccuWeatherCountryID\");\nmqttPublish.push({ ...mqttTopicPayload });\n\nmqttTopicPayload.topic = 'weather/City';\nmqttTopicPayload.payload = global.get(\"AccuWeatherCity\");\nmqttPublish.push({ ...mqttTopicPayload });\n\nmqttTopicPayload.topic = 'weather/LocationName';\nmqttTopicPayload.payload = global.get(\"AccuWeatherLocationName\");\nmqttPublish.push({ ...mqttTopicPayload });\n\nmqttTopicPayload.topic = 'weather/LocationLatitude';\nmqttTopicPayload.payload = global.get(\"AccuWeatherLocationLatitude\");\nmqttPublish.push({ ...mqttTopicPayload });\n\nmqttTopicPayload.topic = 'weather/LocationLongitude';\nmqttTopicPayload.payload = global.get(\"AccuWeatherLocationLongitude\");\nmqttPublish.push({ ...mqttTopicPayload });\n\nglobal.set(\"mqttPublish\", mqttPublish);\nmsg.payload = mqttPublish;\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1450,
+        "y": 220,
+        "wires": [
+            [
+                "7e97bb80f1b9a70a"
+            ]
+        ]
+    },
+    {
+        "id": "f0c1894aa07cb9ce",
+        "type": "function",
+        "z": "110dbf60ce43222a",
+        "name": "publish weather Condition MQTT",
+        "func": "var mqttTopicPayload = {};\nvar mqttPublish = global.get(\"mqttPublish\");\n\n\nmqttTopicPayload.topic = 'weather/Temperature';\nmqttTopicPayload.payload = global.get(\"AccuWeatherTemperature\");\nmqttPublish.push({ ...mqttTopicPayload });\n\nmqttTopicPayload.topic = 'weather/Pressure';\nmqttTopicPayload.payload = global.get(\"AccuWeatherPressure\");\nmqttPublish.push({ ...mqttTopicPayload });\n\nmqttTopicPayload.topic = 'weather/Humidity';\nmqttTopicPayload.payload = global.get(\"AccuWeatherHumidity\");\nmqttPublish.push({ ...mqttTopicPayload });\n\nmqttTopicPayload.topic = 'weather/Condition';\nmqttTopicPayload.payload = global.get(\"AccuWeatherCondition\");\nmqttPublish.push({ ...mqttTopicPayload });\n\nmqttTopicPayload.topic = 'weather/Rain1H';\nmqttTopicPayload.payload = global.get(\"AccuWeatherRain1H\");\nmqttPublish.push({ ...mqttTopicPayload });\n\nmqttTopicPayload.topic = 'weather/Rain24H';\nmqttTopicPayload.payload = global.get(\"AccuWeatherRain24H\");\nmqttPublish.push({ ...mqttTopicPayload });\n\nmqttTopicPayload.topic = 'weather/UVIndex';\nmqttTopicPayload.payload = global.get(\"AccuWeatherUVIndex\");\nmqttPublish.push({ ...mqttTopicPayload });\n\nmqttTopicPayload.topic = 'weather/Visibility';\nmqttTopicPayload.payload = global.get(\"AccuWeatherVisibility\");\nmqttPublish.push({ ...mqttTopicPayload });\n\nmqttTopicPayload.topic = 'weather/WindDirection';\nmqttTopicPayload.payload = global.get(\"AccuWeatherWindDirection\");\nmqttPublish.push({ ...mqttTopicPayload });\n\nmqttTopicPayload.topic = 'weather/WindSpeed';\nmqttTopicPayload.payload = global.get(\"AccuWeatherWindSpeed\");\nmqttPublish.push({ ...mqttTopicPayload });\n\nglobal.set(\"mqttPublish\", mqttPublish);\nmsg.payload = mqttPublish;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2140,
+        "y": 220,
+        "wires": [
+            [
+                "2e0075290c39d464"
+            ]
+        ]
+    },
+    {
+        "id": "7e97bb80f1b9a70a",
+        "type": "debug",
+        "z": "110dbf60ce43222a",
+        "name": "debug 4",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1700,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "2e0075290c39d464",
+        "type": "debug",
+        "z": "110dbf60ce43222a",
+        "name": "debug 5",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 2400,
+        "y": 220,
+        "wires": []
     }
 ]
