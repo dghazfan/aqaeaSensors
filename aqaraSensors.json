@@ -3595,7 +3595,7 @@
                 "t": "set",
                 "p": "whatsmyipKey",
                 "pt": "global",
-                "to": "8a0349b40951e6cd687c238744888d2ca2379aa8",
+                "to": "key=8a0349b40951e6cd687c238744888d2ca2379aa8",
                 "tot": "str"
             },
             {
@@ -3643,8 +3643,8 @@
                 "t": "set",
                 "p": "payload",
                 "pt": "msg",
-                "to": "key=$globalContext(\"whatsmyipKey\")\t",
-                "tot": "jsonata"
+                "to": "whatsmyipKey",
+                "tot": "global"
             },
             {
                 "t": "set",
@@ -3665,6 +3665,93 @@
             [
                 "c4336e8add83a148",
                 "55a237eb1d13ed94"
+            ]
+        ]
+    },
+    {
+        "id": "41747a17.54ffd4",
+        "type": "http request",
+        "z": "110dbf60ce43222a",
+        "name": "",
+        "method": "GET",
+        "ret": "txt",
+        "url": "https://jsonplaceholder.typicode.com/posts/{{post}}",
+        "tls": "",
+        "x": 850,
+        "y": 360,
+        "wires": [
+            [
+                "d682318c.36823"
+            ]
+        ]
+    },
+    {
+        "id": "d682318c.36823",
+        "type": "debug",
+        "z": "110dbf60ce43222a",
+        "name": "",
+        "active": true,
+        "console": "false",
+        "complete": "payload",
+        "x": 1010,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "90bfea22.dd2b98",
+        "type": "inject",
+        "z": "110dbf60ce43222a",
+        "name": "post id",
+        "props": [
+            {
+                "p": "payload",
+                "v": "2",
+                "vt": "str"
+            },
+            {
+                "p": "topic",
+                "v": "",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "topic": "",
+        "payload": "2",
+        "payloadType": "str",
+        "x": 550,
+        "y": 360,
+        "wires": [
+            [
+                "e67a0cc.596d4f"
+            ]
+        ]
+    },
+    {
+        "id": "e67a0cc.596d4f",
+        "type": "change",
+        "z": "110dbf60ce43222a",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "post",
+                "pt": "msg",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 690,
+        "y": 360,
+        "wires": [
+            [
+                "41747a17.54ffd4"
             ]
         ]
     }
