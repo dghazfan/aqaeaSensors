@@ -3754,7 +3754,7 @@
         "z": "110dbf60ce43222a",
         "name": "getAccuWeatherLocationKey",
         "method": "GET",
-        "ret": "txt",
+        "ret": "obj",
         "paytoqs": "ignore",
         "url": "http://dataservice.accuweGET /forecasts/v1/hourly/1hour/{{{locationKey}}}?apikey={{{APIKey}}}&details={{{details}}}&metric={{{metric}}}",
         "tls": "",
