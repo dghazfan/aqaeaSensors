@@ -3733,6 +3733,41 @@
                 "pt": "msg",
                 "to": "true",
                 "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "AccuWeatherCountryID",
+                "pt": "global",
+                "to": "payload.Country.ID",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "AccuWeatherCity",
+                "pt": "global",
+                "to": "payload.AdministrativeArea.EnglishName",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "AccuWeatherLocationName",
+                "pt": "global",
+                "to": "payload.LocalizedName",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "AccuWeatherLocationLatitude",
+                "pt": "global",
+                "to": "payload.GeoPositionLatitude",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "AccuWeatherLocationLongitude",
+                "pt": "global",
+                "to": "payload.GeoPositionLongitude",
+                "tot": "msg"
             }
         ],
         "action": "",
