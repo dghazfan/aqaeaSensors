@@ -4025,7 +4025,9 @@
         "type": "link call",
         "z": "a963ce203011149c",
         "name": "initiateWeather",
-        "links": [],
+        "links": [
+            "b2530607fa9f74ec"
+        ],
         "linkType": "static",
         "timeout": "30",
         "x": 780,
