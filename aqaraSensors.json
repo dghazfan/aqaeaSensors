@@ -3576,7 +3576,8 @@
         "y": 140,
         "wires": [
             [
-                "28ae3f8fc3b05033"
+                "28ae3f8fc3b05033",
+                "23110f4713275302"
             ]
         ]
     },
@@ -3691,5 +3692,99 @@
                 "cc28f04989fcc142"
             ]
         ]
+    },
+    {
+        "id": "23110f4713275302",
+        "type": "change",
+        "z": "110dbf60ce43222a",
+        "name": "save AccuWeather Location Key",
+        "rules": [
+            {
+                "t": "set",
+                "p": "AccuWeatherLocationKey",
+                "pt": "global",
+                "to": "payload.Key",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "APIKey",
+                "pt": "msg",
+                "to": "AccuWeatherAPIKey",
+                "tot": "global"
+            },
+            {
+                "t": "set",
+                "p": "locationKey",
+                "pt": "msg",
+                "to": "AccuWeatherLocationKey",
+                "tot": "global"
+            },
+            {
+                "t": "set",
+                "p": "details",
+                "pt": "msg",
+                "to": "true",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "metric",
+                "pt": "msg",
+                "to": "true",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1450,
+        "y": 140,
+        "wires": [
+            [
+                "556b40327feb1afb"
+            ]
+        ]
+    },
+    {
+        "id": "556b40327feb1afb",
+        "type": "http request",
+        "z": "110dbf60ce43222a",
+        "name": "getAccuWeatherLocationKey",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "http://dataservice.accuweGET /forecasts/v1/hourly/1hour/{{{locationKey}}}?apikey={{{APIKey}}}&details={{{details}}}&metric={{{metric}}}",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 1760,
+        "y": 140,
+        "wires": [
+            [
+                "658b3c649313eceb"
+            ]
+        ]
+    },
+    {
+        "id": "658b3c649313eceb",
+        "type": "debug",
+        "z": "110dbf60ce43222a",
+        "name": "debug 3",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 2020,
+        "y": 80,
+        "wires": []
     }
 ]
