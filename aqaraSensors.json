@@ -3482,23 +3482,6 @@
         ]
     },
     {
-        "id": "5b984208c26f2895",
-        "type": "http in",
-        "z": "110dbf60ce43222a",
-        "name": "get public ip address",
-        "url": "https://whatsmyip.com/api?key=8a0349b40951e6cd687c238744888d2ca2379aa8",
-        "method": "get",
-        "upload": false,
-        "swaggerDoc": "",
-        "x": 280,
-        "y": 140,
-        "wires": [
-            [
-                "55a237eb1d13ed94"
-            ]
-        ]
-    },
-    {
         "id": "55a237eb1d13ed94",
         "type": "debug",
         "z": "110dbf60ce43222a",
@@ -3511,8 +3494,8 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 480,
-        "y": 140,
+        "x": 980,
+        "y": 80,
         "wires": []
     },
     {
@@ -3523,10 +3506,6 @@
         "props": [
             {
                 "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
             }
         ],
         "repeat": "",
@@ -3540,7 +3519,7 @@
         "y": 140,
         "wires": [
             [
-                "c4336e8add83a148"
+                "fc00266158e50f23"
             ]
         ]
     },
@@ -3559,11 +3538,132 @@
         "authType": "",
         "senderr": false,
         "headers": [],
-        "x": 270,
-        "y": 200,
+        "x": 770,
+        "y": 140,
         "wires": [
             [
                 "55a237eb1d13ed94"
+            ]
+        ]
+    },
+    {
+        "id": "cc28f04989fcc142",
+        "type": "http request",
+        "z": "110dbf60ce43222a",
+        "name": "getAccuWeatherLocationKey",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "http://dataservice.accuweather.com/locations/v1/cities/ipaddress",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 1020,
+        "y": 200,
+        "wires": [
+            [
+                "28ae3f8fc3b05033"
+            ]
+        ]
+    },
+    {
+        "id": "28ae3f8fc3b05033",
+        "type": "debug",
+        "z": "110dbf60ce43222a",
+        "name": "debug 2",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1180,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "fc00266158e50f23",
+        "type": "change",
+        "z": "110dbf60ce43222a",
+        "name": "saveAPIKeys",
+        "rules": [
+            {
+                "t": "set",
+                "p": "whatsmyipKey",
+                "pt": "global",
+                "to": "8a0349b40951e6cd687c238744888d2ca2379aa8",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "AccuWeatherKey",
+                "pt": "global",
+                "to": "xs2MHKZXtOQSgHquADNOfyxAolAHUu9Z",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "whatsmyipURL",
+                "pt": "global",
+                "to": "https://whatsmyip.com/api",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "AccuWeatherForecastHourlyURL",
+                "pt": "global",
+                "to": "http://dataservice.accuweather.com/forecasts/v1/hourly/1hour/",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 270,
+        "y": 140,
+        "wires": [
+            [
+                "8907120d4409be11"
+            ]
+        ]
+    },
+    {
+        "id": "8907120d4409be11",
+        "type": "change",
+        "z": "110dbf60ce43222a",
+        "name": "prepare whatsmyip request",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload.key",
+                "pt": "msg",
+                "to": "whatsmyipKey",
+                "tot": "global"
+            },
+            {
+                "t": "set",
+                "p": "url",
+                "pt": "msg",
+                "to": "whatsmyipURL",
+                "tot": "global"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 520,
+        "y": 140,
+        "wires": [
+            [
+                "c4336e8add83a148"
             ]
         ]
     }
