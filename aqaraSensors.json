@@ -3831,72 +3831,79 @@
         "rules": [
             {
                 "t": "set",
-                "p": "AccuWeatherLocationKey",
-                "pt": "global",
-                "to": "payload.Key",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload[0]",
                 "tot": "msg"
-            },
-            {
-                "t": "set",
-                "p": "APIKey",
-                "pt": "msg",
-                "to": "AccuWeatherAPIKey",
-                "tot": "global"
-            },
-            {
-                "t": "set",
-                "p": "locationKey",
-                "pt": "msg",
-                "to": "AccuWeatherLocationKey",
-                "tot": "global"
-            },
-            {
-                "t": "set",
-                "p": "details",
-                "pt": "msg",
-                "to": "true",
-                "tot": "str"
-            },
-            {
-                "t": "set",
-                "p": "metric",
-                "pt": "msg",
-                "to": "true",
-                "tot": "str"
             },
             {
                 "t": "set",
                 "p": "AccuWeatherPressure",
                 "pt": "global",
-                "to": "payload.Country.ID",
+                "to": "payload.Pressure.Metric.Value",
                 "tot": "msg"
             },
             {
                 "t": "set",
                 "p": "AccuWeatherTemperature",
                 "pt": "global",
-                "to": "payload.AdministrativeArea.EnglishName",
+                "to": "payload.Temperature.Metric.Value",
                 "tot": "msg"
             },
             {
                 "t": "set",
                 "p": "AccuWeatherHumidity",
                 "pt": "global",
-                "to": "payload.LocalizedName",
+                "to": "payload.Humidity.Metric.Value",
                 "tot": "msg"
             },
             {
                 "t": "set",
-                "p": "AccuWeatherLocationLatitude",
+                "p": "AccuWeatherCondition",
                 "pt": "global",
-                "to": "payload.GeoPositionLatitude",
+                "to": "payload.WeatherText",
                 "tot": "msg"
             },
             {
                 "t": "set",
-                "p": "AccuWeatherLocationLongitude",
+                "p": "AccuWeatherRain1H",
                 "pt": "global",
-                "to": "payload.GeoPositionLongitude",
+                "to": "payload.PrecipitationSummary.PastHour.Metric.Value",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "AccuWeatherRain24H",
+                "pt": "global",
+                "to": "payload.PrecipitationSummary.Past24Hours.Metric.Value",
+                "tot": "global"
+            },
+            {
+                "t": "set",
+                "p": "AccuWeatherUVIndex",
+                "pt": "global",
+                "to": "payload.UVIndex",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "AccuWeatherVisibility",
+                "pt": "global",
+                "to": "payload.Visibility.Metric.Value",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "AccuWeatherWindDirection",
+                "pt": "global",
+                "to": "payload.Wind.Direction.Degrees",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "AccuWeatherWindSpeed",
+                "pt": "global",
+                "to": "payload.Wind.Speed.Metric.Value",
                 "tot": "msg"
             }
         ],
