@@ -8,6 +8,14 @@
         "env": []
     },
     {
+        "id": "110dbf60ce43222a",
+        "type": "tab",
+        "label": "weatherStation",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
         "id": "61417293a8d68a3f",
         "type": "mqtt-broker",
         "name": "dfg-mosquitto",
@@ -3472,5 +3480,38 @@
                 "2d0383295e4ebcb8"
             ]
         ]
+    },
+    {
+        "id": "5b984208c26f2895",
+        "type": "http in",
+        "z": "110dbf60ce43222a",
+        "name": "get public ip address",
+        "url": "https://whatsmyip.com/api?key=8a0349b40951e6cd687c238744888d2ca2379aa8",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 160,
+        "y": 60,
+        "wires": [
+            [
+                "55a237eb1d13ed94"
+            ]
+        ]
+    },
+    {
+        "id": "55a237eb1d13ed94",
+        "type": "debug",
+        "z": "110dbf60ce43222a",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 360,
+        "y": 60,
+        "wires": []
     }
 ]
