@@ -940,7 +940,7 @@
         "y": 60,
         "wires": [
             [
-                "9af69413274b7092"
+                "85991648c14196e9"
             ]
         ]
     },
@@ -986,7 +986,7 @@
             "8c19887206e23d52"
         ],
         "timeout": "30",
-        "x": 780,
+        "x": 1000,
         "y": 60,
         "wires": [
             [
@@ -1433,7 +1433,7 @@
         "property": "result",
         "action": "str",
         "pretty": false,
-        "x": 980,
+        "x": 1200,
         "y": 60,
         "wires": [
             [
@@ -1451,7 +1451,7 @@
             "949575f0bfb422cf"
         ],
         "timeout": "30",
-        "x": 1210,
+        "x": 1410,
         "y": 120,
         "wires": [
             [
@@ -1493,7 +1493,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1200,
+        "x": 1420,
         "y": 60,
         "wires": [
             [
@@ -1510,7 +1510,7 @@
             "ec83fb08795c7a20"
         ],
         "timeout": "30",
-        "x": 2720,
+        "x": 3160,
         "y": 60,
         "wires": [
             [
@@ -1527,7 +1527,7 @@
         "links": [
             "b37d628ee35a6a6d"
         ],
-        "x": 2895,
+        "x": 3335,
         "y": 60,
         "wires": []
     },
@@ -1548,7 +1548,7 @@
         "drop": false,
         "allowrate": false,
         "outputs": 1,
-        "x": 2500,
+        "x": 2940,
         "y": 60,
         "wires": [
             [
@@ -1564,7 +1564,7 @@
         "links": [
             "23be316878e6f16a"
         ],
-        "x": 1935,
+        "x": 2155,
         "y": 20,
         "wires": [
             [
@@ -1827,11 +1827,11 @@
             "b3fd628d327f005f"
         ],
         "timeout": "30",
-        "x": 2300,
+        "x": 2520,
         "y": 60,
         "wires": [
             [
-                "2c2fbc244b34b186"
+                "d9730a8cd225a2f5"
             ]
         ]
     },
@@ -1922,7 +1922,7 @@
         "reduceInit": "",
         "reduceInitType": "str",
         "reduceFixup": "",
-        "x": 1880,
+        "x": 2100,
         "y": 60,
         "wires": [
             [
@@ -1948,7 +1948,7 @@
                 "topic": "allConfig"
             }
         ],
-        "x": 1630,
+        "x": 1850,
         "y": 60,
         "wires": [
             [
@@ -1982,7 +1982,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1420,
+        "x": 1640,
         "y": 120,
         "wires": [
             [
@@ -2410,7 +2410,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 2100,
+        "x": 2320,
         "y": 60,
         "wires": [
             [
@@ -3478,6 +3478,579 @@
         "wires": [
             [
                 "2d0383295e4ebcb8"
+            ]
+        ]
+    },
+    {
+        "id": "dd25f6a2b611c4ee",
+        "type": "change",
+        "z": "a963ce203011149c",
+        "name": "saveAPIKeys & prepare whatsmyip request",
+        "rules": [
+            {
+                "t": "set",
+                "p": "whatsmyipKey",
+                "pt": "global",
+                "to": "8a0349b40951e6cd687c238744888d2ca2379aa8",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "AccuWeatherAPIKey",
+                "pt": "global",
+                "to": "xs2MHKZXtOQSgHquADNOfyxAolAHUu9Z",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "whatsmyipURL",
+                "pt": "global",
+                "to": "https://whatsmyip.com/api",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "AccuWeatherForecastHourlyURL",
+                "pt": "global",
+                "to": "http://dataservice.accuweather.com/forecasts/v1/hourly/1hour/",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "key",
+                "pt": "msg",
+                "to": "whatsmyipKey",
+                "tot": "global"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 330,
+        "y": 2700,
+        "wires": [
+            [
+                "25ba818411195972"
+            ]
+        ]
+    },
+    {
+        "id": "25ba818411195972",
+        "type": "http request",
+        "z": "a963ce203011149c",
+        "name": "getPublicIP",
+        "method": "GET",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "https://whatsmyip.com/api?key={{{key}}}",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 630,
+        "y": 2700,
+        "wires": [
+            [
+                "cecdec15ea07f642"
+            ]
+        ]
+    },
+    {
+        "id": "cecdec15ea07f642",
+        "type": "change",
+        "z": "a963ce203011149c",
+        "name": "set publicIP",
+        "rules": [
+            {
+                "t": "set",
+                "p": "publicIP",
+                "pt": "global",
+                "to": "payload.ip",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "APIKey",
+                "pt": "msg",
+                "to": "AccuWeatherAPIKey",
+                "tot": "global"
+            },
+            {
+                "t": "set",
+                "p": "publicIP",
+                "pt": "msg",
+                "to": "publicIP",
+                "tot": "global"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 850,
+        "y": 2700,
+        "wires": [
+            [
+                "16c4af3ea463a663"
+            ]
+        ]
+    },
+    {
+        "id": "16c4af3ea463a663",
+        "type": "http request",
+        "z": "a963ce203011149c",
+        "name": "getAccuWeatherLocationKey",
+        "method": "GET",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "http://dataservice.accuweather.com/locations/v1/cities/ipaddress?apikey={{{APIKey}}}&q={{{publicIP}}}",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 1100,
+        "y": 2700,
+        "wires": [
+            [
+                "39ab8215fb6d3f08"
+            ]
+        ]
+    },
+    {
+        "id": "39ab8215fb6d3f08",
+        "type": "change",
+        "z": "a963ce203011149c",
+        "name": "save AccuWeather Location Data",
+        "rules": [
+            {
+                "t": "set",
+                "p": "AccuWeatherLocationKey",
+                "pt": "global",
+                "to": "payload.Key",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "APIKey",
+                "pt": "msg",
+                "to": "AccuWeatherAPIKey",
+                "tot": "global"
+            },
+            {
+                "t": "set",
+                "p": "locationKey",
+                "pt": "msg",
+                "to": "AccuWeatherLocationKey",
+                "tot": "global"
+            },
+            {
+                "t": "set",
+                "p": "details",
+                "pt": "msg",
+                "to": "true",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "metric",
+                "pt": "msg",
+                "to": "true",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "AccuWeatherCountryID",
+                "pt": "global",
+                "to": "payload.Country.ID",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "AccuWeatherCity",
+                "pt": "global",
+                "to": "payload.AdministrativeArea.EnglishName",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "AccuWeatherLocationName",
+                "pt": "global",
+                "to": "payload.LocalizedName",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "AccuWeatherLocationLatitude",
+                "pt": "global",
+                "to": "payload.GeoPosition.Latitude",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "AccuWeatherLocationLongitude",
+                "pt": "global",
+                "to": "payload.GeoPosition.Longitude",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1420,
+        "y": 2700,
+        "wires": [
+            [
+                "17c73d0d4831faed"
+            ]
+        ]
+    },
+    {
+        "id": "17c73d0d4831faed",
+        "type": "function",
+        "z": "a963ce203011149c",
+        "name": "publish weather Station MQTT",
+        "func": "var mqttTopicPayload = {};\nvar mqttPublish = [];\n\nmqttTopicPayload.topic = 'weather/CountryID';  \nmqttTopicPayload.payload = global.get(\"AccuWeatherCountryID\");\nmqttPublish.push({ ...mqttTopicPayload });\n\nmqttTopicPayload.topic = 'weather/City';\nmqttTopicPayload.payload = global.get(\"AccuWeatherCity\");\nmqttPublish.push({ ...mqttTopicPayload });\n\nmqttTopicPayload.topic = 'weather/LocationName';\nmqttTopicPayload.payload = global.get(\"AccuWeatherLocationName\");\nmqttPublish.push({ ...mqttTopicPayload });\n\nmqttTopicPayload.topic = 'weather/LocationLatitude';\nmqttTopicPayload.payload = global.get(\"AccuWeatherLocationLatitude\");\nmqttPublish.push({ ...mqttTopicPayload });\n\nmqttTopicPayload.topic = 'weather/LocationLongitude';\nmqttTopicPayload.payload = global.get(\"AccuWeatherLocationLongitude\");\nmqttPublish.push({ ...mqttTopicPayload });\n\nglobal.set(\"mqttPublishWeather\", mqttPublish);\nmsg.payload = mqttPublish;\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1750,
+        "y": 2700,
+        "wires": [
+            [
+                "66958cf0b3dca60a"
+            ]
+        ]
+    },
+    {
+        "id": "d8cca45f931d8635",
+        "type": "http request",
+        "z": "a963ce203011149c",
+        "name": "getAccuWeatherCurrentCondition",
+        "method": "GET",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "http://dataservice.accuweather.com/currentconditions/v1/{{{locationKey}}}?apikey={{{APIKey}}}&details={{{details}}}&metric={{{metric}}}",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 300,
+        "y": 2840,
+        "wires": [
+            [
+                "16a5d0d3ed19e32d"
+            ]
+        ]
+    },
+    {
+        "id": "16a5d0d3ed19e32d",
+        "type": "change",
+        "z": "a963ce203011149c",
+        "name": "save AccuWeather CurrentCondition",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload[0]",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "AccuWeatherPressure",
+                "pt": "global",
+                "to": "payload.Pressure.Metric.Value",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "AccuWeatherTemperature",
+                "pt": "global",
+                "to": "payload.Temperature.Metric.Value",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "AccuWeatherHumidity",
+                "pt": "global",
+                "to": "payload.RelativeHumidity",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "AccuWeatherCondition",
+                "pt": "global",
+                "to": "payload.WeatherText",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "AccuWeatherRain1H",
+                "pt": "global",
+                "to": "payload.PrecipitationSummary.PastHour.Metric.Value",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "AccuWeatherRain24H",
+                "pt": "global",
+                "to": "payload.PrecipitationSummary.Past24Hours.Metric.Value",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "AccuWeatherUVIndex",
+                "pt": "global",
+                "to": "payload.UVIndex",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "AccuWeatherVisibility",
+                "pt": "global",
+                "to": "payload.Visibility.Metric.Value",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "AccuWeatherWindDirection",
+                "pt": "global",
+                "to": "payload.Wind.Direction.Degrees",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "AccuWeatherWindSpeed",
+                "pt": "global",
+                "to": "payload.Wind.Speed.Metric.Value",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 650,
+        "y": 2840,
+        "wires": [
+            [
+                "8c992a65eae77d0d"
+            ]
+        ]
+    },
+    {
+        "id": "8c992a65eae77d0d",
+        "type": "function",
+        "z": "a963ce203011149c",
+        "name": "publish weather Condition MQTT",
+        "func": "var mqttTopicPayload = {};\nvar mqttPublish = global.get(\"mqttPublishWeather\");\n\n\nmqttTopicPayload.topic = 'weather/Temperature';\nmqttTopicPayload.payload = global.get(\"AccuWeatherTemperature\");\nmqttPublish.push({ ...mqttTopicPayload });\n\nmqttTopicPayload.topic = 'weather/Pressure';\nmqttTopicPayload.payload = global.get(\"AccuWeatherPressure\");\nmqttPublish.push({ ...mqttTopicPayload });\n\nmqttTopicPayload.topic = 'weather/Humidity';\nmqttTopicPayload.payload = global.get(\"AccuWeatherHumidity\");\nmqttPublish.push({ ...mqttTopicPayload });\n\nmqttTopicPayload.topic = 'weather/Condition';\nmqttTopicPayload.payload = global.get(\"AccuWeatherCondition\");\nmqttPublish.push({ ...mqttTopicPayload });\n\nmqttTopicPayload.topic = 'weather/Rain1H';\nmqttTopicPayload.payload = global.get(\"AccuWeatherRain1H\");\nmqttPublish.push({ ...mqttTopicPayload });\n\nmqttTopicPayload.topic = 'weather/Rain24H';\nmqttTopicPayload.payload = global.get(\"AccuWeatherRain24H\");\nmqttPublish.push({ ...mqttTopicPayload });\n\nmqttTopicPayload.topic = 'weather/UVIndex';\nmqttTopicPayload.payload = global.get(\"AccuWeatherUVIndex\");\nmqttPublish.push({ ...mqttTopicPayload });\n\nmqttTopicPayload.topic = 'weather/Visibility';\nmqttTopicPayload.payload = global.get(\"AccuWeatherVisibility\");\nmqttPublish.push({ ...mqttTopicPayload });\n\nmqttTopicPayload.topic = 'weather/WindDirection';\nmqttTopicPayload.payload = global.get(\"AccuWeatherWindDirection\");\nmqttPublish.push({ ...mqttTopicPayload });\n\nmqttTopicPayload.topic = 'weather/WindSpeed';\nmqttTopicPayload.payload = global.get(\"AccuWeatherWindSpeed\");\nmqttPublish.push({ ...mqttTopicPayload });\n\nglobal.set(\"mqttPublishWeather\", mqttPublish);\nmsg.payload = mqttPublish;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1000,
+        "y": 2840,
+        "wires": [
+            [
+                "7d36fd3232249842"
+            ]
+        ]
+    },
+    {
+        "id": "7d36fd3232249842",
+        "type": "split",
+        "z": "a963ce203011149c",
+        "name": "",
+        "splt": "\\n",
+        "spltType": "str",
+        "arraySplt": 1,
+        "arraySpltType": "len",
+        "stream": false,
+        "addname": "",
+        "x": 1250,
+        "y": 2840,
+        "wires": [
+            [
+                "c4cbaecfc3186e16"
+            ]
+        ]
+    },
+    {
+        "id": "c4cbaecfc3186e16",
+        "type": "change",
+        "z": "a963ce203011149c",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "payload.topic",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.payload",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "mqttPublishWeather",
+                "pt": "global",
+                "to": "",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1440,
+        "y": 2840,
+        "wires": [
+            [
+                "bd0ba871a538a4e6",
+                "80457701e2178fc6"
+            ]
+        ]
+    },
+    {
+        "id": "bd0ba871a538a4e6",
+        "type": "mqtt out",
+        "z": "a963ce203011149c",
+        "name": "send mqtt",
+        "topic": "",
+        "qos": "0",
+        "retain": "true",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "61417293a8d68a3f",
+        "x": 1650,
+        "y": 2840,
+        "wires": []
+    },
+    {
+        "id": "d0d76b45164d53d1",
+        "type": "comment",
+        "z": "a963ce203011149c",
+        "name": "Initiate Weather Station",
+        "info": "# Initiate Weather Station\n# \nThis flow establish initial connection and populate basic data for weather station.",
+        "x": 160,
+        "y": 2660,
+        "wires": []
+    },
+    {
+        "id": "1f584e5fbbcb21f8",
+        "type": "comment",
+        "z": "a963ce203011149c",
+        "name": "Get Weather Condition",
+        "info": "# Get Weather Condition\n# \nThis flow establish connection to weather station and populate current weather data.",
+        "x": 160,
+        "y": 2800,
+        "wires": []
+    },
+    {
+        "id": "b2530607fa9f74ec",
+        "type": "link in",
+        "z": "a963ce203011149c",
+        "name": "initiateWeather",
+        "links": [],
+        "x": 75,
+        "y": 2700,
+        "wires": [
+            [
+                "dd25f6a2b611c4ee"
+            ]
+        ]
+    },
+    {
+        "id": "892be75a50acad8f",
+        "type": "link in",
+        "z": "a963ce203011149c",
+        "name": "updateWeather",
+        "links": [],
+        "x": 75,
+        "y": 2840,
+        "wires": [
+            [
+                "d8cca45f931d8635"
+            ]
+        ]
+    },
+    {
+        "id": "66958cf0b3dca60a",
+        "type": "link out",
+        "z": "a963ce203011149c",
+        "name": "endUpdatingToken",
+        "mode": "return",
+        "links": [],
+        "x": 1955,
+        "y": 2700,
+        "wires": []
+    },
+    {
+        "id": "80457701e2178fc6",
+        "type": "link out",
+        "z": "a963ce203011149c",
+        "name": "endUpdatingToken",
+        "mode": "return",
+        "links": [],
+        "x": 1595,
+        "y": 2900,
+        "wires": []
+    },
+    {
+        "id": "85991648c14196e9",
+        "type": "link call",
+        "z": "a963ce203011149c",
+        "name": "initiateWeather",
+        "links": [],
+        "linkType": "static",
+        "timeout": "30",
+        "x": 780,
+        "y": 60,
+        "wires": [
+            [
+                "9af69413274b7092"
+            ]
+        ]
+    },
+    {
+        "id": "d9730a8cd225a2f5",
+        "type": "link call",
+        "z": "a963ce203011149c",
+        "name": "updateWeather",
+        "links": [
+            "892be75a50acad8f"
+        ],
+        "linkType": "static",
+        "timeout": "30",
+        "x": 2740,
+        "y": 60,
+        "wires": [
+            [
+                "2c2fbc244b34b186"
             ]
         ]
     },
