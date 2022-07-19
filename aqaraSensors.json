@@ -3506,6 +3506,16 @@
         "props": [
             {
                 "p": "payload"
+            },
+            {
+                "p": "url",
+                "v": "",
+                "vt": "str"
+            },
+            {
+                "p": "method",
+                "v": "",
+                "vt": "str"
             }
         ],
         "repeat": "",
@@ -3514,8 +3524,8 @@
         "onceDelay": 0.1,
         "topic": "",
         "payload": "",
-        "payloadType": "date",
-        "x": 80,
+        "payloadType": "str",
+        "x": 70,
         "y": 140,
         "wires": [
             [
@@ -3644,13 +3654,6 @@
                 "p": "key",
                 "pt": "msg",
                 "to": "whatsmyipKey",
-                "tot": "global"
-            },
-            {
-                "t": "set",
-                "p": "url",
-                "pt": "msg",
-                "to": "whatsmyipURL",
                 "tot": "global"
             }
         ],
