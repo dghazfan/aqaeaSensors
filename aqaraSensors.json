@@ -3760,14 +3760,14 @@
                 "t": "set",
                 "p": "AccuWeatherLocationLatitude",
                 "pt": "global",
-                "to": "payload.GeoPositionLatitude",
+                "to": "payload.GeoPosition.Latitude",
                 "tot": "msg"
             },
             {
                 "t": "set",
                 "p": "AccuWeatherLocationLongitude",
                 "pt": "global",
-                "to": "payload.GeoPositionLongitude",
+                "to": "payload.GeoPosition.Longitude",
                 "tot": "msg"
             }
         ],
