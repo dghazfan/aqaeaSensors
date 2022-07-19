@@ -3521,6 +3521,27 @@
                 "pt": "msg",
                 "to": "whatsmyipKey",
                 "tot": "global"
+            },
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "url",
+                "pt": "msg",
+                "to": "",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "method",
+                "pt": "msg",
+                "to": "",
+                "tot": "str"
             }
         ],
         "action": "",
@@ -3747,7 +3768,7 @@
         "authType": "",
         "senderr": false,
         "headers": [],
-        "x": 300,
+        "x": 640,
         "y": 2840,
         "wires": [
             [
@@ -3844,7 +3865,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 650,
+        "x": 990,
         "y": 2840,
         "wires": [
             [
@@ -3863,7 +3884,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1000,
+        "x": 1340,
         "y": 2840,
         "wires": [
             [
@@ -3882,7 +3903,7 @@
         "arraySpltType": "len",
         "stream": false,
         "addname": "",
-        "x": 1250,
+        "x": 1590,
         "y": 2840,
         "wires": [
             [
@@ -3923,7 +3944,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1440,
+        "x": 1780,
         "y": 2840,
         "wires": [
             [
@@ -3946,7 +3967,7 @@
         "correl": "",
         "expiry": "",
         "broker": "61417293a8d68a3f",
-        "x": 1650,
+        "x": 1990,
         "y": 2840,
         "wires": []
     },
@@ -3994,7 +4015,7 @@
         "y": 2840,
         "wires": [
             [
-                "d8cca45f931d8635"
+                "1ccb6fee5b8cb94c"
             ]
         ]
     },
@@ -4016,7 +4037,7 @@
         "name": "endUpdatingToken",
         "mode": "return",
         "links": [],
-        "x": 1595,
+        "x": 1935,
         "y": 2900,
         "wires": []
     },
@@ -4053,6 +4074,75 @@
         "wires": [
             [
                 "2c2fbc244b34b186"
+            ]
+        ]
+    },
+    {
+        "id": "1ccb6fee5b8cb94c",
+        "type": "change",
+        "z": "a963ce203011149c",
+        "name": "load AccuWeather Location Data",
+        "rules": [
+            {
+                "t": "set",
+                "p": "APIKey",
+                "pt": "msg",
+                "to": "AccuWeatherAPIKey",
+                "tot": "global"
+            },
+            {
+                "t": "set",
+                "p": "locationKey",
+                "pt": "msg",
+                "to": "AccuWeatherLocationKey",
+                "tot": "global"
+            },
+            {
+                "t": "set",
+                "p": "details",
+                "pt": "msg",
+                "to": "true",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "metric",
+                "pt": "msg",
+                "to": "true",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "url",
+                "pt": "msg",
+                "to": "",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "method",
+                "pt": "msg",
+                "to": "",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 300,
+        "y": 2840,
+        "wires": [
+            [
+                "d8cca45f931d8635"
             ]
         ]
     },
