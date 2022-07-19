@@ -3530,8 +3530,8 @@
         "name": "getPublicIP",
         "method": "GET",
         "ret": "obj",
-        "paytoqs": "query",
-        "url": "",
+        "paytoqs": "ignore",
+        "url": "https://whatsmyip.com/api?key={{{key}}}",
         "tls": "",
         "persist": false,
         "proxy": "",
@@ -3595,7 +3595,7 @@
                 "t": "set",
                 "p": "whatsmyipKey",
                 "pt": "global",
-                "to": "key=8a0349b40951e6cd687c238744888d2ca2379aa8",
+                "to": "8a0349b40951e6cd687c238744888d2ca2379aa8",
                 "tot": "str"
             },
             {
@@ -3641,7 +3641,7 @@
         "rules": [
             {
                 "t": "set",
-                "p": "payload",
+                "p": "key",
                 "pt": "msg",
                 "to": "whatsmyipKey",
                 "tot": "global"
