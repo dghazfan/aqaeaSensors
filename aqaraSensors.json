@@ -3494,7 +3494,7 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 980,
+        "x": 880,
         "y": 80,
         "wires": []
     },
@@ -3548,11 +3548,12 @@
         "authType": "",
         "senderr": false,
         "headers": [],
-        "x": 770,
+        "x": 670,
         "y": 140,
         "wires": [
             [
-                "55a237eb1d13ed94"
+                "55a237eb1d13ed94",
+                "2532009888649696"
             ]
         ]
     },
@@ -3564,15 +3565,15 @@
         "method": "GET",
         "ret": "txt",
         "paytoqs": "ignore",
-        "url": "http://dataservice.accuweather.com/locations/v1/cities/ipaddress",
+        "url": "http://dataservice.accuweather.com/locations/v1/cities/ipaddress?apikey={{{APIKey}}}&q={{{publicIP}}}",
         "tls": "",
         "persist": false,
         "proxy": "",
         "authType": "",
         "senderr": false,
         "headers": [],
-        "x": 1020,
-        "y": 200,
+        "x": 1140,
+        "y": 140,
         "wires": [
             [
                 "28ae3f8fc3b05033"
@@ -3591,15 +3592,15 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1180,
-        "y": 140,
+        "x": 1400,
+        "y": 80,
         "wires": []
     },
     {
         "id": "fc00266158e50f23",
         "type": "change",
         "z": "110dbf60ce43222a",
-        "name": "saveAPIKeys",
+        "name": "saveAPIKeys & prepare whatsmyip request",
         "rules": [
             {
                 "t": "set",
@@ -3610,7 +3611,7 @@
             },
             {
                 "t": "set",
-                "p": "AccuWeatherKey",
+                "p": "AccuWeatherAPIKey",
                 "pt": "global",
                 "to": "xs2MHKZXtOQSgHquADNOfyxAolAHUu9Z",
                 "tot": "str"
@@ -3628,27 +3629,7 @@
                 "pt": "global",
                 "to": "http://dataservice.accuweather.com/forecasts/v1/hourly/1hour/",
                 "tot": "str"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 270,
-        "y": 140,
-        "wires": [
-            [
-                "8907120d4409be11"
-            ]
-        ]
-    },
-    {
-        "id": "8907120d4409be11",
-        "type": "change",
-        "z": "110dbf60ce43222a",
-        "name": "prepare whatsmyip request",
-        "rules": [
+            },
             {
                 "t": "set",
                 "p": "key",
@@ -3662,87 +3643,40 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 520,
+        "x": 370,
         "y": 140,
         "wires": [
             [
-                "c4336e8add83a148",
-                "98dca0206bfc5dba"
+                "c4336e8add83a148"
             ]
         ]
     },
     {
-        "id": "41747a17.54ffd4",
-        "type": "http request",
-        "z": "110dbf60ce43222a",
-        "name": "",
-        "method": "GET",
-        "ret": "txt",
-        "url": "https://jsonplaceholder.typicode.com/posts/{{post}}",
-        "tls": "",
-        "x": 850,
-        "y": 360,
-        "wires": [
-            [
-                "d682318c.36823"
-            ]
-        ]
-    },
-    {
-        "id": "d682318c.36823",
-        "type": "debug",
-        "z": "110dbf60ce43222a",
-        "name": "",
-        "active": true,
-        "console": "false",
-        "complete": "payload",
-        "x": 1010,
-        "y": 360,
-        "wires": []
-    },
-    {
-        "id": "90bfea22.dd2b98",
-        "type": "inject",
-        "z": "110dbf60ce43222a",
-        "name": "post id",
-        "props": [
-            {
-                "p": "payload",
-                "v": "2",
-                "vt": "str"
-            },
-            {
-                "p": "topic",
-                "v": "",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "topic": "",
-        "payload": "2",
-        "payloadType": "str",
-        "x": 550,
-        "y": 360,
-        "wires": [
-            [
-                "e67a0cc.596d4f"
-            ]
-        ]
-    },
-    {
-        "id": "e67a0cc.596d4f",
+        "id": "2532009888649696",
         "type": "change",
         "z": "110dbf60ce43222a",
-        "name": "",
+        "name": "set publicIP",
         "rules": [
             {
                 "t": "set",
-                "p": "post",
-                "pt": "msg",
-                "to": "payload",
+                "p": "publicIP",
+                "pt": "global",
+                "to": "payload.ip",
                 "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "APIKey",
+                "pt": "msg",
+                "to": "AccuWeatherAPIKey",
+                "tot": "global"
+            },
+            {
+                "t": "set",
+                "p": "publicIP",
+                "pt": "msg",
+                "to": "publicIP",
+                "tot": "global"
             }
         ],
         "action": "",
@@ -3750,29 +3684,12 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 690,
-        "y": 360,
+        "x": 890,
+        "y": 140,
         "wires": [
             [
-                "41747a17.54ffd4"
+                "cc28f04989fcc142"
             ]
         ]
-    },
-    {
-        "id": "98dca0206bfc5dba",
-        "type": "debug",
-        "z": "110dbf60ce43222a",
-        "name": "debug 3",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 760,
-        "y": 80,
-        "wires": []
     }
 ]
