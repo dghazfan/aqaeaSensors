@@ -3756,7 +3756,7 @@
         "method": "GET",
         "ret": "obj",
         "paytoqs": "ignore",
-        "url": "http://dataservice.accuweGET /forecasts/v1/hourly/1hour/{{{locationKey}}}?apikey={{{APIKey}}}&details={{{details}}}&metric={{{metric}}}",
+        "url": "http://dataservice.accuweather.com/forecasts/v1/hourly/1hour/{{{locationKey}}}?apikey={{{APIKey}}}&details={{{details}}}&metric={{{metric}}}",
         "tls": "",
         "persist": false,
         "proxy": "",
