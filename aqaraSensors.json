@@ -3664,7 +3664,7 @@
         "wires": [
             [
                 "c4336e8add83a148",
-                "55a237eb1d13ed94"
+                "98dca0206bfc5dba"
             ]
         ]
     },
@@ -3754,5 +3754,22 @@
                 "41747a17.54ffd4"
             ]
         ]
+    },
+    {
+        "id": "98dca0206bfc5dba",
+        "type": "debug",
+        "z": "110dbf60ce43222a",
+        "name": "debug 3",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 760,
+        "y": 80,
+        "wires": []
     }
 ]
