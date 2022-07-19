@@ -3530,8 +3530,8 @@
         "name": "getPublicIP",
         "method": "GET",
         "ret": "obj",
-        "paytoqs": "ignore",
-        "url": "https://whatsmyip.com/api?key=8a0349b40951e6cd687c238744888d2ca2379aa8",
+        "paytoqs": "query",
+        "url": "",
         "tls": "",
         "persist": false,
         "proxy": "",
@@ -3641,10 +3641,10 @@
         "rules": [
             {
                 "t": "set",
-                "p": "payload.key",
+                "p": "payload",
                 "pt": "msg",
-                "to": "whatsmyipKey",
-                "tot": "global"
+                "to": "key=$globalContext(\"whatsmyipKey\")\t",
+                "tot": "jsonata"
             },
             {
                 "t": "set",
@@ -3663,7 +3663,8 @@
         "y": 140,
         "wires": [
             [
-                "c4336e8add83a148"
+                "c4336e8add83a148",
+                "55a237eb1d13ed94"
             ]
         ]
     }
