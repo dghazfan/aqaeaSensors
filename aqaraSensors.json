@@ -3697,7 +3697,7 @@
         "id": "23110f4713275302",
         "type": "change",
         "z": "110dbf60ce43222a",
-        "name": "save AccuWeather Location Key",
+        "name": "save AccuWeather Location Data",
         "rules": [
             {
                 "t": "set",
@@ -3775,7 +3775,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1450,
+        "x": 1460,
         "y": 140,
         "wires": [
             [
@@ -3787,22 +3787,23 @@
         "id": "556b40327feb1afb",
         "type": "http request",
         "z": "110dbf60ce43222a",
-        "name": "getAccuWeatherLocationKey",
+        "name": "getAccuWeatherCurrentCondition",
         "method": "GET",
         "ret": "obj",
         "paytoqs": "ignore",
-        "url": "http://dataservice.accuweather.com/forecasts/v1/hourly/1hour/{{{locationKey}}}?apikey={{{APIKey}}}&details={{{details}}}&metric={{{metric}}}",
+        "url": "http://dataservice.accuweather.com/currentconditions/v1/{{{locationKey}}}?apikey={{{APIKey}}}&details={{{details}}}&metric={{{metric}}}",
         "tls": "",
         "persist": false,
         "proxy": "",
         "authType": "",
         "senderr": false,
         "headers": [],
-        "x": 1760,
+        "x": 1800,
         "y": 140,
         "wires": [
             [
-                "658b3c649313eceb"
+                "658b3c649313eceb",
+                "497d7524607679e1"
             ]
         ]
     },
@@ -3821,5 +3822,93 @@
         "x": 2020,
         "y": 80,
         "wires": []
+    },
+    {
+        "id": "497d7524607679e1",
+        "type": "change",
+        "z": "110dbf60ce43222a",
+        "name": "save AccuWeather CurrentCondition",
+        "rules": [
+            {
+                "t": "set",
+                "p": "AccuWeatherLocationKey",
+                "pt": "global",
+                "to": "payload.Key",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "APIKey",
+                "pt": "msg",
+                "to": "AccuWeatherAPIKey",
+                "tot": "global"
+            },
+            {
+                "t": "set",
+                "p": "locationKey",
+                "pt": "msg",
+                "to": "AccuWeatherLocationKey",
+                "tot": "global"
+            },
+            {
+                "t": "set",
+                "p": "details",
+                "pt": "msg",
+                "to": "true",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "metric",
+                "pt": "msg",
+                "to": "true",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "AccuWeatherPressure",
+                "pt": "global",
+                "to": "payload.Country.ID",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "AccuWeatherTemperature",
+                "pt": "global",
+                "to": "payload.AdministrativeArea.EnglishName",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "AccuWeatherHumidity",
+                "pt": "global",
+                "to": "payload.LocalizedName",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "AccuWeatherLocationLatitude",
+                "pt": "global",
+                "to": "payload.GeoPositionLatitude",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "AccuWeatherLocationLongitude",
+                "pt": "global",
+                "to": "payload.GeoPositionLongitude",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 2150,
+        "y": 140,
+        "wires": [
+            []
+        ]
     }
 ]
