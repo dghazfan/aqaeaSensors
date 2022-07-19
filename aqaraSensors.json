@@ -3482,23 +3482,6 @@
         ]
     },
     {
-        "id": "55a237eb1d13ed94",
-        "type": "debug",
-        "z": "110dbf60ce43222a",
-        "name": "debug 1",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 880,
-        "y": 80,
-        "wires": []
-    },
-    {
         "id": "55d924fdac8bc7c6",
         "type": "inject",
         "z": "110dbf60ce43222a",
@@ -3552,7 +3535,6 @@
         "y": 140,
         "wires": [
             [
-                "55a237eb1d13ed94",
                 "2532009888649696"
             ]
         ]
@@ -3576,27 +3558,10 @@
         "y": 140,
         "wires": [
             [
-                "28ae3f8fc3b05033",
                 "23110f4713275302",
                 "3286bf512c1d7625"
             ]
         ]
-    },
-    {
-        "id": "28ae3f8fc3b05033",
-        "type": "debug",
-        "z": "110dbf60ce43222a",
-        "name": "debug 2",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 1400,
-        "y": 80,
-        "wires": []
     },
     {
         "id": "fc00266158e50f23",
@@ -3803,27 +3768,10 @@
         "y": 140,
         "wires": [
             [
-                "658b3c649313eceb",
                 "497d7524607679e1",
                 "f0c1894aa07cb9ce"
             ]
         ]
-    },
-    {
-        "id": "658b3c649313eceb",
-        "type": "debug",
-        "z": "110dbf60ce43222a",
-        "name": "debug 3",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 2020,
-        "y": 80,
-        "wires": []
     },
     {
         "id": "497d7524607679e1",
@@ -3934,9 +3882,7 @@
         "x": 1450,
         "y": 220,
         "wires": [
-            [
-                "7e97bb80f1b9a70a"
-            ]
+            []
         ]
     },
     {
@@ -3954,25 +3900,10 @@
         "y": 220,
         "wires": [
             [
-                "2e0075290c39d464"
+                "2e0075290c39d464",
+                "df3330f33e1ada52"
             ]
         ]
-    },
-    {
-        "id": "7e97bb80f1b9a70a",
-        "type": "debug",
-        "z": "110dbf60ce43222a",
-        "name": "debug 4",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 1700,
-        "y": 220,
-        "wires": []
     },
     {
         "id": "2e0075290c39d464",
@@ -3986,7 +3917,78 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 2400,
+        "x": 2420,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "df3330f33e1ada52",
+        "type": "split",
+        "z": "110dbf60ce43222a",
+        "name": "",
+        "splt": "\\n",
+        "spltType": "str",
+        "arraySplt": 1,
+        "arraySpltType": "len",
+        "stream": false,
+        "addname": "",
+        "x": 2390,
+        "y": 220,
+        "wires": [
+            [
+                "976e17891f77d730"
+            ]
+        ]
+    },
+    {
+        "id": "976e17891f77d730",
+        "type": "change",
+        "z": "110dbf60ce43222a",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "payload.topic",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 2580,
+        "y": 220,
+        "wires": [
+            [
+                "a80628700bb40417"
+            ]
+        ]
+    },
+    {
+        "id": "a80628700bb40417",
+        "type": "mqtt out",
+        "z": "110dbf60ce43222a",
+        "name": "send mqtt",
+        "topic": "",
+        "qos": "0",
+        "retain": "true",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "61417293a8d68a3f",
+        "x": 2790,
         "y": 220,
         "wires": []
     }
