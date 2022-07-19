@@ -3856,7 +3856,7 @@
                 "t": "set",
                 "p": "AccuWeatherHumidity",
                 "pt": "global",
-                "to": "payload.Humidity.Metric.Value",
+                "to": "payload.RelativeHumidity",
                 "tot": "msg"
             },
             {
@@ -3878,7 +3878,7 @@
                 "p": "AccuWeatherRain24H",
                 "pt": "global",
                 "to": "payload.PrecipitationSummary.Past24Hours.Metric.Value",
-                "tot": "global"
+                "tot": "msg"
             },
             {
                 "t": "set",
