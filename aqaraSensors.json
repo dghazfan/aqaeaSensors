@@ -4283,13 +4283,13 @@
         "name": "delay 5mins",
         "active": true,
         "tosidebar": true,
-        "console": false,
+        "console": true,
         "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
+        "complete": "'exit 5 mins delay'",
+        "targetType": "jsonata",
         "statusVal": "",
         "statusType": "auto",
-        "x": 3210,
+        "x": 3220,
         "y": 180,
         "wires": []
     }
