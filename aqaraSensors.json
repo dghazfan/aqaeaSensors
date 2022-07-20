@@ -3877,7 +3877,7 @@
         "type": "function",
         "z": "a963ce203011149c",
         "name": "publish weather Condition MQTT",
-        "func": "var mqttTopicPayload = {};\nvar mqttPublish = global.get(\"mqttPublishWeather\");\n\n\nmqttTopicPayload.topic = 'weather/Temperature';\nmqttTopicPayload.payload = global.get(\"AccuWeatherTemperature\");\nmqttPublish.push({ ...mqttTopicPayload });\n\nmqttTopicPayload.topic = 'weather/Pressure';\nmqttTopicPayload.payload = global.get(\"AccuWeatherPressure\");\nmqttPublish.push({ ...mqttTopicPayload });\n\nmqttTopicPayload.topic = 'weather/Humidity';\nmqttTopicPayload.payload = global.get(\"AccuWeatherHumidity\");\nmqttPublish.push({ ...mqttTopicPayload });\n\nmqttTopicPayload.topic = 'weather/Condition';\nmqttTopicPayload.payload = global.get(\"AccuWeatherCondition\");\nmqttPublish.push({ ...mqttTopicPayload });\n\nmqttTopicPayload.topic = 'weather/Rain1H';\nmqttTopicPayload.payload = global.get(\"AccuWeatherRain1H\");\nmqttPublish.push({ ...mqttTopicPayload });\n\nmqttTopicPayload.topic = 'weather/Rain24H';\nmqttTopicPayload.payload = global.get(\"AccuWeatherRain24H\");\nmqttPublish.push({ ...mqttTopicPayload });\n\nmqttTopicPayload.topic = 'weather/UVIndex';\nmqttTopicPayload.payload = global.get(\"AccuWeatherUVIndex\");\nmqttPublish.push({ ...mqttTopicPayload });\n\nmqttTopicPayload.topic = 'weather/Visibility';\nmqttTopicPayload.payload = global.get(\"AccuWeatherVisibility\");\nmqttPublish.push({ ...mqttTopicPayload });\n\nmqttTopicPayload.topic = 'weather/WindDirection';\nmqttTopicPayload.payload = global.get(\"AccuWeatherWindDirection\");\nmqttPublish.push({ ...mqttTopicPayload });\n\nmqttTopicPayload.topic = 'weather/WindSpeed';\nmqttTopicPayload.payload = global.get(\"AccuWeatherWindSpeed\");\nmqttPublish.push({ ...mqttTopicPayload });\n\nglobal.set(\"mqttPublishWeather\", mqttPublish);\nmsg.payload = mqttPublish;\nreturn msg;",
+        "func": "var mqttTopicPayload = {};\nvar mqttPublish = global.get(\"mqttPublishWeather\");\n\n\nmqttTopicPayload.topic = 'weather/Temperature';\nmqttTopicPayload.payload = global.get(\"AccuWeatherTemperature\");\nmqttPublish.push({ ...mqttTopicPayload });\n\nmqttTopicPayload.topic = 'weather/Pressure';\nmqttTopicPayload.payload = global.get(\"AccuWeatherPressure\");\nmqttPublish.push({ ...mqttTopicPayload });\n\nmqttTopicPayload.topic = 'weather/Humidity';\nmqttTopicPayload.payload = global.get(\"AccuWeatherHumidity\");\nmqttPublish.push({ ...mqttTopicPayload });\n\nmqttTopicPayload.topic = 'weather/Condition';\nmqttTopicPayload.payload = global.get(\"AccuWeatherCondition\");\nmqttPublish.push({ ...mqttTopicPayload });\n\nmqttTopicPayload.topic = 'weather/Rain1H';\nmqttTopicPayload.payload = global.get(\"AccuWeatherRain1H\");\nmqttPublish.push({ ...mqttTopicPayload });\n\nmqttTopicPayload.topic = 'weather/Rain24H';\nmqttTopicPayload.payload = global.get(\"AccuWeatherRain24H\");\nmqttPublish.push({ ...mqttTopicPayload });\n\nmqttTopicPayload.topic = 'weather/UVIndex';\nmqttTopicPayload.payload = global.get(\"AccuWeatherUVIndex\");\nmqttPublish.push({ ...mqttTopicPayload });\n\nmqttTopicPayload.topic = 'weather/Visibility';\nmqttTopicPayload.payload = global.get(\"AccuWeatherVisibility\");\nmqttPublish.push({ ...mqttTopicPayload });\n\nmqttTopicPayload.topic = 'weather/WindDirection';\nmqttTopicPayload.payload = global.get(\"AccuWeatherWindDirection\");\nmqttPublish.push({ ...mqttTopicPayload });\n\nmqttTopicPayload.topic = 'weather/WindSpeed';\nmqttTopicPayload.payload = global.get(\"AccuWeatherWindSpeed\");\nmqttPublish.push({ ...mqttTopicPayload });\n\n\nmsg.payload = mqttPublish;\n\nvar mqttPublishNew = [];\nglobal.set(\"mqttPublishWeather\", mqttPublishNew);\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -3929,13 +3929,6 @@
                 "pt": "msg",
                 "to": "payload.payload",
                 "tot": "msg"
-            },
-            {
-                "t": "set",
-                "p": "mqttPublishWeather",
-                "pt": "global",
-                "to": "",
-                "tot": "str"
             }
         ],
         "action": "",
