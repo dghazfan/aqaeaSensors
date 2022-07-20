@@ -2412,7 +2412,8 @@
         "y": 60,
         "wires": [
             [
-                "3b998255c31ebc71"
+                "3b998255c31ebc71",
+                "7a85f4356c70d170"
             ]
         ]
     },
@@ -4571,5 +4572,22 @@
                 "d0ab93169d2cac8a"
             ]
         ]
+    },
+    {
+        "id": "7a85f4356c70d170",
+        "type": "debug",
+        "z": "a963ce203011149c",
+        "name": "allDevices",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 2520,
+        "y": 180,
+        "wires": []
     }
 ]
