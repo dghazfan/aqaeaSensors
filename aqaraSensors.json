@@ -1505,7 +1505,7 @@
             "ec83fb08795c7a20"
         ],
         "timeout": "30",
-        "x": 4180,
+        "x": 3800,
         "y": 60,
         "wires": [
             [
@@ -1523,7 +1523,7 @@
         "links": [
             "b37d628ee35a6a6d"
         ],
-        "x": 4355,
+        "x": 3975,
         "y": 60,
         "wires": []
     },
@@ -1544,7 +1544,7 @@
         "drop": false,
         "allowrate": false,
         "outputs": 1,
-        "x": 3960,
+        "x": 3580,
         "y": 60,
         "wires": [
             [
@@ -1829,7 +1829,7 @@
         "wires": [
             [
                 "d6d23892827bdabe",
-                "8bd238470d63f933"
+                "d9730a8cd225a2f5"
             ]
         ]
     },
@@ -4063,7 +4063,7 @@
         ],
         "linkType": "static",
         "timeout": "30",
-        "x": 3380,
+        "x": 3000,
         "y": 60,
         "wires": [
             [
@@ -4256,7 +4256,7 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 3610,
+        "x": 3250,
         "y": 180,
         "wires": []
     },
@@ -4273,7 +4273,7 @@
         "targetType": "jsonata",
         "statusVal": "",
         "statusType": "auto",
-        "x": 4490,
+        "x": 4110,
         "y": 180,
         "wires": []
     },
@@ -4290,7 +4290,7 @@
         "targetType": "jsonata",
         "statusVal": "",
         "statusType": "auto",
-        "x": 4240,
+        "x": 3860,
         "y": 180,
         "wires": []
     },
@@ -4395,33 +4395,6 @@
         ]
     },
     {
-        "id": "b68ef1b3102fdff8",
-        "type": "change",
-        "z": "a963ce203011149c",
-        "name": "",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "",
-                "tot": "str"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 3160,
-        "y": 60,
-        "wires": [
-            [
-                "d9730a8cd225a2f5"
-            ]
-        ]
-    },
-    {
         "id": "2c44cb629ca72e2f",
         "type": "change",
         "z": "a963ce203011149c",
@@ -4440,7 +4413,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 3760,
+        "x": 3380,
         "y": 60,
         "wires": [
             [
@@ -4468,39 +4441,11 @@
         "reduceInit": "",
         "reduceInitType": "num",
         "reduceFixup": "",
-        "x": 3570,
+        "x": 3190,
         "y": 60,
         "wires": [
             [
                 "2c44cb629ca72e2f"
-            ]
-        ]
-    },
-    {
-        "id": "8bd238470d63f933",
-        "type": "join",
-        "z": "a963ce203011149c",
-        "name": "",
-        "mode": "auto",
-        "build": "array",
-        "property": "payload",
-        "propertyType": "msg",
-        "key": "topic",
-        "joiner": "\\n",
-        "joinerType": "str",
-        "accumulate": false,
-        "timeout": "",
-        "count": "",
-        "reduceRight": false,
-        "reduceExp": "",
-        "reduceInit": "",
-        "reduceInitType": "num",
-        "reduceFixup": "",
-        "x": 2970,
-        "y": 60,
-        "wires": [
-            [
-                "b68ef1b3102fdff8"
             ]
         ]
     },
