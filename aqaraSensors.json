@@ -932,8 +932,8 @@
         "y": 60,
         "wires": [
             [
-                "85991648c14196e9",
-                "2365efa8322c84ed"
+                "2365efa8322c84ed",
+                "c94144bb4412ea5a"
             ]
         ]
     },
@@ -979,7 +979,7 @@
             "8c19887206e23d52"
         ],
         "timeout": "30",
-        "x": 1000,
+        "x": 1260,
         "y": 60,
         "wires": [
             [
@@ -1427,7 +1427,7 @@
         "property": "result",
         "action": "str",
         "pretty": false,
-        "x": 1200,
+        "x": 1460,
         "y": 60,
         "wires": [
             [
@@ -1445,7 +1445,7 @@
             "949575f0bfb422cf"
         ],
         "timeout": "30",
-        "x": 1410,
+        "x": 1670,
         "y": 120,
         "wires": [
             [
@@ -1488,7 +1488,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1420,
+        "x": 1680,
         "y": 60,
         "wires": [
             [
@@ -1505,7 +1505,7 @@
             "ec83fb08795c7a20"
         ],
         "timeout": "30",
-        "x": 3920,
+        "x": 4180,
         "y": 60,
         "wires": [
             [
@@ -1523,7 +1523,7 @@
         "links": [
             "b37d628ee35a6a6d"
         ],
-        "x": 4095,
+        "x": 4355,
         "y": 60,
         "wires": []
     },
@@ -1544,7 +1544,7 @@
         "drop": false,
         "allowrate": false,
         "outputs": 1,
-        "x": 3700,
+        "x": 3960,
         "y": 60,
         "wires": [
             [
@@ -1561,7 +1561,7 @@
         "links": [
             "23be316878e6f16a"
         ],
-        "x": 2155,
+        "x": 2415,
         "y": 20,
         "wires": [
             [
@@ -1824,7 +1824,7 @@
             "b3fd628d327f005f"
         ],
         "timeout": "30",
-        "x": 2520,
+        "x": 2780,
         "y": 60,
         "wires": [
             [
@@ -1920,7 +1920,7 @@
         "reduceInit": "",
         "reduceInitType": "str",
         "reduceFixup": "",
-        "x": 2100,
+        "x": 2360,
         "y": 60,
         "wires": [
             [
@@ -1946,7 +1946,7 @@
                 "topic": "allConfig"
             }
         ],
-        "x": 1850,
+        "x": 2110,
         "y": 60,
         "wires": [
             [
@@ -1980,7 +1980,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1640,
+        "x": 1900,
         "y": 120,
         "wires": [
             [
@@ -2408,7 +2408,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 2320,
+        "x": 2580,
         "y": 60,
         "wires": [
             [
@@ -4044,7 +4044,7 @@
         ],
         "linkType": "static",
         "timeout": "30",
-        "x": 780,
+        "x": 1040,
         "y": 60,
         "wires": [
             [
@@ -4063,7 +4063,7 @@
         ],
         "linkType": "static",
         "timeout": "30",
-        "x": 3120,
+        "x": 3380,
         "y": 60,
         "wires": [
             [
@@ -4145,7 +4145,7 @@
         "id": "8fac9edda8aff012",
         "type": "debug",
         "z": "a963ce203011149c",
-        "name": "setConfiguration",
+        "name": "setConfig",
         "active": false,
         "tosidebar": true,
         "console": true,
@@ -4154,7 +4154,7 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 590,
+        "x": 610,
         "y": 180,
         "wires": []
     },
@@ -4171,7 +4171,7 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 790,
+        "x": 810,
         "y": 180,
         "wires": []
     },
@@ -4188,7 +4188,7 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1010,
+        "x": 1270,
         "y": 180,
         "wires": []
     },
@@ -4205,7 +4205,7 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1220,
+        "x": 1480,
         "y": 180,
         "wires": []
     },
@@ -4222,7 +4222,7 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1680,
+        "x": 1940,
         "y": 180,
         "wires": []
     },
@@ -4239,7 +4239,7 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 2760,
+        "x": 3020,
         "y": 180,
         "wires": []
     },
@@ -4256,7 +4256,7 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 3350,
+        "x": 3610,
         "y": 180,
         "wires": []
     },
@@ -4273,7 +4273,7 @@
         "targetType": "jsonata",
         "statusVal": "",
         "statusType": "auto",
-        "x": 4230,
+        "x": 4490,
         "y": 180,
         "wires": []
     },
@@ -4290,7 +4290,7 @@
         "targetType": "jsonata",
         "statusVal": "",
         "statusType": "auto",
-        "x": 3980,
+        "x": 4240,
         "y": 180,
         "wires": []
     },
@@ -4413,7 +4413,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 2900,
+        "x": 3160,
         "y": 60,
         "wires": [
             [
@@ -4440,7 +4440,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 3500,
+        "x": 3760,
         "y": 60,
         "wires": [
             [
@@ -4468,7 +4468,7 @@
         "reduceInit": "",
         "reduceInitType": "num",
         "reduceFixup": "",
-        "x": 3310,
+        "x": 3570,
         "y": 60,
         "wires": [
             [
@@ -4496,7 +4496,7 @@
         "reduceInit": "",
         "reduceInitType": "num",
         "reduceFixup": "",
-        "x": 2710,
+        "x": 2970,
         "y": 60,
         "wires": [
             [
@@ -4586,8 +4586,25 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 2520,
+        "x": 2780,
         "y": 180,
         "wires": []
+    },
+    {
+        "id": "c94144bb4412ea5a",
+        "type": "link call",
+        "z": "a963ce203011149c",
+        "name": "checkTokenExpiration",
+        "links": [
+            "ec83fb08795c7a20"
+        ],
+        "timeout": "30",
+        "x": 800,
+        "y": 60,
+        "wires": [
+            [
+                "85991648c14196e9"
+            ]
+        ]
     }
 ]
