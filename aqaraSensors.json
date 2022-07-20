@@ -1491,7 +1491,8 @@
         "y": 60,
         "wires": [
             [
-                "0453a2202440092a"
+                "0453a2202440092a",
+                "78cb23800125c84a"
             ]
         ]
     },
@@ -1825,7 +1826,8 @@
         "y": 60,
         "wires": [
             [
-                "d9730a8cd225a2f5"
+                "d9730a8cd225a2f5",
+                "d6d23892827bdabe"
             ]
         ]
     },
@@ -1980,7 +1982,8 @@
         "y": 120,
         "wires": [
             [
-                "0453a2202440092a"
+                "0453a2202440092a",
+                "4d9af069bc9c39b2"
             ]
         ]
     },
@@ -4069,7 +4072,8 @@
         "y": 60,
         "wires": [
             [
-                "2c2fbc244b34b186"
+                "2c2fbc244b34b186",
+                "3b442130e0cc4587"
             ]
         ]
     },
@@ -4148,13 +4152,14 @@
         "z": "a963ce203011149c",
         "name": "debug 1",
         "active": true,
-        "tosidebar": true,
-        "console": false,
+        "tosidebar": false,
+        "console": true,
         "tostatus": false,
-        "complete": "false",
+        "complete": "payload",
+        "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 580,
+        "x": 590,
         "y": 120,
         "wires": []
     },
@@ -4164,13 +4169,14 @@
         "z": "a963ce203011149c",
         "name": "debug 2",
         "active": true,
-        "tosidebar": true,
-        "console": false,
+        "tosidebar": false,
+        "console": true,
         "tostatus": false,
-        "complete": "false",
+        "complete": "payload",
+        "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 760,
+        "x": 770,
         "y": 120,
         "wires": []
     },
@@ -4180,13 +4186,14 @@
         "z": "a963ce203011149c",
         "name": "debug 3",
         "active": true,
-        "tosidebar": true,
-        "console": false,
+        "tosidebar": false,
+        "console": true,
         "tostatus": false,
-        "complete": "false",
+        "complete": "payload",
+        "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 980,
+        "x": 990,
         "y": 120,
         "wires": []
     },
@@ -4196,13 +4203,78 @@
         "z": "a963ce203011149c",
         "name": "debug 4",
         "active": true,
+        "tosidebar": false,
+        "console": true,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1210,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "4d9af069bc9c39b2",
+        "type": "debug",
+        "z": "a963ce203011149c",
+        "name": "debug 5",
+        "active": true,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1200,
+        "x": 1820,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "78cb23800125c84a",
+        "type": "debug",
+        "z": "a963ce203011149c",
+        "name": "debug 6",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1640,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "d6d23892827bdabe",
+        "type": "debug",
+        "z": "a963ce203011149c",
+        "name": "debug 7",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 2720,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "3b442130e0cc4587",
+        "type": "debug",
+        "z": "a963ce203011149c",
+        "name": "debug 8",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 2940,
         "y": 120,
         "wires": []
     }
