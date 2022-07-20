@@ -4228,8 +4228,26 @@
         "y": 140,
         "wires": [
             [
-                "4daad227507412fb"
+                "4daad227507412fb",
+                "7bb882c6c7a7ba0a"
             ]
         ]
+    },
+    {
+        "id": "7bb882c6c7a7ba0a",
+        "type": "debug",
+        "z": "a963ce203011149c",
+        "name": "delay 30mins",
+        "active": true,
+        "tosidebar": true,
+        "console": true,
+        "tostatus": false,
+        "complete": "'exit 30 mins delay'",
+        "targetType": "jsonata",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1060,
+        "y": 60,
+        "wires": []
     }
 ]
