@@ -4273,7 +4273,7 @@
         "targetType": "jsonata",
         "statusVal": "",
         "statusType": "auto",
-        "x": 4110,
+        "x": 4130,
         "y": 180,
         "wires": []
     },
@@ -4290,7 +4290,7 @@
         "targetType": "jsonata",
         "statusVal": "",
         "statusType": "auto",
-        "x": 3860,
+        "x": 3880,
         "y": 180,
         "wires": []
     },
@@ -4417,7 +4417,8 @@
         "y": 60,
         "wires": [
             [
-                "2c2fbc244b34b186"
+                "2c2fbc244b34b186",
+                "3ef66a47ae3a1b1b"
             ]
         ]
     },
@@ -4551,5 +4552,22 @@
                 "85991648c14196e9"
             ]
         ]
+    },
+    {
+        "id": "3ef66a47ae3a1b1b",
+        "type": "debug",
+        "z": "a963ce203011149c",
+        "name": "joinUpdateWeather",
+        "active": true,
+        "tosidebar": true,
+        "console": true,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 3640,
+        "y": 180,
+        "wires": []
     }
 ]
