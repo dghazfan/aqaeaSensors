@@ -206,6 +206,20 @@
                 "to": "payload.result.data",
                 "tot": "msg",
                 "dc": true
+            },
+            {
+                "t": "set",
+                "p": "allDevices",
+                "pt": "global",
+                "to": "payload",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "allKnownAqaraDevices",
+                "tot": "str"
             }
         ],
         "action": "",
@@ -217,7 +231,7 @@
         "y": 2320,
         "wires": [
             [
-                "e9a3a4c0c7c29246"
+                "4418a8bd38b77e69"
             ]
         ]
     },
@@ -427,34 +441,6 @@
         "wires": [
             [
                 "126191c015874ca3"
-            ]
-        ]
-    },
-    {
-        "id": "e9a3a4c0c7c29246",
-        "type": "change",
-        "z": "a963ce203011149c",
-        "name": "",
-        "rules": [
-            {
-                "t": "set",
-                "p": "allDevices",
-                "pt": "global",
-                "to": "payload",
-                "tot": "msg",
-                "dc": true
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 1180,
-        "y": 2320,
-        "wires": [
-            [
-                "4418a8bd38b77e69"
             ]
         ]
     },
@@ -966,7 +952,7 @@
         "name": "endPopulatingDevices",
         "mode": "return",
         "links": [],
-        "x": 1355,
+        "x": 1095,
         "y": 2320,
         "wires": []
     },
@@ -1312,10 +1298,10 @@
         "rules": [
             {
                 "t": "set",
-                "p": "payload",
+                "p": "topic",
                 "pt": "msg",
-                "to": "allDevices",
-                "tot": "global"
+                "to": "refreshToken",
+                "tot": "str"
             }
         ],
         "action": "",
@@ -1618,7 +1604,7 @@
         "name": "endLoadingSensors",
         "mode": "return",
         "links": [],
-        "x": 2055,
+        "x": 2275,
         "y": 2060,
         "wires": []
     },
@@ -2010,6 +1996,13 @@
                 "to": "payload",
                 "tot": "msg",
                 "dc": true
+            },
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "getToken",
+                "tot": "str"
             }
         ],
         "action": "",
@@ -2017,7 +2010,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1190,
+        "x": 1160,
         "y": 2500,
         "wires": [
             [
@@ -3252,7 +3245,7 @@
         "type": "function",
         "z": "a963ce203011149c",
         "name": "publish weather Station MQTT",
-        "func": "var mqttTopicPayload = {};\nvar mqttPublish = [];\n\nmqttTopicPayload.topic = 'weather/CountryID';  \nmqttTopicPayload.payload = global.get(\"AccuWeatherCountryID\");\nmqttPublish.push({ ...mqttTopicPayload });\n\nmqttTopicPayload.topic = 'weather/City';\nmqttTopicPayload.payload = global.get(\"AccuWeatherCity\");\nmqttPublish.push({ ...mqttTopicPayload });\n\nmqttTopicPayload.topic = 'weather/LocationName';\nmqttTopicPayload.payload = global.get(\"AccuWeatherLocationName\");\nmqttPublish.push({ ...mqttTopicPayload });\n\nmqttTopicPayload.topic = 'weather/LocationLatitude';\nmqttTopicPayload.payload = global.get(\"AccuWeatherLocationLatitude\");\nmqttPublish.push({ ...mqttTopicPayload });\n\nmqttTopicPayload.topic = 'weather/LocationLongitude';\nmqttTopicPayload.payload = global.get(\"AccuWeatherLocationLongitude\");\nmqttPublish.push({ ...mqttTopicPayload });\n\nglobal.set(\"mqttPublishWeather\", mqttPublish);\nmsg.payload = mqttPublish;\n\nreturn msg;",
+        "func": "var mqttTopicPayload = {};\nvar mqttPublish = [];\n\nmqttTopicPayload.topic = 'weather/CountryID';  \nmqttTopicPayload.payload = global.get(\"AccuWeatherCountryID\");\nmqttPublish.push({ ...mqttTopicPayload });\n\nmqttTopicPayload.topic = 'weather/City';\nmqttTopicPayload.payload = global.get(\"AccuWeatherCity\");\nmqttPublish.push({ ...mqttTopicPayload });\n\nmqttTopicPayload.topic = 'weather/LocationName';\nmqttTopicPayload.payload = global.get(\"AccuWeatherLocationName\");\nmqttPublish.push({ ...mqttTopicPayload });\n\nmqttTopicPayload.topic = 'weather/LocationLatitude';\nmqttTopicPayload.payload = global.get(\"AccuWeatherLocationLatitude\");\nmqttPublish.push({ ...mqttTopicPayload });\n\nmqttTopicPayload.topic = 'weather/LocationLongitude';\nmqttTopicPayload.payload = global.get(\"AccuWeatherLocationLongitude\");\nmqttPublish.push({ ...mqttTopicPayload });\n\nglobal.set(\"mqttPublishWeather\", mqttPublish);\nmsg.payload = mqttPublish;\nmsg.topic = 'initiateWeather'\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -3939,7 +3932,7 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 2170,
+        "x": 2390,
         "y": 2120,
         "wires": []
     },
@@ -3967,8 +3960,7 @@
         "y": 2060,
         "wires": [
             [
-                "76a5a7926e1361c0",
-                "d0ab93169d2cac8a"
+                "cb59afb316160600"
             ]
         ]
     },
@@ -4154,6 +4146,34 @@
         "wires": [
             [
                 "d4e5f006ed6b7ad5"
+            ]
+        ]
+    },
+    {
+        "id": "cb59afb316160600",
+        "type": "change",
+        "z": "a963ce203011149c",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "sensorsConfig",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 2120,
+        "y": 2060,
+        "wires": [
+            [
+                "d0ab93169d2cac8a",
+                "76a5a7926e1361c0"
             ]
         ]
     }
