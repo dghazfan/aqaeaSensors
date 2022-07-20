@@ -933,7 +933,6 @@
         "y": 60,
         "wires": [
             [
-                "2365efa8322c84ed",
                 "c94144bb4412ea5a"
             ]
         ]
@@ -4153,7 +4152,7 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 810,
+        "x": 1070,
         "y": 180,
         "wires": []
     },
@@ -4251,8 +4250,8 @@
         "tosidebar": true,
         "console": true,
         "tostatus": false,
-        "complete": "'finish checking token'",
-        "targetType": "jsonata",
+        "complete": "payload",
+        "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
         "x": 4130,
@@ -4514,7 +4513,8 @@
         "y": 60,
         "wires": [
             [
-                "85991648c14196e9"
+                "85991648c14196e9",
+                "2365efa8322c84ed"
             ]
         ]
     },
