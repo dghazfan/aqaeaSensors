@@ -799,7 +799,8 @@
         "y": 600,
         "wires": [
             [
-                "5deae51143c58648"
+                "5deae51143c58648",
+                "a9805a45dd3418c3"
             ]
         ]
     },
@@ -4230,16 +4231,16 @@
         "id": "d6d23892827bdabe",
         "type": "debug",
         "z": "a963ce203011149c",
-        "name": "publishSensor",
+        "name": "finishedPublishSensor",
         "active": true,
         "tosidebar": true,
         "console": true,
         "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
+        "complete": "'Finished PublishSensors'",
+        "targetType": "jsonata",
         "statusVal": "",
         "statusType": "auto",
-        "x": 3020,
+        "x": 3050,
         "y": 180,
         "wires": []
     },
@@ -4256,7 +4257,7 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 3250,
+        "x": 3310,
         "y": 180,
         "wires": []
     },
@@ -4562,12 +4563,29 @@
         "tosidebar": true,
         "console": true,
         "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
+        "complete": "'Finished UpdateWeather and joins all MQTT messages into 1 message to avoid duplication of next process'",
+        "targetType": "jsonata",
         "statusVal": "",
         "statusType": "auto",
         "x": 3640,
         "y": 180,
+        "wires": []
+    },
+    {
+        "id": "a9805a45dd3418c3",
+        "type": "debug",
+        "z": "a963ce203011149c",
+        "name": "publishSensors",
+        "active": true,
+        "tosidebar": true,
+        "console": true,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 2470,
+        "y": 680,
         "wires": []
     }
 ]
