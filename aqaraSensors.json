@@ -1843,13 +1843,6 @@
                 "pt": "msg",
                 "to": "{\"id\":\"142df7beb7990f51\",\"type\":\"JSON\",\"count\":1,\"len\":1,\"index\":0}",
                 "tot": "json"
-            },
-            {
-                "t": "move",
-                "p": "payload",
-                "pt": "msg",
-                "to": "_linkSource",
-                "tot": "msg"
             }
         ],
         "action": "",
@@ -1884,13 +1877,6 @@
                 "pt": "msg",
                 "to": "{\"id\":\"142df7beb7990f52\",\"type\":\"JSON\",\"count\":1,\"len\":1,\"index\":0}",
                 "tot": "json"
-            },
-            {
-                "t": "move",
-                "p": "payload",
-                "pt": "msg",
-                "to": "_linkSource",
-                "tot": "msg"
             }
         ],
         "action": "",
@@ -2544,13 +2530,6 @@
                 "pt": "msg",
                 "to": "{\"id\":\"142df7beb7990f54\",\"type\":\"JSON\",\"count\":1,\"len\":1,\"index\":0}",
                 "tot": "json"
-            },
-            {
-                "t": "move",
-                "p": "payload",
-                "pt": "msg",
-                "to": "_linkSource",
-                "tot": "msg"
             }
         ],
         "action": "",
@@ -2779,13 +2758,6 @@
                 "pt": "msg",
                 "to": "{\"id\":\"142df7beb7990f53\",\"type\":\"JSON\",\"count\":1,\"len\":1,\"index\":0}",
                 "tot": "json"
-            },
-            {
-                "t": "move",
-                "p": "payload",
-                "pt": "msg",
-                "to": "_linkSource",
-                "tot": "msg"
             }
         ],
         "action": "",
@@ -4156,7 +4128,7 @@
         "z": "a963ce203011149c",
         "name": "",
         "mode": "custom",
-        "build": "merged",
+        "build": "string",
         "property": "payload",
         "propertyType": "msg",
         "key": "topic",
