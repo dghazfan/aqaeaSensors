@@ -683,7 +683,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1640,
+        "x": 1660,
         "y": 1880,
         "wires": [
             [
@@ -1637,7 +1637,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1720,
+        "x": 1700,
         "y": 2060,
         "wires": [
             [
@@ -1652,7 +1652,7 @@
         "name": "endLoadingSensors",
         "mode": "return",
         "links": [],
-        "x": 2105,
+        "x": 2615,
         "y": 1940,
         "wires": []
     },
@@ -1687,7 +1687,7 @@
         "y": 1940,
         "wires": [
             [
-                "d0ab93169d2cac8a"
+                "f559ec1a2612f957"
             ]
         ]
     },
@@ -2554,7 +2554,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1650,
+        "x": 1670,
         "y": 1940,
         "wires": [
             [
@@ -2600,7 +2600,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1650,
+        "x": 1670,
         "y": 2000,
         "wires": [
             [
@@ -4500,6 +4500,75 @@
         "wires": [
             [
                 "b68ef1b3102fdff8"
+            ]
+        ]
+    },
+    {
+        "id": "f559ec1a2612f957",
+        "type": "join",
+        "z": "a963ce203011149c",
+        "name": "allSensorsConfig",
+        "mode": "reduce",
+        "build": "object",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "accumulate": true,
+        "timeout": "",
+        "count": "",
+        "reduceRight": false,
+        "reduceExp": "_linkSource\t",
+        "reduceInit": "",
+        "reduceInitType": "str",
+        "reduceFixup": "",
+        "x": 2190,
+        "y": 1940,
+        "wires": [
+            [
+                "6c472a36d3daefd0"
+            ]
+        ]
+    },
+    {
+        "id": "6c472a36d3daefd0",
+        "type": "change",
+        "z": "a963ce203011149c",
+        "name": "write allSensorsConfig",
+        "rules": [
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "allSensorsConfig",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "parts",
+                "pt": "msg",
+                "to": "{\"id\":\"142df7beb7990f40\",\"type\":\"JSON\",\"count\":1,\"len\":1,\"index\":0}",
+                "tot": "json"
+            },
+            {
+                "t": "move",
+                "p": "payload",
+                "pt": "msg",
+                "to": "_linkSource",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 2440,
+        "y": 1940,
+        "wires": [
+            [
+                "d0ab93169d2cac8a"
             ]
         ]
     }
