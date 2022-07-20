@@ -4253,7 +4253,7 @@
         "tosidebar": true,
         "console": true,
         "tostatus": false,
-        "complete": "$join([topic,': ',payload])",
+        "complete": "$join([topic,': ',$string(payload)])",
         "targetType": "jsonata",
         "statusVal": "",
         "statusType": "auto",
