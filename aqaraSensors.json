@@ -1548,7 +1548,8 @@
         "y": 60,
         "wires": [
             [
-                "dd1a54a2e1620149"
+                "dd1a54a2e1620149",
+                "3dc1c85c215b3c0d"
             ]
         ]
     },
@@ -4278,7 +4279,24 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 3430,
+        "x": 3470,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "3dc1c85c215b3c0d",
+        "type": "debug",
+        "z": "a963ce203011149c",
+        "name": "delay 5mins",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 3210,
         "y": 180,
         "wires": []
     }
