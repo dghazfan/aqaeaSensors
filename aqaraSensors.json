@@ -1687,7 +1687,8 @@
         "y": 1940,
         "wires": [
             [
-                "f559ec1a2612f957"
+                "f559ec1a2612f957",
+                "76a5a7926e1361c0"
             ]
         ]
     },
@@ -4199,8 +4200,8 @@
         "tosidebar": true,
         "console": true,
         "tostatus": false,
-        "complete": "payload",
-        "targetType": "msg",
+        "complete": "'finished buildSensorConfig'",
+        "targetType": "jsonata",
         "statusVal": "",
         "statusType": "auto",
         "x": 1940,
@@ -4550,6 +4551,23 @@
         "statusType": "auto",
         "x": 2470,
         "y": 680,
+        "wires": []
+    },
+    {
+        "id": "76a5a7926e1361c0",
+        "type": "debug",
+        "z": "a963ce203011149c",
+        "name": "allSensorsConfig",
+        "active": true,
+        "tosidebar": true,
+        "console": true,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 2210,
+        "y": 2020,
         "wires": []
     }
 ]
