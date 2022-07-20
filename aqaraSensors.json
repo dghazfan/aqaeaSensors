@@ -1449,7 +1449,8 @@
         "y": 120,
         "wires": [
             [
-                "0ba8246fea5006cd"
+                "0ba8246fea5006cd",
+                "4d9af069bc9c39b2"
             ]
         ]
     },
@@ -1491,8 +1492,7 @@
         "y": 60,
         "wires": [
             [
-                "0453a2202440092a",
-                "78cb23800125c84a"
+                "0453a2202440092a"
             ]
         ]
     },
@@ -1509,7 +1509,8 @@
         "y": 60,
         "wires": [
             [
-                "23be316878e6f16a"
+                "23be316878e6f16a",
+                "777f4957f7242d41"
             ]
         ]
     },
@@ -1982,8 +1983,7 @@
         "y": 120,
         "wires": [
             [
-                "0453a2202440092a",
-                "4d9af069bc9c39b2"
+                "0453a2202440092a"
             ]
         ]
     },
@@ -4150,7 +4150,7 @@
         "id": "8fac9edda8aff012",
         "type": "debug",
         "z": "a963ce203011149c",
-        "name": "debug 1",
+        "name": "setConfiguration",
         "active": true,
         "tosidebar": false,
         "console": true,
@@ -4160,14 +4160,14 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 590,
-        "y": 120,
+        "y": 180,
         "wires": []
     },
     {
         "id": "2365efa8322c84ed",
         "type": "debug",
         "z": "a963ce203011149c",
-        "name": "debug 2",
+        "name": "getToken",
         "active": true,
         "tosidebar": false,
         "console": true,
@@ -4176,15 +4176,15 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 770,
-        "y": 120,
+        "x": 790,
+        "y": 180,
         "wires": []
     },
     {
         "id": "ef02b5e25d51eabe",
         "type": "debug",
         "z": "a963ce203011149c",
-        "name": "debug 3",
+        "name": "initiateWeather",
         "active": true,
         "tosidebar": false,
         "console": true,
@@ -4193,15 +4193,15 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 990,
-        "y": 120,
+        "x": 1010,
+        "y": 180,
         "wires": []
     },
     {
         "id": "5429e96e2d7ecb56",
         "type": "debug",
         "z": "a963ce203011149c",
-        "name": "debug 4",
+        "name": "getAllDevices",
         "active": true,
         "tosidebar": false,
         "console": true,
@@ -4210,72 +4210,76 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1210,
-        "y": 120,
+        "x": 1220,
+        "y": 180,
         "wires": []
     },
     {
         "id": "4d9af069bc9c39b2",
         "type": "debug",
         "z": "a963ce203011149c",
-        "name": "debug 5",
+        "name": "buildSensorConfig",
         "active": true,
-        "tosidebar": true,
-        "console": false,
+        "tosidebar": false,
+        "console": true,
         "tostatus": false,
-        "complete": "false",
+        "complete": "payload",
+        "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1820,
+        "x": 1680,
         "y": 180,
-        "wires": []
-    },
-    {
-        "id": "78cb23800125c84a",
-        "type": "debug",
-        "z": "a963ce203011149c",
-        "name": "debug 6",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 1640,
-        "y": 80,
         "wires": []
     },
     {
         "id": "d6d23892827bdabe",
         "type": "debug",
         "z": "a963ce203011149c",
-        "name": "debug 7",
+        "name": "publishSensor",
         "active": true,
-        "tosidebar": true,
-        "console": false,
+        "tosidebar": false,
+        "console": true,
         "tostatus": false,
-        "complete": "false",
+        "complete": "payload",
+        "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 2720,
-        "y": 120,
+        "x": 2740,
+        "y": 180,
         "wires": []
     },
     {
         "id": "3b442130e0cc4587",
         "type": "debug",
         "z": "a963ce203011149c",
-        "name": "debug 8",
+        "name": "updateWeather",
         "active": true,
-        "tosidebar": true,
-        "console": false,
+        "tosidebar": false,
+        "console": true,
         "tostatus": false,
-        "complete": "false",
+        "complete": "payload",
+        "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 2940,
-        "y": 120,
+        "x": 2970,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "777f4957f7242d41",
+        "type": "debug",
+        "z": "a963ce203011149c",
+        "name": "checkTokenExpiration",
+        "active": true,
+        "tosidebar": false,
+        "console": true,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 3430,
+        "y": 180,
         "wires": []
     }
 ]
