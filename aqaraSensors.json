@@ -51,7 +51,7 @@
         "authType": "",
         "senderr": false,
         "x": 720,
-        "y": 2200,
+        "y": 2320,
         "wires": [
             [
                 "ce20655a23bee024"
@@ -70,7 +70,7 @@
         "encoding": "none",
         "allProps": false,
         "x": 550,
-        "y": 1920,
+        "y": 2040,
         "wires": [
             [
                 "efc31daef5ccfc37"
@@ -86,7 +86,7 @@
         "action": "",
         "pretty": false,
         "x": 770,
-        "y": 1920,
+        "y": 2040,
         "wires": [
             [
                 "ec8382c8a3854771"
@@ -105,7 +105,7 @@
         "finalize": "",
         "libs": [],
         "x": 260,
-        "y": 2560,
+        "y": 2680,
         "wires": [
             [
                 "00e8ac42ab6184c0"
@@ -124,7 +124,7 @@
         "finalize": "",
         "libs": [],
         "x": 260,
-        "y": 2200,
+        "y": 2320,
         "wires": [
             [
                 "b636822231a3143f"
@@ -143,7 +143,7 @@
         "stream": false,
         "addname": "",
         "x": 939,
-        "y": 1920,
+        "y": 2040,
         "wires": [
             [
                 "ba57fa64bee9f6a1"
@@ -162,7 +162,7 @@
         "stream": false,
         "addname": "",
         "x": 210,
-        "y": 560,
+        "y": 680,
         "wires": [
             [
                 "1373626fb8437478"
@@ -186,7 +186,7 @@
             }
         ],
         "x": 500,
-        "y": 2200,
+        "y": 2320,
         "wires": [
             [
                 "1359d533e6c4ecd3"
@@ -214,7 +214,7 @@
         "to": "",
         "reg": false,
         "x": 940,
-        "y": 2200,
+        "y": 2320,
         "wires": [
             [
                 "e9a3a4c0c7c29246"
@@ -254,7 +254,7 @@
         "repair": true,
         "outputs": 4,
         "x": 1146,
-        "y": 1920,
+        "y": 2040,
         "wires": [
             [
                 "f2615fe458097616"
@@ -303,7 +303,7 @@
         "repair": false,
         "outputs": 4,
         "x": 400,
-        "y": 560,
+        "y": 680,
         "wires": [
             [
                 "cebcc482760e2d57"
@@ -331,7 +331,7 @@
         "finalize": "",
         "libs": [],
         "x": 250,
-        "y": 1100,
+        "y": 1220,
         "wires": [
             [
                 "afd225f1ecdb79ec"
@@ -350,10 +350,9 @@
         "finalize": "",
         "libs": [],
         "x": 1650,
-        "y": 1820,
+        "y": 1940,
         "wires": [
             [
-                "dc0632d156dd8e28",
                 "9657c9cd24791369"
             ]
         ]
@@ -378,7 +377,7 @@
         "to": "",
         "reg": false,
         "x": 1398,
-        "y": 1820,
+        "y": 1940,
         "wires": [
             [
                 "f693cabd42e0bb2b"
@@ -402,7 +401,7 @@
             }
         ],
         "x": 480,
-        "y": 1100,
+        "y": 1220,
         "wires": [
             [
                 "91b1f1898942bce5"
@@ -424,7 +423,7 @@
         "authType": "",
         "senderr": false,
         "x": 710,
-        "y": 1100,
+        "y": 1220,
         "wires": [
             [
                 "126191c015874ca3"
@@ -452,7 +451,7 @@
         "to": "",
         "reg": false,
         "x": 1180,
-        "y": 2200,
+        "y": 2320,
         "wires": [
             [
                 "4418a8bd38b77e69"
@@ -477,7 +476,7 @@
         "payload": "aqaraUserData",
         "payloadType": "global",
         "x": 110,
-        "y": 60,
+        "y": 120,
         "wires": [
             [
                 "e83c28e56df06dbd"
@@ -498,8 +497,8 @@
         "correl": "",
         "expiry": "",
         "broker": "61417293a8d68a3f",
-        "x": 2430,
-        "y": 600,
+        "x": 2170,
+        "y": 680,
         "wires": []
     },
     {
@@ -514,7 +513,7 @@
         "finalize": "",
         "libs": [],
         "x": 240,
-        "y": 1680,
+        "y": 1800,
         "wires": [
             [
                 "45d9d8d7d2a9ba61"
@@ -538,7 +537,7 @@
             }
         ],
         "x": 500,
-        "y": 1680,
+        "y": 1800,
         "wires": [
             [
                 "9fde342a27e50d45"
@@ -560,7 +559,7 @@
         "authType": "",
         "senderr": false,
         "x": 710,
-        "y": 1680,
+        "y": 1800,
         "wires": [
             [
                 "cbe3519e9277a436"
@@ -587,7 +586,7 @@
         "to": "",
         "reg": false,
         "x": 920,
-        "y": 1680,
+        "y": 1800,
         "wires": [
             [
                 "9b6bd6f9a771ea52"
@@ -615,7 +614,7 @@
         "to": "",
         "reg": false,
         "x": 940,
-        "y": 1100,
+        "y": 1220,
         "wires": [
             [
                 "1ac3fd326fd744ad"
@@ -639,10 +638,10 @@
             }
         ],
         "x": 1160,
-        "y": 1100,
+        "y": 1220,
         "wires": [
             [
-                "8cd98adadd1a1fc9"
+                "6a12eac2bb122ed3"
             ]
         ]
     },
@@ -666,7 +665,7 @@
         "to": "",
         "reg": false,
         "x": 1397,
-        "y": 1880,
+        "y": 2000,
         "wires": [
             [
                 "972553e3226234db"
@@ -685,10 +684,9 @@
         "finalize": "",
         "libs": [],
         "x": 1660,
-        "y": 1880,
+        "y": 2000,
         "wires": [
             [
-                "dc0632d156dd8e28",
                 "9657c9cd24791369"
             ]
         ]
@@ -710,7 +708,7 @@
             }
         ],
         "x": 1160,
-        "y": 1680,
+        "y": 1800,
         "wires": [
             [
                 "315ee1e12999e1ff"
@@ -724,13 +722,6 @@
         "name": "load mqttPublish",
         "rules": [
             {
-                "t": "move",
-                "p": "payload",
-                "pt": "msg",
-                "to": "_linkSource",
-                "tot": "msg"
-            },
-            {
                 "t": "set",
                 "p": "payload",
                 "pt": "msg",
@@ -743,11 +734,13 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1830,
-        "y": 560,
+        "x": 1570,
+        "y": 680,
         "wires": [
             [
-                "8f596cc8d7ca917e"
+                "8f596cc8d7ca917e",
+                "a9805a45dd3418c3",
+                "8b42d2e24975093d"
             ]
         ]
     },
@@ -762,12 +755,11 @@
         "arraySpltType": "len",
         "stream": false,
         "addname": "",
-        "x": 2030,
-        "y": 560,
+        "x": 1770,
+        "y": 680,
         "wires": [
             [
-                "af41b2ca945fc5ac",
-                "24c642828d0d0a2a"
+                "af41b2ca945fc5ac"
             ]
         ]
     },
@@ -797,12 +789,11 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 2220,
-        "y": 600,
+        "x": 1960,
+        "y": 680,
         "wires": [
             [
-                "5deae51143c58648",
-                "a9805a45dd3418c3"
+                "5deae51143c58648"
             ]
         ]
     },
@@ -813,7 +804,7 @@
         "name": "updateToken",
         "links": [],
         "x": 75,
-        "y": 2560,
+        "y": 2680,
         "wires": [
             [
                 "3528d93db5872f2c"
@@ -837,7 +828,7 @@
             }
         ],
         "x": 500,
-        "y": 2560,
+        "y": 2680,
         "wires": [
             [
                 "731c2c9759e34bc3"
@@ -859,7 +850,7 @@
         "authType": "",
         "senderr": false,
         "x": 710,
-        "y": 2560,
+        "y": 2680,
         "wires": [
             [
                 "ebca084b0c5cdab9"
@@ -873,7 +864,7 @@
         "name": "getConfigData",
         "links": [],
         "x": 75,
-        "y": 2380,
+        "y": 2500,
         "wires": [
             [
                 "ad0ee9c9d210a77f",
@@ -901,7 +892,7 @@
         "to": "",
         "reg": false,
         "x": 920,
-        "y": 2560,
+        "y": 2680,
         "wires": [
             [
                 "fc678200c0f2d91f"
@@ -915,7 +906,7 @@
         "name": "getAllDevices",
         "links": [],
         "x": 75,
-        "y": 2200,
+        "y": 2320,
         "wires": [
             [
                 "7954320f983a58ac"
@@ -932,7 +923,7 @@
         ],
         "timeout": "30",
         "x": 580,
-        "y": 60,
+        "y": 120,
         "wires": [
             [
                 "c94144bb4412ea5a"
@@ -947,7 +938,7 @@
         "mode": "return",
         "links": [],
         "x": 1955,
-        "y": 2560,
+        "y": 2680,
         "wires": []
     },
     {
@@ -958,7 +949,7 @@
         "mode": "return",
         "links": [],
         "x": 1375,
-        "y": 2380,
+        "y": 2500,
         "wires": []
     },
     {
@@ -969,7 +960,7 @@
         "mode": "return",
         "links": [],
         "x": 1355,
-        "y": 2200,
+        "y": 2320,
         "wires": []
     },
     {
@@ -982,7 +973,7 @@
         ],
         "timeout": "30",
         "x": 1260,
-        "y": 60,
+        "y": 120,
         "wires": [
             [
                 "2dd29a3e05d5abed",
@@ -1011,7 +1002,7 @@
         "repair": false,
         "outputs": 2,
         "x": 490,
-        "y": 260,
+        "y": 380,
         "wires": [
             [
                 "1796fb995a11e13c"
@@ -1031,7 +1022,7 @@
         ],
         "timeout": "30",
         "x": 730,
-        "y": 320,
+        "y": 440,
         "wires": [
             [
                 "7aa219aa342122cb"
@@ -1048,7 +1039,7 @@
         ],
         "timeout": "30",
         "x": 920,
-        "y": 320,
+        "y": 440,
         "wires": [
             [
                 "533dc6f628d6615f"
@@ -1062,7 +1053,7 @@
         "name": "getLocations",
         "links": [],
         "x": 75,
-        "y": 1680,
+        "y": 1800,
         "wires": [
             [
                 "e0b193fd35795650"
@@ -1076,7 +1067,7 @@
         "name": "buildTemperatureMQTT",
         "links": [],
         "x": 75,
-        "y": 1060,
+        "y": 1180,
         "wires": [
             [
                 "dc5d0ab8d7954483",
@@ -1093,7 +1084,7 @@
             "475b0c210c5485e0"
         ],
         "x": 75,
-        "y": 840,
+        "y": 960,
         "wires": [
             [
                 "0aa852d3d2c5065b",
@@ -1113,7 +1104,7 @@
         "finalize": "",
         "libs": [],
         "x": 230,
-        "y": 880,
+        "y": 1000,
         "wires": [
             [
                 "177333f927c9668a"
@@ -1137,7 +1128,7 @@
             }
         ],
         "x": 480,
-        "y": 880,
+        "y": 1000,
         "wires": [
             [
                 "fb4206f2e65ecca6"
@@ -1159,7 +1150,7 @@
         "authType": "",
         "senderr": false,
         "x": 710,
-        "y": 880,
+        "y": 1000,
         "wires": [
             [
                 "b8452340ecfda676"
@@ -1187,7 +1178,7 @@
         "to": "",
         "reg": false,
         "x": 940,
-        "y": 880,
+        "y": 1000,
         "wires": [
             [
                 "e334f1c32b35cb2e"
@@ -1211,10 +1202,10 @@
             }
         ],
         "x": 1160,
-        "y": 880,
+        "y": 1000,
         "wires": [
             [
-                "49b467a89db06e8a"
+                "10bf457c63f8f638"
             ]
         ]
     },
@@ -1225,7 +1216,7 @@
         "name": "buildSensorsConfig",
         "links": [],
         "x": 75,
-        "y": 2000,
+        "y": 2120,
         "wires": [
             [
                 "4a8edc7543e68fec",
@@ -1254,7 +1245,7 @@
         "to": "",
         "reg": false,
         "x": 240,
-        "y": 260,
+        "y": 380,
         "wires": [
             [
                 "082f553a208c9ae7"
@@ -1272,7 +1263,7 @@
         "overwriteFile": "true",
         "encoding": "utf8",
         "x": 1780,
-        "y": 2560,
+        "y": 2680,
         "wires": [
             [
                 "8b2442c8ad561978"
@@ -1299,7 +1290,7 @@
         "to": "",
         "reg": false,
         "x": 1180,
-        "y": 2560,
+        "y": 2680,
         "wires": [
             [
                 "6f3a0aab4fc20474"
@@ -1326,7 +1317,7 @@
         "to": "",
         "reg": false,
         "x": 1120,
-        "y": 320,
+        "y": 440,
         "wires": [
             [
                 "1796fb995a11e13c"
@@ -1342,7 +1333,7 @@
             "926f91c78b3509f0"
         ],
         "x": 75,
-        "y": 260,
+        "y": 380,
         "wires": [
             [
                 "f52793c5e05f8284"
@@ -1357,7 +1348,7 @@
         "mode": "return",
         "links": [],
         "x": 1275,
-        "y": 254,
+        "y": 374,
         "wires": []
     },
     {
@@ -1368,7 +1359,7 @@
         "mode": "return",
         "links": [],
         "x": 1325,
-        "y": 1680,
+        "y": 1800,
         "wires": []
     },
     {
@@ -1381,7 +1372,7 @@
         ],
         "timeout": "30",
         "x": 210,
-        "y": 1020,
+        "y": 1140,
         "wires": [
             [
                 "5fc9de3a068e8cf5"
@@ -1398,7 +1389,7 @@
         ],
         "timeout": "30",
         "x": 210,
-        "y": 800,
+        "y": 920,
         "wires": [
             [
                 "ba321c45107ee0c6"
@@ -1414,7 +1405,7 @@
             "4b2a1b2778c7a6b2"
         ],
         "x": 75,
-        "y": 560,
+        "y": 680,
         "wires": [
             [
                 "c8f0da30b19b8373"
@@ -1430,11 +1421,11 @@
         "action": "str",
         "pretty": false,
         "x": 1460,
-        "y": 60,
+        "y": 120,
         "wires": [
             [
                 "8402bc03f4251e09",
-                "9c8537fb9972f5f9"
+                "a35cdf3e48029e7a"
             ]
         ]
     },
@@ -1448,53 +1439,11 @@
         ],
         "timeout": "30",
         "x": 1670,
-        "y": 120,
+        "y": 180,
         "wires": [
             [
-                "0ba8246fea5006cd",
-                "4d9af069bc9c39b2"
-            ]
-        ]
-    },
-    {
-        "id": "9c8537fb9972f5f9",
-        "type": "change",
-        "z": "a963ce203011149c",
-        "name": "allDevices",
-        "rules": [
-            {
-                "t": "set",
-                "p": "allDevices",
-                "pt": "global",
-                "to": "payload",
-                "tot": "msg",
-                "dc": true
-            },
-            {
-                "t": "set",
-                "p": "topic",
-                "pt": "msg",
-                "to": "allDevices",
-                "tot": "str"
-            },
-            {
-                "t": "set",
-                "p": "parts",
-                "pt": "msg",
-                "to": "{     \"id\": \"142df7beb7990f49\",     \"type\": \"JSON\",     \"count\": 1,     \"len\": 1,     \"index\": 0 }",
-                "tot": "json"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 1680,
-        "y": 60,
-        "wires": [
-            [
-                "0453a2202440092a"
+                "4d9af069bc9c39b2",
+                "a35cdf3e48029e7a"
             ]
         ]
     },
@@ -1507,8 +1456,8 @@
             "ec83fb08795c7a20"
         ],
         "timeout": "30",
-        "x": 3800,
-        "y": 60,
+        "x": 2880,
+        "y": 120,
         "wires": [
             [
                 "23be316878e6f16a",
@@ -1525,8 +1474,8 @@
         "links": [
             "b37d628ee35a6a6d"
         ],
-        "x": 3975,
-        "y": 60,
+        "x": 3055,
+        "y": 120,
         "wires": []
     },
     {
@@ -1546,8 +1495,8 @@
         "drop": false,
         "allowrate": false,
         "outputs": 1,
-        "x": 3580,
-        "y": 60,
+        "x": 2660,
+        "y": 120,
         "wires": [
             [
                 "dd1a54a2e1620149",
@@ -1563,8 +1512,8 @@
         "links": [
             "23be316878e6f16a"
         ],
-        "x": 2415,
-        "y": 20,
+        "x": 1885,
+        "y": 40,
         "wires": [
             [
                 "d4e5f006ed6b7ad5"
@@ -1583,7 +1532,7 @@
         "encoding": "none",
         "allProps": false,
         "x": 550,
-        "y": 2060,
+        "y": 2180,
         "wires": [
             [
                 "9bc1aa64b4f52e81"
@@ -1599,7 +1548,7 @@
         "action": "",
         "pretty": false,
         "x": 770,
-        "y": 2060,
+        "y": 2180,
         "wires": [
             [
                 "5c8c42fec8b80761"
@@ -1648,10 +1597,9 @@
         "to": "",
         "reg": false,
         "x": 1700,
-        "y": 2060,
+        "y": 2180,
         "wires": [
             [
-                "dc0632d156dd8e28",
                 "9657c9cd24791369"
             ]
         ]
@@ -1663,44 +1611,9 @@
         "name": "endLoadingSensors",
         "mode": "return",
         "links": [],
-        "x": 2615,
-        "y": 1920,
+        "x": 2055,
+        "y": 2060,
         "wires": []
-    },
-    {
-        "id": "dc0632d156dd8e28",
-        "type": "batch",
-        "z": "a963ce203011149c",
-        "name": "wait until complete",
-        "mode": "concat",
-        "count": 10,
-        "overlap": 0,
-        "interval": 10,
-        "allowEmptySequence": false,
-        "topics": [
-            {
-                "topic": "allSensors"
-            },
-            {
-                "topic": "temperatureSensors"
-            },
-            {
-                "topic": "motionSensors"
-            },
-            {
-                "topic": "light1Sensors"
-            },
-            {
-                "topic": "light2Sensors"
-            }
-        ],
-        "x": 1950,
-        "y": 1920,
-        "wires": [
-            [
-                "f559ec1a2612f957"
-            ]
-        ]
     },
     {
         "id": "5fc9de3a068e8cf5",
@@ -1728,11 +1641,11 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1160,
-        "y": 1020,
+        "x": 1180,
+        "y": 1140,
         "wires": [
             [
-                "8cd98adadd1a1fc9"
+                "6a12eac2bb122ed3"
             ]
         ]
     },
@@ -1762,11 +1675,11 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1160,
-        "y": 800,
+        "x": 1180,
+        "y": 920,
         "wires": [
             [
-                "49b467a89db06e8a"
+                "10bf457c63f8f638"
             ]
         ]
     },
@@ -1777,8 +1690,8 @@
         "name": "endBuildMotionMQTT",
         "mode": "return",
         "links": [],
-        "x": 2215,
-        "y": 840,
+        "x": 1835,
+        "y": 960,
         "wires": []
     },
     {
@@ -1788,8 +1701,8 @@
         "name": "endBuildTemperatureMQTT",
         "mode": "return",
         "links": [],
-        "x": 2215,
-        "y": 1060,
+        "x": 1835,
+        "y": 1180,
         "wires": []
     },
     {
@@ -1802,10 +1715,10 @@
         ],
         "timeout": "30",
         "x": 1070,
-        "y": 460,
+        "y": 580,
         "wires": [
             [
-                "98a9fa372c7d6df9"
+                "4f3dd3c40049f50c"
             ]
         ]
     },
@@ -1819,10 +1732,10 @@
         ],
         "timeout": "30",
         "x": 1090,
-        "y": 520,
+        "y": 640,
         "wires": [
             [
-                "98a9fa372c7d6df9"
+                "4f3dd3c40049f50c"
             ]
         ]
     },
@@ -1835,8 +1748,8 @@
             "b3fd628d327f005f"
         ],
         "timeout": "30",
-        "x": 2780,
-        "y": 60,
+        "x": 2240,
+        "y": 120,
         "wires": [
             [
                 "d6d23892827bdabe",
@@ -1851,8 +1764,8 @@
         "name": "endPublishSensors",
         "mode": "return",
         "links": [],
-        "x": 2375,
-        "y": 520,
+        "x": 1735,
+        "y": 620,
         "wires": []
     },
     {
@@ -1876,7 +1789,7 @@
         "reduceInitType": "",
         "reduceFixup": "",
         "x": 620,
-        "y": 460,
+        "y": 580,
         "wires": [
             [
                 "9d51af153494fb2e"
@@ -1904,176 +1817,10 @@
         "reduceInitType": "",
         "reduceFixup": "",
         "x": 620,
-        "y": 520,
+        "y": 640,
         "wires": [
             [
                 "615b46879514af7b"
-            ]
-        ]
-    },
-    {
-        "id": "fdd6848adb90cbf5",
-        "type": "join",
-        "z": "a963ce203011149c",
-        "name": "allDevices with Config",
-        "mode": "reduce",
-        "build": "object",
-        "property": "payload",
-        "propertyType": "msg",
-        "key": "topic",
-        "joiner": "\\n",
-        "joinerType": "str",
-        "accumulate": true,
-        "timeout": "",
-        "count": "",
-        "reduceRight": false,
-        "reduceExp": "payload",
-        "reduceInit": "",
-        "reduceInitType": "str",
-        "reduceFixup": "",
-        "x": 2360,
-        "y": 60,
-        "wires": [
-            [
-                "d4e5f006ed6b7ad5"
-            ]
-        ]
-    },
-    {
-        "id": "0453a2202440092a",
-        "type": "batch",
-        "z": "a963ce203011149c",
-        "name": "wait until complete",
-        "mode": "concat",
-        "count": 10,
-        "overlap": 0,
-        "interval": 10,
-        "allowEmptySequence": false,
-        "topics": [
-            {
-                "topic": "allDevices"
-            },
-            {
-                "topic": "allConfig"
-            }
-        ],
-        "x": 2110,
-        "y": 60,
-        "wires": [
-            [
-                "fdd6848adb90cbf5"
-            ]
-        ]
-    },
-    {
-        "id": "0ba8246fea5006cd",
-        "type": "change",
-        "z": "a963ce203011149c",
-        "name": "allConfig",
-        "rules": [
-            {
-                "t": "set",
-                "p": "topic",
-                "pt": "msg",
-                "to": "allConfig",
-                "tot": "str"
-            },
-            {
-                "t": "set",
-                "p": "parts",
-                "pt": "msg",
-                "to": "{     \"id\": \"142df7beb7990f48\",     \"type\": \"JSON\",     \"count\": 1,     \"len\": 1,     \"index\": 0 }",
-                "tot": "json"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 1900,
-        "y": 120,
-        "wires": [
-            [
-                "0453a2202440092a"
-            ]
-        ]
-    },
-    {
-        "id": "24c642828d0d0a2a",
-        "type": "join",
-        "z": "a963ce203011149c",
-        "name": "",
-        "mode": "auto",
-        "build": "object",
-        "property": "payload",
-        "propertyType": "msg",
-        "key": "topic",
-        "joiner": "\\n",
-        "joinerType": "str",
-        "accumulate": "false",
-        "timeout": "",
-        "count": "",
-        "reduceRight": false,
-        "x": 2210,
-        "y": 520,
-        "wires": [
-            [
-                "8b42d2e24975093d"
-            ]
-        ]
-    },
-    {
-        "id": "49b467a89db06e8a",
-        "type": "batch",
-        "z": "a963ce203011149c",
-        "name": "wait until complete",
-        "mode": "concat",
-        "count": 10,
-        "overlap": 0,
-        "interval": 10,
-        "allowEmptySequence": false,
-        "topics": [
-            {
-                "topic": "motionSensorLocationMQTT"
-            },
-            {
-                "topic": "motionSensorsMQTT"
-            }
-        ],
-        "x": 1410,
-        "y": 840,
-        "wires": [
-            [
-                "ac1fec829b87365e"
-            ]
-        ]
-    },
-    {
-        "id": "ac1fec829b87365e",
-        "type": "join",
-        "z": "a963ce203011149c",
-        "name": "allMotionSensorsMQTT",
-        "mode": "reduce",
-        "build": "object",
-        "property": "payload",
-        "propertyType": "msg",
-        "key": "topic",
-        "joiner": "\\n",
-        "joinerType": "str",
-        "accumulate": true,
-        "timeout": "",
-        "count": "",
-        "reduceRight": false,
-        "reduceExp": "_linkSource",
-        "reduceInit": "",
-        "reduceInitType": "str",
-        "reduceFixup": "",
-        "x": 1670,
-        "y": 840,
-        "wires": [
-            [
-                "e658abc20e1349e0"
             ]
         ]
     },
@@ -2110,65 +1857,11 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1980,
-        "y": 840,
+        "x": 1600,
+        "y": 960,
         "wires": [
             [
                 "199b9169d8bf0b95"
-            ]
-        ]
-    },
-    {
-        "id": "8cd98adadd1a1fc9",
-        "type": "batch",
-        "z": "a963ce203011149c",
-        "name": "wait until complete",
-        "mode": "concat",
-        "count": 10,
-        "overlap": 0,
-        "interval": 10,
-        "allowEmptySequence": false,
-        "topics": [
-            {
-                "topic": "temperatureSensorLocationMQTT"
-            },
-            {
-                "topic": "temperatureSensorsMQTT"
-            }
-        ],
-        "x": 1410,
-        "y": 1060,
-        "wires": [
-            [
-                "256ce7cf606f3d4f"
-            ]
-        ]
-    },
-    {
-        "id": "256ce7cf606f3d4f",
-        "type": "join",
-        "z": "a963ce203011149c",
-        "name": "allTemperatureSensorsMQTT",
-        "mode": "reduce",
-        "build": "object",
-        "property": "payload",
-        "propertyType": "msg",
-        "key": "topic",
-        "joiner": "\\n",
-        "joinerType": "str",
-        "accumulate": true,
-        "timeout": "",
-        "count": "",
-        "reduceRight": false,
-        "reduceExp": "_linkSource\t",
-        "reduceInit": "",
-        "reduceInitType": "str",
-        "reduceFixup": "",
-        "x": 1680,
-        "y": 1060,
-        "wires": [
-            [
-                "2e1723379b4a80df"
             ]
         ]
     },
@@ -2205,71 +1898,11 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 2000,
-        "y": 1060,
+        "x": 1620,
+        "y": 1180,
         "wires": [
             [
                 "4426f875feeb0e74"
-            ]
-        ]
-    },
-    {
-        "id": "98a9fa372c7d6df9",
-        "type": "batch",
-        "z": "a963ce203011149c",
-        "name": "wait until complete",
-        "mode": "concat",
-        "count": 10,
-        "overlap": 0,
-        "interval": 10,
-        "allowEmptySequence": false,
-        "topics": [
-            {
-                "topic": "allMotionSensorsMQTT"
-            },
-            {
-                "topic": "allTemperatureSensorsMQTT"
-            },
-            {
-                "topic": "allLight2SensorsMQTT"
-            },
-            {
-                "topic": "allLight1SensorsMQTT"
-            }
-        ],
-        "x": 1350,
-        "y": 560,
-        "wires": [
-            [
-                "eb8f3ea540929479"
-            ]
-        ]
-    },
-    {
-        "id": "eb8f3ea540929479",
-        "type": "join",
-        "z": "a963ce203011149c",
-        "name": "allSensorsMQTT",
-        "mode": "reduce",
-        "build": "object",
-        "property": "payload",
-        "propertyType": "msg",
-        "key": "topic",
-        "joiner": "\\n",
-        "joinerType": "str",
-        "accumulate": true,
-        "timeout": "",
-        "count": "",
-        "reduceRight": false,
-        "reduceExp": "_linkSource",
-        "reduceInit": "",
-        "reduceInitType": "str",
-        "reduceFixup": "",
-        "x": 1590,
-        "y": 560,
-        "wires": [
-            [
-                "f1a4d6c35636b023"
             ]
         ]
     },
@@ -2285,7 +1918,7 @@
         "encoding": "none",
         "allProps": false,
         "x": 570,
-        "y": 2420,
+        "y": 2540,
         "wires": [
             [
                 "52671c31255392df"
@@ -2301,7 +1934,7 @@
         "action": "",
         "pretty": false,
         "x": 780,
-        "y": 2420,
+        "y": 2540,
         "wires": [
             [
                 "7e1995f1478ef221"
@@ -2320,7 +1953,7 @@
         "encoding": "utf8",
         "allProps": false,
         "x": 570,
-        "y": 2340,
+        "y": 2460,
         "wires": [
             [
                 "0176a4ef3f3de592"
@@ -2348,7 +1981,7 @@
         "reduceInitType": "",
         "reduceFixup": "",
         "x": 970,
-        "y": 2380,
+        "y": 2500,
         "wires": [
             [
                 "7e6c2382068bc0a7"
@@ -2364,7 +1997,7 @@
         "action": "",
         "pretty": true,
         "x": 790,
-        "y": 2340,
+        "y": 2460,
         "wires": [
             [
                 "7e1995f1478ef221"
@@ -2392,7 +2025,7 @@
         "to": "",
         "reg": false,
         "x": 1190,
-        "y": 2380,
+        "y": 2500,
         "wires": [
             [
                 "ada1ce53544f2787"
@@ -2419,8 +2052,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 2580,
-        "y": 60,
+        "x": 2040,
+        "y": 120,
         "wires": [
             [
                 "3b998255c31ebc71"
@@ -2434,7 +2067,7 @@
         "name": "Main Program",
         "info": "# \n\nThis flow will automatically start the process by injecting seed message and enquire aqara senso's attribute every 5 minutes.",
         "x": 130,
-        "y": 20,
+        "y": 60,
         "wires": []
     },
     {
@@ -2444,7 +2077,7 @@
         "name": "Check Token Expiration",
         "info": "# Check Token Expiration\n# \nThis module will ceck if access token will expire within 4 hours and then request the updated tokens from Aqara website.",
         "x": 160,
-        "y": 220,
+        "y": 340,
         "wires": []
     },
     {
@@ -2454,7 +2087,7 @@
         "name": "Publish Sensors",
         "info": "# Publish Sensors\n# \nThis is the main flow that  handle publishing the sensor to MQTT broker",
         "x": 140,
-        "y": 420,
+        "y": 540,
         "wires": []
     },
     {
@@ -2464,7 +2097,7 @@
         "name": "Build Motion MQTT Message",
         "info": "# Build Motion MQTT Message\n# \nThis flow retrieve device attributes from each Motion Sensors and prepare it into MQTT format",
         "x": 180,
-        "y": 760,
+        "y": 880,
         "wires": []
     },
     {
@@ -2474,7 +2107,7 @@
         "name": "Build Temperature MQTT Message",
         "info": "# Build Temperature MQTT Message\n# \nThis flow retrieve device attributes from each Temperature Sensors and prepare it into MQTT format",
         "x": 200,
-        "y": 980,
+        "y": 1100,
         "wires": []
     },
     {
@@ -2484,7 +2117,7 @@
         "name": "Enquire Location of Sensors",
         "info": "# Enquire Location of Sensors\n# \nThis flow retrieve location attribute from each  Sensors and prepare it into MQTT format",
         "x": 180,
-        "y": 1640,
+        "y": 1760,
         "wires": []
     },
     {
@@ -2494,7 +2127,7 @@
         "name": "Read Sensors Configuration",
         "info": "# Build Devices Configuration\n# \n\n## aqaraDevices.json\nThis flow read device configuration from aqaraDevices.json file. This file should contain configuration of all Aqara Devices.\nThe flow will then extract the sensor portion of each device and load it into global variables that will be used later to retrive device attributes.\n\n## aqaraSensors.json\nThe file aqaraSensors.json containg list of sensors is alo read and loaded to global variables.\nThe file only contains pair of 'id' and 'name' which will be used later by the flow to interpret data retrieved from Aqara server to build the correct MQTT topics for the data.",
         "x": 180,
-        "y": 1780,
+        "y": 1900,
         "wires": []
     },
     {
@@ -2504,7 +2137,7 @@
         "name": "Get All Devices",
         "info": "# Get All Devices\n# \nThis flow retrieve list of all devices belonging to the user from Aqara Website",
         "x": 140,
-        "y": 2160,
+        "y": 2280,
         "wires": []
     },
     {
@@ -2514,7 +2147,7 @@
         "name": "Read User Configuration Files",
         "info": "# Read User Configuration Files\n \nThis flow retrieve configuration data relating to user's Aqara account.\n\n## aqaraAppInfo.json\nThis file contains basic data from user's Aqara Development subscription like: \n * appId\n * keyId\n * appKey\n\n## aqaraAccessToken.json\nThis file contains access token and refresh token retrieved from user's Aqara Development subscription.\nUser needs to create the initial tokens manually at the Aqara Development website and populate this file.\nLater, the file will be maintain and updated by this program/flow as the token nearing its  expiration time.",
         "x": 180,
-        "y": 2300,
+        "y": 2420,
         "wires": []
     },
     {
@@ -2524,7 +2157,7 @@
         "name": "Refresh Access Token",
         "info": "# Refresh Access Token\n# \nThis flow retrieve new access token from Awqara website.",
         "x": 160,
-        "y": 2520,
+        "y": 2640,
         "wires": []
     },
     {
@@ -2547,7 +2180,7 @@
         "to": "",
         "reg": false,
         "x": 1400,
-        "y": 1940,
+        "y": 2060,
         "wires": [
             [
                 "86465ebf30798a78"
@@ -2566,10 +2199,9 @@
         "finalize": "",
         "libs": [],
         "x": 1670,
-        "y": 1940,
+        "y": 2060,
         "wires": [
             [
-                "dc0632d156dd8e28",
                 "9657c9cd24791369"
             ]
         ]
@@ -2594,7 +2226,7 @@
         "to": "",
         "reg": false,
         "x": 1400,
-        "y": 2000,
+        "y": 2120,
         "wires": [
             [
                 "11f8b38b48d3cf39"
@@ -2613,10 +2245,9 @@
         "finalize": "",
         "libs": [],
         "x": 1670,
-        "y": 2000,
+        "y": 2120,
         "wires": [
             [
-                "dc0632d156dd8e28",
                 "9657c9cd24791369"
             ]
         ]
@@ -2642,7 +2273,7 @@
         "reduceInitType": "",
         "reduceFixup": "",
         "x": 620,
-        "y": 600,
+        "y": 720,
         "wires": [
             [
                 "f2de8d16374b98f6"
@@ -2659,10 +2290,10 @@
         ],
         "timeout": "30",
         "x": 1090,
-        "y": 600,
+        "y": 720,
         "wires": [
             [
-                "98a9fa372c7d6df9"
+                "4f3dd3c40049f50c"
             ]
         ]
     },
@@ -2687,7 +2318,7 @@
         "reduceInitType": "",
         "reduceFixup": "",
         "x": 620,
-        "y": 660,
+        "y": 780,
         "wires": [
             [
                 "de65c21f1fdedd95"
@@ -2704,10 +2335,10 @@
         ],
         "timeout": "30",
         "x": 1090,
-        "y": 660,
+        "y": 780,
         "wires": [
             [
-                "98a9fa372c7d6df9"
+                "4f3dd3c40049f50c"
             ]
         ]
     },
@@ -2718,7 +2349,7 @@
         "name": "buildLight1MQTT",
         "links": [],
         "x": 75,
-        "y": 1500,
+        "y": 1620,
         "wires": [
             [
                 "08a172164a42e68e",
@@ -2736,7 +2367,7 @@
         ],
         "timeout": "30",
         "x": 210,
-        "y": 1460,
+        "y": 1580,
         "wires": [
             [
                 "08addc59708c5a53"
@@ -2755,7 +2386,7 @@
         "finalize": "",
         "libs": [],
         "x": 230,
-        "y": 1540,
+        "y": 1660,
         "wires": [
             [
                 "f5a3b2c31b771f60"
@@ -2788,11 +2419,11 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1160,
-        "y": 1460,
+        "x": 1180,
+        "y": 1580,
         "wires": [
             [
-                "1d9739420ede7de4"
+                "2cb6213c41582118"
             ]
         ]
     },
@@ -2813,36 +2444,10 @@
             }
         ],
         "x": 480,
-        "y": 1540,
+        "y": 1660,
         "wires": [
             [
                 "26eba7d0cbabf22e"
-            ]
-        ]
-    },
-    {
-        "id": "1d9739420ede7de4",
-        "type": "batch",
-        "z": "a963ce203011149c",
-        "name": "wait until complete",
-        "mode": "concat",
-        "count": 10,
-        "overlap": 0,
-        "interval": 10,
-        "allowEmptySequence": false,
-        "topics": [
-            {
-                "topic": "light1SensorLocationMQTT"
-            },
-            {
-                "topic": "light1SensorsMQTT"
-            }
-        ],
-        "x": 1410,
-        "y": 1500,
-        "wires": [
-            [
-                "45b176a662f19cfe"
             ]
         ]
     },
@@ -2861,7 +2466,7 @@
         "authType": "",
         "senderr": false,
         "x": 710,
-        "y": 1540,
+        "y": 1660,
         "wires": [
             [
                 "ae5e34fc1fe9df43"
@@ -2885,38 +2490,10 @@
             }
         ],
         "x": 1160,
-        "y": 1540,
+        "y": 1660,
         "wires": [
             [
-                "1d9739420ede7de4"
-            ]
-        ]
-    },
-    {
-        "id": "45b176a662f19cfe",
-        "type": "join",
-        "z": "a963ce203011149c",
-        "name": "allTemperatureSensorsMQTT",
-        "mode": "reduce",
-        "build": "object",
-        "property": "payload",
-        "propertyType": "msg",
-        "key": "topic",
-        "joiner": "\\n",
-        "joinerType": "str",
-        "accumulate": true,
-        "timeout": "",
-        "count": "",
-        "reduceRight": false,
-        "reduceExp": "_linkSource\t",
-        "reduceInit": "",
-        "reduceInitType": "str",
-        "reduceFixup": "",
-        "x": 1680,
-        "y": 1500,
-        "wires": [
-            [
-                "29354fa083934404"
+                "2cb6213c41582118"
             ]
         ]
     },
@@ -2941,7 +2518,7 @@
         "to": "",
         "reg": false,
         "x": 940,
-        "y": 1540,
+        "y": 1660,
         "wires": [
             [
                 "1d827e2cdbcc1538"
@@ -2981,8 +2558,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 2000,
-        "y": 1500,
+        "x": 1600,
+        "y": 1620,
         "wires": [
             [
                 "56a8e19800fed3a4"
@@ -2996,8 +2573,8 @@
         "name": "endBuildTemperatureMQTT",
         "mode": "return",
         "links": [],
-        "x": 2215,
-        "y": 1500,
+        "x": 1795,
+        "y": 1620,
         "wires": []
     },
     {
@@ -3007,7 +2584,7 @@
         "name": "buildLight2MQTT",
         "links": [],
         "x": 75,
-        "y": 1280,
+        "y": 1400,
         "wires": [
             [
                 "af64c564e5f0f2c9",
@@ -3025,7 +2602,7 @@
         ],
         "timeout": "30",
         "x": 210,
-        "y": 1240,
+        "y": 1360,
         "wires": [
             [
                 "81c6718995bf1179"
@@ -3044,7 +2621,7 @@
         "finalize": "",
         "libs": [],
         "x": 230,
-        "y": 1320,
+        "y": 1440,
         "wires": [
             [
                 "c1186151f171a41d"
@@ -3077,11 +2654,11 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1160,
-        "y": 1240,
+        "x": 1180,
+        "y": 1360,
         "wires": [
             [
-                "aa446b5fae2e2bf2"
+                "bc57ffa9a79f2eb5"
             ]
         ]
     },
@@ -3102,36 +2679,10 @@
             }
         ],
         "x": 480,
-        "y": 1320,
+        "y": 1440,
         "wires": [
             [
                 "554a1a2bec5f91b7"
-            ]
-        ]
-    },
-    {
-        "id": "aa446b5fae2e2bf2",
-        "type": "batch",
-        "z": "a963ce203011149c",
-        "name": "wait until complete",
-        "mode": "concat",
-        "count": 10,
-        "overlap": 0,
-        "interval": 10,
-        "allowEmptySequence": false,
-        "topics": [
-            {
-                "topic": "light2SensorLocationMQTT"
-            },
-            {
-                "topic": "light2SensorsMQTT"
-            }
-        ],
-        "x": 1410,
-        "y": 1280,
-        "wires": [
-            [
-                "d1da4cec096f9e13"
             ]
         ]
     },
@@ -3150,7 +2701,7 @@
         "authType": "",
         "senderr": false,
         "x": 710,
-        "y": 1320,
+        "y": 1440,
         "wires": [
             [
                 "df62dfce35b66738"
@@ -3174,38 +2725,10 @@
             }
         ],
         "x": 1160,
-        "y": 1320,
+        "y": 1440,
         "wires": [
             [
-                "aa446b5fae2e2bf2"
-            ]
-        ]
-    },
-    {
-        "id": "d1da4cec096f9e13",
-        "type": "join",
-        "z": "a963ce203011149c",
-        "name": "allTemperatureSensorsMQTT",
-        "mode": "reduce",
-        "build": "object",
-        "property": "payload",
-        "propertyType": "msg",
-        "key": "topic",
-        "joiner": "\\n",
-        "joinerType": "str",
-        "accumulate": true,
-        "timeout": "",
-        "count": "",
-        "reduceRight": false,
-        "reduceExp": "_linkSource\t",
-        "reduceInit": "",
-        "reduceInitType": "str",
-        "reduceFixup": "",
-        "x": 1680,
-        "y": 1280,
-        "wires": [
-            [
-                "5e05b8e4dfda2cc2"
+                "bc57ffa9a79f2eb5"
             ]
         ]
     },
@@ -3230,7 +2753,7 @@
         "to": "",
         "reg": false,
         "x": 940,
-        "y": 1320,
+        "y": 1440,
         "wires": [
             [
                 "e6cffa89ddf34e5d"
@@ -3270,8 +2793,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 2000,
-        "y": 1280,
+        "x": 1600,
+        "y": 1400,
         "wires": [
             [
                 "27352acc8a1eeac3"
@@ -3285,8 +2808,8 @@
         "name": "endBuildTemperatureMQTT",
         "mode": "return",
         "links": [],
-        "x": 2215,
-        "y": 1280,
+        "x": 1795,
+        "y": 1400,
         "wires": []
     },
     {
@@ -3296,7 +2819,7 @@
         "name": "Build Light1 MQTT Message",
         "info": "# Build Temperature MQTT Message\n# \nThis flow retrieve device attributes from each Temperature Sensors and prepare it into MQTT format",
         "x": 180,
-        "y": 1420,
+        "y": 1540,
         "wires": []
     },
     {
@@ -3306,7 +2829,7 @@
         "name": "Build Light2 MQTT Message",
         "info": "# Build Temperature MQTT Message\n# \nThis flow retrieve device attributes from each Temperature Sensors and prepare it into MQTT format",
         "x": 180,
-        "y": 1200,
+        "y": 1320,
         "wires": []
     },
     {
@@ -3329,7 +2852,7 @@
         "to": "",
         "reg": false,
         "x": 290,
-        "y": 2340,
+        "y": 2460,
         "wires": [
             [
                 "dfe37c8491f348b6"
@@ -3356,7 +2879,7 @@
         "to": "",
         "reg": false,
         "x": 280,
-        "y": 2420,
+        "y": 2540,
         "wires": [
             [
                 "31cb610a0c4be4b9"
@@ -3383,7 +2906,7 @@
         "to": "",
         "reg": false,
         "x": 280,
-        "y": 1920,
+        "y": 2040,
         "wires": [
             [
                 "381a1bee857b7577"
@@ -3410,7 +2933,7 @@
         "to": "",
         "reg": false,
         "x": 280,
-        "y": 2060,
+        "y": 2180,
         "wires": [
             [
                 "9278ec3ff1db977a"
@@ -3437,7 +2960,7 @@
         "to": "",
         "reg": false,
         "x": 1490,
-        "y": 2560,
+        "y": 2680,
         "wires": [
             [
                 "4df082215a8fd46e"
@@ -3485,7 +3008,7 @@
         "to": "",
         "reg": false,
         "x": 340,
-        "y": 60,
+        "y": 120,
         "wires": [
             [
                 "2d0383295e4ebcb8"
@@ -3561,7 +3084,7 @@
         "to": "",
         "reg": false,
         "x": 330,
-        "y": 2700,
+        "y": 2820,
         "wires": [
             [
                 "25ba818411195972"
@@ -3584,7 +3107,7 @@
         "senderr": false,
         "headers": [],
         "x": 630,
-        "y": 2700,
+        "y": 2820,
         "wires": [
             [
                 "cecdec15ea07f642"
@@ -3625,7 +3148,7 @@
         "to": "",
         "reg": false,
         "x": 850,
-        "y": 2700,
+        "y": 2820,
         "wires": [
             [
                 "16c4af3ea463a663"
@@ -3648,7 +3171,7 @@
         "senderr": false,
         "headers": [],
         "x": 1100,
-        "y": 2700,
+        "y": 2820,
         "wires": [
             [
                 "39ab8215fb6d3f08"
@@ -3738,7 +3261,7 @@
         "to": "",
         "reg": false,
         "x": 1420,
-        "y": 2700,
+        "y": 2820,
         "wires": [
             [
                 "17c73d0d4831faed"
@@ -3757,7 +3280,7 @@
         "finalize": "",
         "libs": [],
         "x": 1750,
-        "y": 2700,
+        "y": 2820,
         "wires": [
             [
                 "66958cf0b3dca60a"
@@ -3779,8 +3302,8 @@
         "authType": "",
         "senderr": false,
         "headers": [],
-        "x": 640,
-        "y": 2840,
+        "x": 630,
+        "y": 3020,
         "wires": [
             [
                 "16a5d0d3ed19e32d"
@@ -3876,8 +3399,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 990,
-        "y": 2840,
+        "x": 980,
+        "y": 3020,
         "wires": [
             [
                 "8c992a65eae77d0d"
@@ -3895,11 +3418,13 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1340,
-        "y": 2840,
+        "x": 1330,
+        "y": 3020,
         "wires": [
             [
-                "7d36fd3232249842"
+                "7d36fd3232249842",
+                "31a5d9a8ae2ffa39",
+                "80457701e2178fc6"
             ]
         ]
     },
@@ -3914,8 +3439,8 @@
         "arraySpltType": "len",
         "stream": false,
         "addname": "",
-        "x": 1590,
-        "y": 2840,
+        "x": 1580,
+        "y": 3020,
         "wires": [
             [
                 "c4cbaecfc3186e16"
@@ -3948,12 +3473,11 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1780,
-        "y": 2840,
+        "x": 1770,
+        "y": 3020,
         "wires": [
             [
-                "bd0ba871a538a4e6",
-                "80457701e2178fc6"
+                "bd0ba871a538a4e6"
             ]
         ]
     },
@@ -3971,8 +3495,8 @@
         "correl": "",
         "expiry": "",
         "broker": "61417293a8d68a3f",
-        "x": 1990,
-        "y": 2840,
+        "x": 1980,
+        "y": 3020,
         "wires": []
     },
     {
@@ -3982,17 +3506,17 @@
         "name": "Initiate Weather Station",
         "info": "# Initiate Weather Station\n# \nThis flow establish initial connection and populate basic data for weather station.",
         "x": 160,
-        "y": 2660,
+        "y": 2780,
         "wires": []
     },
     {
         "id": "1f584e5fbbcb21f8",
         "type": "comment",
         "z": "a963ce203011149c",
-        "name": "Get Weather Condition",
-        "info": "# Get Weather Condition\n# \nThis flow establish connection to weather station and populate current weather data.",
-        "x": 160,
-        "y": 2800,
+        "name": "Publish Weather Condition",
+        "info": "# Publish Weather Condition\n# \nThis flow establish connection to weather station and populate current weather data.",
+        "x": 170,
+        "y": 2920,
         "wires": []
     },
     {
@@ -4002,7 +3526,7 @@
         "name": "initiateWeather",
         "links": [],
         "x": 75,
-        "y": 2700,
+        "y": 2820,
         "wires": [
             [
                 "dd25f6a2b611c4ee"
@@ -4013,10 +3537,10 @@
         "id": "892be75a50acad8f",
         "type": "link in",
         "z": "a963ce203011149c",
-        "name": "updateWeather",
+        "name": "publishWeather",
         "links": [],
-        "x": 75,
-        "y": 2840,
+        "x": 65,
+        "y": 3020,
         "wires": [
             [
                 "1ccb6fee5b8cb94c"
@@ -4031,7 +3555,7 @@
         "mode": "return",
         "links": [],
         "x": 1955,
-        "y": 2700,
+        "y": 2820,
         "wires": []
     },
     {
@@ -4041,8 +3565,8 @@
         "name": "endUpdatingToken",
         "mode": "return",
         "links": [],
-        "x": 1935,
-        "y": 2900,
+        "x": 1545,
+        "y": 2960,
         "wires": []
     },
     {
@@ -4056,7 +3580,7 @@
         "linkType": "static",
         "timeout": "30",
         "x": 1040,
-        "y": 60,
+        "y": 120,
         "wires": [
             [
                 "9af69413274b7092",
@@ -4068,18 +3592,18 @@
         "id": "d9730a8cd225a2f5",
         "type": "link call",
         "z": "a963ce203011149c",
-        "name": "updateWeather",
+        "name": "publishWeather",
         "links": [
             "892be75a50acad8f"
         ],
         "linkType": "static",
         "timeout": "30",
-        "x": 3000,
-        "y": 60,
+        "x": 2460,
+        "y": 120,
         "wires": [
             [
                 "3b442130e0cc4587",
-                "77a75cddc999bb8d"
+                "2c2fbc244b34b186"
             ]
         ]
     },
@@ -4144,8 +3668,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 300,
-        "y": 2840,
+        "x": 290,
+        "y": 3020,
         "wires": [
             [
                 "d8cca45f931d8635"
@@ -4166,7 +3690,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 1070,
-        "y": 180,
+        "y": 240,
         "wires": []
     },
     {
@@ -4183,7 +3707,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 1290,
-        "y": 180,
+        "y": 240,
         "wires": []
     },
     {
@@ -4200,7 +3724,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 1520,
-        "y": 180,
+        "y": 240,
         "wires": []
     },
     {
@@ -4217,14 +3741,14 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 1940,
-        "y": 180,
+        "y": 240,
         "wires": []
     },
     {
         "id": "d6d23892827bdabe",
         "type": "debug",
         "z": "a963ce203011149c",
-        "name": "finishedPublishSensor",
+        "name": "PublishSensor",
         "active": true,
         "tosidebar": true,
         "console": true,
@@ -4233,8 +3757,8 @@
         "targetType": "jsonata",
         "statusVal": "",
         "statusType": "auto",
-        "x": 3050,
-        "y": 180,
+        "x": 2480,
+        "y": 240,
         "wires": []
     },
     {
@@ -4246,12 +3770,12 @@
         "tosidebar": true,
         "console": true,
         "tostatus": false,
-        "complete": "$join([topic,': ',$string(payload)])",
+        "complete": "'finished publishWeather",
         "targetType": "jsonata",
         "statusVal": "",
         "statusType": "auto",
-        "x": 3310,
-        "y": 180,
+        "x": 2710,
+        "y": 240,
         "wires": []
     },
     {
@@ -4267,8 +3791,8 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 4130,
-        "y": 180,
+        "x": 3210,
+        "y": 240,
         "wires": []
     },
     {
@@ -4284,8 +3808,8 @@
         "targetType": "jsonata",
         "statusVal": "",
         "statusType": "auto",
-        "x": 3880,
-        "y": 180,
+        "x": 2940,
+        "y": 240,
         "wires": []
     },
     {
@@ -4306,7 +3830,7 @@
         "allowrate": false,
         "outputs": 1,
         "x": 830,
-        "y": 460,
+        "y": 580,
         "wires": [
             [
                 "436d87ef589bb0b2"
@@ -4331,7 +3855,7 @@
         "allowrate": false,
         "outputs": 1,
         "x": 830,
-        "y": 520,
+        "y": 640,
         "wires": [
             [
                 "7c97c1f470bfc113"
@@ -4356,7 +3880,7 @@
         "allowrate": false,
         "outputs": 1,
         "x": 830,
-        "y": 600,
+        "y": 720,
         "wires": [
             [
                 "40f2202ee521fe4b"
@@ -4381,135 +3905,10 @@
         "allowrate": false,
         "outputs": 1,
         "x": 830,
-        "y": 660,
+        "y": 780,
         "wires": [
             [
                 "cca19bfe14bc3580"
-            ]
-        ]
-    },
-    {
-        "id": "2c44cb629ca72e2f",
-        "type": "change",
-        "z": "a963ce203011149c",
-        "name": "",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "",
-                "tot": "str"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 3380,
-        "y": 60,
-        "wires": [
-            [
-                "2c2fbc244b34b186",
-                "3ef66a47ae3a1b1b"
-            ]
-        ]
-    },
-    {
-        "id": "77a75cddc999bb8d",
-        "type": "join",
-        "z": "a963ce203011149c",
-        "name": "",
-        "mode": "auto",
-        "build": "array",
-        "property": "payload",
-        "propertyType": "msg",
-        "key": "topic",
-        "joiner": "\\n",
-        "joinerType": "str",
-        "accumulate": false,
-        "timeout": "",
-        "count": "",
-        "reduceRight": false,
-        "reduceExp": "",
-        "reduceInit": "",
-        "reduceInitType": "num",
-        "reduceFixup": "",
-        "x": 3190,
-        "y": 60,
-        "wires": [
-            [
-                "2c44cb629ca72e2f"
-            ]
-        ]
-    },
-    {
-        "id": "f559ec1a2612f957",
-        "type": "join",
-        "z": "a963ce203011149c",
-        "name": "allSensorsConfig",
-        "mode": "reduce",
-        "build": "object",
-        "property": "payload",
-        "propertyType": "msg",
-        "key": "topic",
-        "joiner": "\\n",
-        "joinerType": "str",
-        "accumulate": true,
-        "timeout": "",
-        "count": "",
-        "reduceRight": false,
-        "reduceExp": "_linkSource\t",
-        "reduceInit": "",
-        "reduceInitType": "str",
-        "reduceFixup": "",
-        "x": 2190,
-        "y": 1920,
-        "wires": [
-            [
-                "6c472a36d3daefd0"
-            ]
-        ]
-    },
-    {
-        "id": "6c472a36d3daefd0",
-        "type": "change",
-        "z": "a963ce203011149c",
-        "name": "write allSensorsConfig",
-        "rules": [
-            {
-                "t": "set",
-                "p": "topic",
-                "pt": "msg",
-                "to": "allSensorsConfig",
-                "tot": "str"
-            },
-            {
-                "t": "set",
-                "p": "parts",
-                "pt": "msg",
-                "to": "{\"id\":\"142df7beb7990f40\",\"type\":\"JSON\",\"count\":1,\"len\":1,\"index\":0}",
-                "tot": "json"
-            },
-            {
-                "t": "move",
-                "p": "payload",
-                "pt": "msg",
-                "to": "_linkSource",
-                "tot": "msg"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 2440,
-        "y": 1920,
-        "wires": [
-            [
-                "d0ab93169d2cac8a"
             ]
         ]
     },
@@ -4523,7 +3922,7 @@
         ],
         "timeout": "30",
         "x": 800,
-        "y": 60,
+        "y": 120,
         "wires": [
             [
                 "85991648c14196e9",
@@ -4532,37 +3931,20 @@
         ]
     },
     {
-        "id": "3ef66a47ae3a1b1b",
-        "type": "debug",
-        "z": "a963ce203011149c",
-        "name": "joinUpdateWeather",
-        "active": true,
-        "tosidebar": true,
-        "console": true,
-        "tostatus": false,
-        "complete": "'Finished UpdateWeather and joins all MQTT messages into 1 message to avoid duplication of next process'",
-        "targetType": "jsonata",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 3640,
-        "y": 180,
-        "wires": []
-    },
-    {
         "id": "a9805a45dd3418c3",
         "type": "debug",
         "z": "a963ce203011149c",
         "name": "publishSensors",
-        "active": false,
+        "active": true,
         "tosidebar": true,
         "console": true,
         "tostatus": false,
-        "complete": "$join([topic,': ',payload])",
-        "targetType": "jsonata",
+        "complete": "payload",
+        "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 2470,
-        "y": 680,
+        "x": 1850,
+        "y": 740,
         "wires": []
     },
     {
@@ -4574,12 +3956,12 @@
         "tosidebar": true,
         "console": true,
         "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
+        "complete": "payload",
+        "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 2090,
-        "y": 1980,
+        "x": 2170,
+        "y": 2120,
         "wires": []
     },
     {
@@ -4594,7 +3976,7 @@
         "key": "topic",
         "joiner": "\\n",
         "joinerType": "str",
-        "accumulate": true,
+        "accumulate": false,
         "timeout": "",
         "count": "5",
         "reduceRight": false,
@@ -4603,10 +3985,196 @@
         "reduceInitType": "num",
         "reduceFixup": "",
         "x": 1930,
-        "y": 1980,
+        "y": 2060,
         "wires": [
             [
-                "76a5a7926e1361c0"
+                "76a5a7926e1361c0",
+                "d0ab93169d2cac8a"
+            ]
+        ]
+    },
+    {
+        "id": "2cb6213c41582118",
+        "type": "join",
+        "z": "a963ce203011149c",
+        "name": "",
+        "mode": "custom",
+        "build": "object",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "accumulate": false,
+        "timeout": "",
+        "count": "2",
+        "reduceRight": false,
+        "reduceExp": "",
+        "reduceInit": "",
+        "reduceInitType": "num",
+        "reduceFixup": "",
+        "x": 1370,
+        "y": 1620,
+        "wires": [
+            [
+                "29354fa083934404"
+            ]
+        ]
+    },
+    {
+        "id": "bc57ffa9a79f2eb5",
+        "type": "join",
+        "z": "a963ce203011149c",
+        "name": "",
+        "mode": "custom",
+        "build": "object",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "accumulate": false,
+        "timeout": "",
+        "count": "2",
+        "reduceRight": false,
+        "reduceExp": "",
+        "reduceInit": "",
+        "reduceInitType": "num",
+        "reduceFixup": "",
+        "x": 1370,
+        "y": 1400,
+        "wires": [
+            [
+                "5e05b8e4dfda2cc2"
+            ]
+        ]
+    },
+    {
+        "id": "6a12eac2bb122ed3",
+        "type": "join",
+        "z": "a963ce203011149c",
+        "name": "",
+        "mode": "custom",
+        "build": "object",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "accumulate": false,
+        "timeout": "",
+        "count": "2",
+        "reduceRight": false,
+        "reduceExp": "",
+        "reduceInit": "",
+        "reduceInitType": "num",
+        "reduceFixup": "",
+        "x": 1370,
+        "y": 1180,
+        "wires": [
+            [
+                "2e1723379b4a80df"
+            ]
+        ]
+    },
+    {
+        "id": "10bf457c63f8f638",
+        "type": "join",
+        "z": "a963ce203011149c",
+        "name": "",
+        "mode": "custom",
+        "build": "object",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "accumulate": false,
+        "timeout": "",
+        "count": "2",
+        "reduceRight": false,
+        "reduceExp": "",
+        "reduceInit": "",
+        "reduceInitType": "num",
+        "reduceFixup": "",
+        "x": 1370,
+        "y": 960,
+        "wires": [
+            [
+                "e658abc20e1349e0"
+            ]
+        ]
+    },
+    {
+        "id": "4f3dd3c40049f50c",
+        "type": "join",
+        "z": "a963ce203011149c",
+        "name": "",
+        "mode": "custom",
+        "build": "object",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "accumulate": false,
+        "timeout": "",
+        "count": "4",
+        "reduceRight": false,
+        "reduceExp": "",
+        "reduceInit": "",
+        "reduceInitType": "num",
+        "reduceFixup": "",
+        "x": 1370,
+        "y": 680,
+        "wires": [
+            [
+                "f1a4d6c35636b023"
+            ]
+        ]
+    },
+    {
+        "id": "31a5d9a8ae2ffa39",
+        "type": "debug",
+        "z": "a963ce203011149c",
+        "name": "publishWeather",
+        "active": true,
+        "tosidebar": true,
+        "console": true,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1660,
+        "y": 3080,
+        "wires": []
+    },
+    {
+        "id": "a35cdf3e48029e7a",
+        "type": "join",
+        "z": "a963ce203011149c",
+        "name": "",
+        "mode": "custom",
+        "build": "object",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "accumulate": false,
+        "timeout": "",
+        "count": "2",
+        "reduceRight": false,
+        "reduceExp": "",
+        "reduceInit": "",
+        "reduceInitType": "num",
+        "reduceFixup": "",
+        "x": 1870,
+        "y": 120,
+        "wires": [
+            [
+                "d4e5f006ed6b7ad5"
             ]
         ]
     }
