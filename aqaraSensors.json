@@ -354,7 +354,7 @@
         "wires": [
             [
                 "dc0632d156dd8e28",
-                "76a5a7926e1361c0"
+                "9657c9cd24791369"
             ]
         ]
     },
@@ -689,7 +689,7 @@
         "wires": [
             [
                 "dc0632d156dd8e28",
-                "76a5a7926e1361c0"
+                "9657c9cd24791369"
             ]
         ]
     },
@@ -1652,7 +1652,7 @@
         "wires": [
             [
                 "dc0632d156dd8e28",
-                "76a5a7926e1361c0"
+                "9657c9cd24791369"
             ]
         ]
     },
@@ -2570,7 +2570,7 @@
         "wires": [
             [
                 "dc0632d156dd8e28",
-                "76a5a7926e1361c0"
+                "9657c9cd24791369"
             ]
         ]
     },
@@ -2617,7 +2617,7 @@
         "wires": [
             [
                 "dc0632d156dd8e28",
-                "76a5a7926e1361c0"
+                "9657c9cd24791369"
             ]
         ]
     },
@@ -4574,12 +4574,40 @@
         "tosidebar": true,
         "console": true,
         "tostatus": false,
-        "complete": "payload",
-        "targetType": "msg",
+        "complete": "true",
+        "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1950,
+        "x": 2090,
         "y": 1980,
         "wires": []
+    },
+    {
+        "id": "9657c9cd24791369",
+        "type": "join",
+        "z": "a963ce203011149c",
+        "name": "",
+        "mode": "custom",
+        "build": "object",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "accumulate": true,
+        "timeout": "",
+        "count": "",
+        "reduceRight": false,
+        "reduceExp": "",
+        "reduceInit": "",
+        "reduceInitType": "num",
+        "reduceFixup": "",
+        "x": 1930,
+        "y": 1980,
+        "wires": [
+            [
+                "76a5a7926e1361c0"
+            ]
+        ]
     }
 ]
